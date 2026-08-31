@@ -21,6 +21,7 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 DEFAULT_MATRIX = ROOT / "TOOLING" / "workplace" / "runs" / "EXP-0002-task02-quick-calculator-clear-label.json"
 RUN_ID_RE = re.compile(r"^\d{4}$")
+LOCAL_RELEASE_TAG = "local-unreleased"
 
 
 class WorkplaceError(RuntimeError):
@@ -104,6 +105,103 @@ def write_json(path: Path, data: object) -> None:
 
 def read_json(path: Path) -> object:
     return json.loads(path.read_text(encoding="utf-8"))
+
+
+def repo_path(path: str) -> str:
+    return path.replace("\\", "/").rstrip("/")
+
+
+def is_harness_path(path: str) -> bool:
+    normalized = repo_path(path)
+    return normalized == ".cursor" or normalized.startswith(".cursor/")
+
+
+def status_line_paths(line: str) -> list[str]:
+    if len(line) < 4:
+        return []
+    payload = repo_path(line[3:].strip())
+    if " -> " in payload:
+        return [repo_path(part.strip()) for part in payload.split(" -> ", 1)]
+    return [payload]
+
+
+def path_matches(path: str, excluded: set[str], include_harness: bool = True) -> bool:
+    normalized = repo_path(path)
+    if include_harness and is_harness_path(normalized):
+        return True
+    for excluded_path in excluded:
+        if normalized == excluded_path or normalized.startswith(excluded_path + "/"):
+            return True
+    return False
+
+
+def filter_status(status: str, excluded: set[str]) -> str:
+    lines = []
+    for line in status.splitlines():
+        paths = status_line_paths(line)
+        if paths and any(path_matches(path, excluded) for path in paths):
+            continue
+        lines.append(line)
+    return "\n".join(lines) + ("\n" if lines else "")
+
+
+def read_path_list(path: Path) -> set[str]:
+    if not path.exists():
+        return set()
+    return {repo_path(line.strip()) for line in path.read_text(encoding="utf-8").splitlines() if line.strip()}
+
+
+def harness_role(path: str) -> str:
+    normalized = repo_path(path)
+    if normalized == ".cursor/cli.json":
+        return "cursor-cli-config"
+    if normalized.startswith(".cursor/skills/"):
+        return "treatment-skill"
+    return "harness"
+
+
+def collect_harness_manifest(root: Path, matrix: RunMatrix, run: LabRun) -> dict[str, object]:
+    active = active_path(root, matrix)
+    cursor_dir = active / ".cursor"
+    files = []
+    if cursor_dir.exists():
+        for path in sorted(p for p in cursor_dir.rglob("*") if p.is_file()):
+            relative = repo_path(path.relative_to(active).as_posix())
+            files.append(
+                {
+                    "path": relative,
+                    "role": harness_role(relative),
+                    "sha256": sha256_file(path),
+                    "size_bytes": path.stat().st_size,
+                }
+            )
+    return {
+        "schema_version": 1,
+        "classification": "harness-created-state",
+        "generated_at_utc": utc_now(),
+        "run_id": run.run_id,
+        "experiment": matrix.experiment,
+        "skill": matrix.skill,
+        "skill_version": run.skill_version,
+        "files": files,
+    }
+
+
+def load_harness_paths(state: Path) -> set[str]:
+    path = state / "harness-manifest.json"
+    if not path.exists():
+        return set()
+    manifest = read_json(path)
+    if not isinstance(manifest, dict):
+        raise WorkplaceError("harness manifest must contain an object")
+    files = manifest.get("files", [])
+    if not isinstance(files, list):
+        raise WorkplaceError("harness manifest files must contain a list")
+    paths: set[str] = set()
+    for item in files:
+        if isinstance(item, dict) and isinstance(item.get("path"), str):
+            paths.add(repo_path(item["path"]))
+    return paths
 
 
 def parse_field(text: str, field: str) -> str | None:
@@ -346,6 +444,7 @@ def fresh(root: Path, matrix: RunMatrix, run: LabRun) -> Path:
             shutil.copytree(source, active / ".cursor" / "skills" / matrix.skill)
         state.mkdir(parents=True)
         write_json(state / "RUN-METADATA.json", run_metadata(root, matrix, run))
+        capture_pre_execution_snapshot(root, matrix, run)
     except Exception:
         remove_tree(active, ignore_errors=True)
         remove_tree(state, ignore_errors=True)
@@ -528,12 +627,42 @@ def git_output(active: Path, args: list[str]) -> str:
     return run_cmd(["git", *args], cwd=active, check=False).stdout
 
 
-def list_untracked(active: Path) -> str:
+def list_untracked(active: Path, excluded: set[str] | None = None, exclude_harness: bool = False) -> str:
+    excluded = excluded or set()
     lines = []
     for line in git_output(active, ["status", "--porcelain=v1", "-uall"]).splitlines():
         if line.startswith("?? "):
-            lines.append(line[3:])
+            path = repo_path(line[3:])
+            if not path_matches(path, excluded, include_harness=exclude_harness):
+                lines.append(path)
     return "\n".join(lines) + ("\n" if lines else "")
+
+
+def git_diff_from_baseline(active: Path, matrix: RunMatrix, args: list[str]) -> str:
+    return git_output(active, ["diff", *args, matrix.baseline.commit, "--", ".", ":(exclude).cursor/**"])
+
+
+def tracked_subject_files(active: Path, matrix: RunMatrix) -> str:
+    paths = [repo_path(line) for line in git_diff_from_baseline(active, matrix, ["--name-only"]).splitlines() if line]
+    return "\n".join(paths) + ("\n" if paths else "")
+
+
+def capture_pre_execution_snapshot(root: Path, matrix: RunMatrix, run: LabRun) -> None:
+    active = active_path(root, matrix)
+    state = run_state_dir(root)
+    write_json(state / "harness-manifest.json", collect_harness_manifest(root, matrix, run))
+    (state / "pre-execution-head.txt").write_text(
+        git_output(active, ["rev-parse", "HEAD"]), encoding="utf-8", newline="\n"
+    )
+    (state / "pre-execution-git-status.txt").write_text(
+        git_output(active, ["status", "--porcelain=v1", "-uall"]), encoding="utf-8", newline="\n"
+    )
+    (state / "pre-execution-git-status-ignored.txt").write_text(
+        git_output(active, ["status", "--ignored", "--short"]), encoding="utf-8", newline="\n"
+    )
+    (state / "pre-execution-untracked-files.txt").write_text(
+        list_untracked(active), encoding="utf-8", newline="\n"
+    )
 
 
 def extract_text(item: dict[str, object]) -> str:
@@ -663,11 +792,21 @@ Status: preserved
 
 Asset: {archive.name}
 
-Release tag: local-unreleased
+Storage class: local-only archive
+
+Publication status: pending
+
+Fresh-clone retrievable: no
+
+Durable publication path: GitHub Release asset (pending)
+
+Release tag: {LOCAL_RELEASE_TAG}
 
 SHA-256: {archive_hash}
 
 Path: {archive.relative_to(root).as_posix()}
+
+Manifest: EVIDENCE/{run.run_id}/archive-manifest.json
 """
     (evidence / "RESULT-ASSET.md").write_text(result_md, encoding="utf-8", newline="\n")
     raw_record = f"""# Run {run.run_id} Raw Record
@@ -704,7 +843,17 @@ Archive path: `{archive.relative_to(root).as_posix()}`
 
 Archive SHA-256: `{archive_hash}`
 
-Changed files: see `git-status.txt`, `git-diff-name-status.txt`, and `untracked-files.txt`
+Archive storage: local-only; not retrievable from a fresh clone until published as a durable external asset
+
+Baseline commit for tracked change evidence: `{matrix.baseline.commit}`
+
+Final HEAD: see `final-head.txt`
+
+Harness attribution: see `harness-manifest.json`, `pre-execution-untracked-files.txt`, and `git-status-full.txt`
+
+Model-created files: see `model-created-git-status.txt`, `tracked-subject-files.txt`, and `model-created-untracked-files.txt`
+
+Tracked subject-repository changes: see `git-diff-name-status.txt` and `diff.patch`; generated against the frozen matrix baseline, not final HEAD
 
 Verification actually run: Cursor Agent process exit code `{execution_exit_code(execution)}`; additional command evidence must be read from the preserved stream or stderr
 
@@ -744,7 +893,11 @@ def append_data_run(root: Path, matrix: RunMatrix, run: LabRun, archive: Path, a
             "experiment_run_path": experiment_run_path(root, matrix, run).relative_to(root).as_posix(),
             "result_asset": archive.name,
             "result_asset_sha256": archive_hash,
-            "release_tag": "local-unreleased",
+            "result_asset_storage": "local-only",
+            "result_asset_publication_status": "pending",
+            "result_asset_fresh_clone_retrievable": False,
+            "durable_publication_path": "GitHub Release asset",
+            "release_tag": LOCAL_RELEASE_TAG,
             "status": "preserved",
         }
     )
@@ -806,6 +959,16 @@ def archive_active(root: Path, matrix: RunMatrix, run: LabRun, state_only: bool 
         raise WorkplaceError(f"No active run state found: {state}")
     metadata = validate_active_metadata(root, matrix, run)
     execution = load_execution(root, run, state_only=state_only, reason=reason)
+    pre_execution_files = (
+        "harness-manifest.json",
+        "pre-execution-head.txt",
+        "pre-execution-git-status.txt",
+        "pre-execution-git-status-ignored.txt",
+        "pre-execution-untracked-files.txt",
+    )
+    missing_pre_execution = [name for name in pre_execution_files if not (state / name).exists()]
+    if missing_pre_execution:
+        raise WorkplaceError(f"missing pre-execution snapshot files: {', '.join(missing_pre_execution)}")
 
     archive = archive_path(root, run)
     entry_count, archive_size = zip_active(active, archive)
@@ -813,13 +976,36 @@ def archive_active(root: Path, matrix: RunMatrix, run: LabRun, state_only: bool 
     evidence = evidence_path(root, run)
     evidence.mkdir(parents=True)
 
-    (evidence / "head.txt").write_text(git_output(active, ["rev-parse", "HEAD"]), encoding="utf-8", newline="\n")
-    (evidence / "git-status.txt").write_text(git_output(active, ["status", "--porcelain=v1", "-uall"]), encoding="utf-8", newline="\n")
+    for filename in pre_execution_files:
+        shutil.copy2(state / filename, evidence / filename)
+
+    full_status = git_output(active, ["status", "--porcelain=v1", "-uall"])
+    harness_paths = load_harness_paths(state)
+    pre_execution_untracked = read_path_list(state / "pre-execution-untracked-files.txt")
+    excluded_model_paths = harness_paths | pre_execution_untracked
+    model_status = filter_status(full_status, excluded_model_paths)
+    final_head = git_output(active, ["rev-parse", "HEAD"])
+
+    (evidence / "head.txt").write_text(final_head, encoding="utf-8", newline="\n")
+    (evidence / "final-head.txt").write_text(final_head, encoding="utf-8", newline="\n")
+    (evidence / "baseline-head.txt").write_text(matrix.baseline.commit + "\n", encoding="utf-8", newline="\n")
+    (evidence / "git-status-full.txt").write_text(full_status, encoding="utf-8", newline="\n")
+    (evidence / "git-status.txt").write_text(model_status, encoding="utf-8", newline="\n")
+    (evidence / "model-created-git-status.txt").write_text(model_status, encoding="utf-8", newline="\n")
     (evidence / "git-status-ignored.txt").write_text(git_output(active, ["status", "--ignored", "--short"]), encoding="utf-8", newline="\n")
-    (evidence / "git-diff-stat.txt").write_text(git_output(active, ["diff", "--stat", "HEAD"]), encoding="utf-8", newline="\n")
-    (evidence / "git-diff-name-status.txt").write_text(git_output(active, ["diff", "--name-status", "HEAD"]), encoding="utf-8", newline="\n")
-    (evidence / "diff.patch").write_text(git_output(active, ["diff", "--binary", "HEAD"]), encoding="utf-8", newline="\n")
-    (evidence / "untracked-files.txt").write_text(list_untracked(active), encoding="utf-8", newline="\n")
+    (evidence / "git-diff-stat.txt").write_text(git_diff_from_baseline(active, matrix, ["--stat"]), encoding="utf-8", newline="\n")
+    (evidence / "git-diff-name-status.txt").write_text(
+        git_diff_from_baseline(active, matrix, ["--name-status"]), encoding="utf-8", newline="\n"
+    )
+    (evidence / "diff.patch").write_text(git_diff_from_baseline(active, matrix, ["--binary"]), encoding="utf-8", newline="\n")
+    (evidence / "tracked-subject-files.txt").write_text(tracked_subject_files(active, matrix), encoding="utf-8", newline="\n")
+    (evidence / "untracked-files-full.txt").write_text(list_untracked(active), encoding="utf-8", newline="\n")
+    (evidence / "untracked-files.txt").write_text(
+        list_untracked(active, excluded_model_paths, exclude_harness=True), encoding="utf-8", newline="\n"
+    )
+    (evidence / "model-created-untracked-files.txt").write_text(
+        list_untracked(active, excluded_model_paths, exclude_harness=True), encoding="utf-8", newline="\n"
+    )
     write_json(evidence / "RUN-METADATA.json", metadata)
     write_json(evidence / "execution.json", execution)
 
@@ -841,6 +1027,10 @@ def archive_active(root: Path, matrix: RunMatrix, run: LabRun, state_only: bool 
             "archive_testzip": "OK",
             "active": str(active),
             "run_state": str(state),
+            "storage_class": "local-only",
+            "publication_status": "pending",
+            "fresh_clone_retrievable": False,
+            "durable_publication_path": "GitHub Release asset",
             "preserved_at_utc": utc_now(),
         },
     )

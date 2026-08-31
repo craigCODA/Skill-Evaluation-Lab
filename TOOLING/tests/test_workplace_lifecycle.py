@@ -148,6 +148,14 @@ def write_execution(root, run_id="0001", exit_code=0):
     )
 
 
+def set_current_state(root, completed, next_run):
+    (root / "CURRENT-STATE.md").write_text(
+        f"# Current State\n\nCurrent completed global run: `{completed}`\n\nNext global run: `{next_run}`\n",
+        encoding="utf-8",
+        newline="\n",
+    )
+
+
 class WorkplaceLifecycleTests(unittest.TestCase):
     def make_lab(self):
         tmp = tempfile.TemporaryDirectory()
@@ -220,6 +228,79 @@ class WorkplaceLifecycleTests(unittest.TestCase):
                 self.assertIsNone(zf.testzip())
                 self.assertTrue(any(name.endswith("/.git/HEAD") for name in zf.namelist()))
                 self.assertTrue(any(name.endswith("/untracked.txt") for name in zf.namelist()))
+
+    def test_archive_separates_harness_state_from_model_created_changes(self):
+        tmp, root, matrix = self.make_lab()
+        with tmp:
+            set_current_state(root, "0001", "0002")
+            run = matrix.get_run("0002")
+            active = workplace.fresh(root, matrix, run)
+            (active / "component.txt").write_text("Clear manual entries\n", encoding="utf-8", newline="\n")
+            (active / "model-note.txt").write_text("model-created\n", encoding="utf-8", newline="\n")
+            write_execution(root, run_id="0002")
+
+            evidence = workplace.archive_active(root, matrix, run)
+
+            harness = json.loads((evidence / "harness-manifest.json").read_text(encoding="utf-8"))
+            harness_paths = {item["path"] for item in harness["files"]}
+            self.assertIn(".cursor/cli.json", harness_paths)
+            self.assertIn(".cursor/skills/layered-codebase-architecture/SKILL.md", harness_paths)
+
+            pre_untracked = (evidence / "pre-execution-untracked-files.txt").read_text(encoding="utf-8")
+            self.assertIn(".cursor/cli.json", pre_untracked)
+            self.assertIn(".cursor/skills/layered-codebase-architecture/SKILL.md", pre_untracked)
+
+            model_untracked = (evidence / "model-created-untracked-files.txt").read_text(encoding="utf-8")
+            self.assertIn("model-note.txt", model_untracked)
+            self.assertNotIn(".cursor/cli.json", model_untracked)
+            self.assertNotIn(".cursor/skills/layered-codebase-architecture/SKILL.md", model_untracked)
+
+            tracked_subject = (evidence / "tracked-subject-files.txt").read_text(encoding="utf-8")
+            self.assertEqual("component.txt", tracked_subject.strip())
+            subject_status = (evidence / "model-created-git-status.txt").read_text(encoding="utf-8")
+            self.assertIn(" M component.txt", subject_status)
+            self.assertIn("?? model-note.txt", subject_status)
+            self.assertNotIn(".cursor/", subject_status)
+
+    def test_archive_diffs_against_baseline_even_if_agent_commits_change(self):
+        tmp, root, matrix = self.make_lab()
+        with tmp:
+            run = matrix.get_run("0001")
+            active = workplace.fresh(root, matrix, run)
+            baseline = matrix.baseline.commit
+            (active / "component.txt").write_text("Clear manual entries\n", encoding="utf-8", newline="\n")
+            run_git(["config", "user.email", "agent@example.invalid"], active)
+            run_git(["config", "user.name", "Agent"], active)
+            run_git(["add", "component.txt"], active)
+            run_git(["commit", "-m", "agent change"], active)
+            final_head = run_git(["rev-parse", "HEAD"], active)
+            write_execution(root)
+
+            evidence = workplace.archive_active(root, matrix, run)
+
+            self.assertNotEqual(baseline, final_head)
+            self.assertEqual(final_head, (evidence / "final-head.txt").read_text(encoding="utf-8").strip())
+            self.assertEqual(baseline, (evidence / "baseline-head.txt").read_text(encoding="utf-8").strip())
+            self.assertIn("M\tcomponent.txt", (evidence / "git-diff-name-status.txt").read_text(encoding="utf-8"))
+            diff = (evidence / "diff.patch").read_text(encoding="utf-8")
+            self.assertIn("-Clear entries", diff)
+            self.assertIn("+Clear manual entries", diff)
+
+    def test_result_asset_record_marks_local_archive_pending_publication(self):
+        tmp, root, matrix = self.make_lab()
+        with tmp:
+            run = matrix.get_run("0001")
+            active = workplace.fresh(root, matrix, run)
+            (active / "component.txt").write_text("Clear manual entries\n", encoding="utf-8", newline="\n")
+            write_execution(root)
+
+            evidence = workplace.archive_active(root, matrix, run)
+
+            result = (evidence / "RESULT-ASSET.md").read_text(encoding="utf-8")
+            self.assertIn("Storage class: local-only archive", result)
+            self.assertIn("Publication status: pending", result)
+            self.assertIn("Fresh-clone retrievable: no", result)
+            self.assertIn("Durable publication path: GitHub Release asset", result)
 
 
 if __name__ == "__main__":
