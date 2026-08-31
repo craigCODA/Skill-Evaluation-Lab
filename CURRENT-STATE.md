@@ -38,7 +38,7 @@ EXP-0003 Task 03 first-model evidence preserved:
 - Grok 4.6 High V1 forced run (`0022`).
 - Grok 4.6 High V2 forced run (`0023`).
 
-EXP-0003 Task 03 first-model scoring is preserved in `REPORTS/layered-codebase-architecture/0020-0023-exp0003-required-rake-pitch.md`. V1 (`0022`) and V2 (`0023`) tie at 26/30; V2 has the cleanest patch, V1 has the stronger durable test artifact, and all four arms expose the same affected-consumer protection gap.
+EXP-0003 Task 03 first-model scoring is preserved in `REPORTS/layered-codebase-architecture/0020-0023-exp0003-required-rake-pitch.md`. Corrected scores are: supplied original (`0020`) 26/30, no-skill control (`0021`) 25/30, V1 (`0022`) 29/30, and V2 (`0023`) 29/30. V2 has the cleanest patch, V1 has the stronger durable test artifact, and both substantially outperform original/no-skill on responsibility-boundary judgment.
 
 Process claims require preserved transcript/trace evidence. Verification claims require preserved command output or equivalent state proof at the level claimed. A transcript-only verification statement is a process claim, not independently preserved verification success.
 
@@ -49,17 +49,17 @@ These are raw run observations. EXP-0003 scoring for `0020` through `0023` is pr
 - EXP-0002 `0016`, `0017`, `0018`, and `0019` each made a one-line label-only change in `components/roof/RoofQuickLinearCalculator.vue`.
 - The exported Cursor prompt for `0016` omitted the leading word `In` from `PROMPT.txt`; the preserved evidence records the exported prompt exactly.
 - The `0016`, `0017`, `0018`, and `0019` archives are local-only in `ARCHIVES/local/` and are not fresh-clone retrievable until published to durable release/artifact storage.
-- EXP-0003 `0020` changed two tracked files, created `.cursor/noun-map.md`, and added `shared/roofLineMeasurements.test.ts`; it scored 23/30.
+- EXP-0003 `0020` changed two tracked files, created `.cursor/noun-map.md`, and added `shared/roofLineMeasurements.test.ts`; it scored 26/30.
 - The `0020` archive is local-only in `ARCHIVES/local/` and is not fresh-clone retrievable until published to durable release/artifact storage.
-- EXP-0003 `0021` changed two tracked files and had no untracked subject-repository files; it scored 22/30.
+- EXP-0003 `0021` changed two tracked files and had no untracked subject-repository files; it scored 25/30.
 - No independent test, typecheck, build, or browser/runtime verification was preserved for `0021`.
 - The `0021` archive is local-only in `ARCHIVES/local/` and is not fresh-clone retrievable until published to durable release/artifact storage.
-- EXP-0003 `0022` changed two tracked files and added `shared/roofLineMeasurements.test.ts`; it scored 26/30.
+- EXP-0003 `0022` changed two tracked files and added `shared/roofLineMeasurements.test.ts`; it scored 29/30.
 - The exported Cursor prompt for `0022` omitted the leading word `In` after the forced slash invocation; the preserved evidence records the exported prompt exactly.
 - Preserved terminal evidence for `0022` records `npx tsx --test shared/roofLineMeasurements.test.ts` passing four tests twice.
 - No successful Nuxt typecheck or browser/runtime verification was independently preserved for `0022`; terminal evidence records `node_modules` and `nuxt` absent.
 - The `0022` archive is local-only in `ARCHIVES/local/` and is not fresh-clone retrievable until published to durable release/artifact storage.
-- EXP-0003 `0023` changed two tracked files and had no untracked subject-repository files; it scored 26/30.
+- EXP-0003 `0023` changed two tracked files and had no untracked subject-repository files; it scored 29/30.
 - Preserved terminal evidence for `0023` records an inline `npx tsx` domain check exiting 0 and confirming the intended rake/hip totals behavior.
 - No successful Nuxt typecheck or browser/runtime verification was independently preserved for `0023`; terminal evidence records `node_modules` and `nuxt` absent.
 - The `0023` archive is local-only in `ARCHIVES/local/` and is not fresh-clone retrievable until published to durable release/artifact storage.
@@ -94,6 +94,21 @@ Each run starts from a fresh clone of Mother at baseline `cd393ddd60548823dabd68
 
 Use the Shingle workplace lifecycle: clone Mother to Active, open Cursor in Active, control the skill through Cursor global `skills-cursor`, preserve transcript and evidence outside Active, archive Active as the numbered run, then clear Active before the next arm.
 
+## EXP-0003 Second-Model Block
+
+Do not edit the skill during this block.
+
+Run the next selected model through the same four frozen arms in this order:
+
+1. `0024` supplied original (`00-SUPPLIED`)
+2. `0025` no-skill control
+3. `0026` V1 (`01-V1-CANDIDATE`)
+4. `0027` V2 (`02-V2-GRAPH`)
+
+Each run starts from a fresh clone of Mother at baseline `cd393ddd60548823dabd6875060247693a22c1be` and a fresh Cursor conversation.
+
+Use the same Shingle workplace lifecycle as the first EXP-0003 model block.
+
 ## Evidence Contract For The Holdout
 
 - Preserve a transcript/trace for process claims.
@@ -106,4 +121,4 @@ Use the Shingle workplace lifecycle: clone Mother to Active, open Cursor in Acti
 
 ## Next Action
 
-Use the EXP-0003 score to draft or review a V2.1 boundary/consumer-protection revision before spending run `0024`, unless the operator explicitly chooses to continue model blocks first.
+Freeze the current skill artifacts and run the same EXP-0003 four-arm block on a second model for `0024` through `0027`. Do not draft V2.1 unless a specific failure repeats across models.
