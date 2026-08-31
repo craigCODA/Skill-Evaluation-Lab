@@ -1,0 +1,24 @@
+{
+  "run_id": "0019",
+  "experiment": "EXP-0002-task02-quick-calculator-clear-label",
+  "skill": "layered-codebase-architecture",
+  "skill_version": "02-V2-GRAPH",
+  "condition": "V2, forced",
+  "evidence_class": "primary",
+  "slash_invocation": true,
+  "model_label": "Grok 4.6 High",
+  "cursor_model_id": "cursor-grok-4.6-high",
+  "baseline": {
+    "repo_name": "ShingleFile-main",
+    "commit": "cd393ddd60548823dabd6875060247693a22c1be",
+    "source": "D:/Downloads/ShingleFile-original-workplace/ShingleFile-original-workplace/MOTHER/ShingleFile-main.git"
+  },
+  "prompt_file": "EXPERIMENTS/EXP-0002-task02-quick-calculator-clear-label/PROMPT.txt",
+  "prompt_sha256": "e1ca2c01abd9c524d6b53912758901ddf815cac142cce59b4139a071b25009a0",
+  "prepared_at_utc": "2026-08-31T09:05:51.428189+00:00",
+  "skill_artifact_path": "SKILLS/layered-codebase-architecture/02-V2-GRAPH",
+  "skill_hashes": {
+    "SKILL.md": "c183d335cf06102f2d66ac716fc8d1d6e33b85d96f23dd014298d6bdd79e5cd1",
+    "conventions.md": "5a1dc4af63c8605ee2998c7fba0f1c98506fbbba49abb8bf7a084e9c03be5255"
+  }
+}

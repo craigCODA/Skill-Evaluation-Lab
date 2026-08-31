@@ -1,0 +1,10 @@
+{
+  "run_id": "0019",
+  "archive": "run-0019-v2-forced.zip",
+  "archive_sha256": "d8ab7ed9f5d76ddd6835c07196da9732d88d0ca357a4283da56ec370fded4289",
+  "archive_size_bytes": 1214012,
+  "archive_entry_count": 686,
+  "archive_testzip": "OK",
+  "workspace": "D:\\Downloads\\Skill-Evaluation-Lab\\.worktrees\\cursor-runner-automation\\.worktrees\\cursor-runs\\run-0019",
+  "preserved_at_utc": "2026-08-31T09:06:55.583548+00:00"
+}

@@ -1,0 +1,6 @@
+ M components/roof/RoofQuickLinearCalculator.vue
+?? .cursor/cli.json
+?? .lab-run/LAB-RUN-METADATA.json
+?? .lab-run/cursor-agent-stderr.txt
+?? .lab-run/cursor-agent-stream.raw.jsonl
+?? .lab-run/execution.json

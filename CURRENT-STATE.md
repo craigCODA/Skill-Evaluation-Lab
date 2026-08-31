@@ -6,9 +6,9 @@ Current frozen experimental candidate: `02-V2-GRAPH`
 
 Promotion status: experimental, not promoted as a general improvement.
 
-Current completed global run: `0015`
+Current completed global run: `0019`
 
-Next global run: `0016`
+Next global run: `0020`
 
 Current experiment: `EXP-0001-task01-roof-image-measure`
 
