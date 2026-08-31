@@ -1,0 +1,29 @@
+---
+pid: 30440
+cwd: "D:\\Downloads\\Skill-Evaluation-Lab\\ACTIVE\\ShingleFile-main"
+command: "dir shared\\contracts"
+title: "List contracts directory"
+status: succeeded
+started_at: 2026-08-31T23:10:39.589Z
+running_for_ms: 36635    
+---
+
+    Directory: D:\Downloads\Skill-Evaluation-Lab\ACTIVE\ShingleFile-main\shared\contracts
+
+Mode                 LastWriteTime         Length Name
+----                 -------------         ------ ----
+d----           8/31/2026  6:07 PM                modules
+-a---           8/31/2026  6:07 PM           3160 contractParty.ts
+-a---           8/31/2026  6:07 PM           2853 proposalCommon.ts
+-a---           8/31/2026  6:07 PM          13672 proposalDocuments.ts
+-a---           8/31/2026  6:07 PM           6549 roofProposalDocument.ts
+-a---           8/31/2026  6:07 PM          13829 roofProposalNarrative.ts
+-a---           8/31/2026  6:07 PM           4167 roofProposalPricing.ts
+-a---           8/31/2026  6:07 PM          12381 roofProposalScope.ts
+-a---           8/31/2026  6:07 PM            993 types.ts
+
+---
+exit_code: 0
+elapsed_ms: 36635
+ended_at: 2026-08-31T23:11:16.224Z
+---

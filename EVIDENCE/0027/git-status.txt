@@ -1,0 +1,4 @@
+## HEAD (no branch)
+ M shared/calculator/calculateEstimate.ts
+ M shared/contracts/roofProposalPricing.ts
+ M shared/options/valleyMetal.ts

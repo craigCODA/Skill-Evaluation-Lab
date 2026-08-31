@@ -1,0 +1,89 @@
+diff --git a/shared/calculator/calculateEstimate.ts b/shared/calculator/calculateEstimate.ts
+index 88a3155..f20fb7f 100644
+--- a/shared/calculator/calculateEstimate.ts
++++ b/shared/calculator/calculateEstimate.ts
+@@ -131,7 +131,7 @@ export function calculateRoofingEstimate({
+   const valleyMetal = valleyMetalOption.compute(jobCtx);
+   const materials = materialsCounts(roofing, catalog);
+ 
+-  // valleyMetal is intentionally excluded — it is not billed.
++  // valleyMetal is billed as part of the grand total when style is "open".
+   const grandTotal =
+     areaCosts.reduce((sum, area) => sum + area.total, 0) +
+     ridge.total +
+@@ -147,6 +147,7 @@ export function calculateRoofingEstimate({
+     noAccess.total +
+     gutterRemoval.cost +
+     lowSlope.cost +
++    valleyMetal.cost +
+     permit +
+     extras.amount;
+ 
+diff --git a/shared/contracts/roofProposalPricing.ts b/shared/contracts/roofProposalPricing.ts
+index d95951b..73cd8a3 100644
+--- a/shared/contracts/roofProposalPricing.ts
++++ b/shared/contracts/roofProposalPricing.ts
+@@ -148,6 +148,14 @@ export function buildRoofPricingLines(
+     });
+   }
+ 
++  if (totals.valleyMetal.cost > 0) {
++    lines.push({
++      label: "Valley metal",
++      value: `${totals.valleyMetal.billableLf} LF open valley`,
++      amount: totals.valleyMetal.cost,
++    });
++  }
++
+   if (job.permit > 0) {
+     lines.push({
+       label: "Building permit",
+diff --git a/shared/options/valleyMetal.ts b/shared/options/valleyMetal.ts
+index 498b92d..7c0e105 100644
+--- a/shared/options/valleyMetal.ts
++++ b/shared/options/valleyMetal.ts
+@@ -3,8 +3,8 @@
+  *
+  *   cost = style === "open" ? openLf × pricePerFoot : 0
+  *
+- * This is computed and surfaced in the UI for visibility, but it is NOT rolled
+- * into the grand total (it only informs materials counts).
++ * Open-valley metal is a customer charge; this option figures the billable LF
++ * and adds the cost to the grand total.
+  */
+ 
+ import type { Money, ValleySelection } from "../types";
+@@ -37,23 +37,27 @@ export const valleyMetalOption: JobOption<ValleyMetalBreakdown> = {
+   id: "valleyMetal",
+   title: "Valley Metal",
+   summary:
+-    "Open-valley metal computed for visibility. NOT billed to the customer; it only informs materials counts.",
++    "Open-valley metal, billed per linear foot when valleys are open.",
+   phase: "job",
+-  billed: false,
++  billed: true,
+   pricingPlain:
+-    "Only open valleys are figured: open-valley feet times the per-foot rate. This is shown for reference and is NOT added to the customer total.",
+-  example: "30 ft of open valley at $3/ft = $90 (reference only — not billed).",
++    "Only open valleys are figured: open-valley feet times the per-foot rate. The result is added to the customer total as a separate charge.",
++  example:
++    "30 ft of open valley at $3/ft = $90 added to the customer total.",
+   fieldLabels: ["Valley style", "Open valley LF", "Closed valley LF"],
+   catalogTables: ["valleyMetalRates"],
+   inputs: [
+-    { name: "Valley style", description: "'open' or 'closed'. Only 'open' is computed for billing visibility." },
++    {
++      name: "Valley style",
++      description: "'open' or 'closed'. Only 'open' produces a valley-metal charge.",
++    },
+     { name: "Open valley LF", description: "Linear feet of open valley." },
+     { name: "Closed valley LF", description: "Linear feet of closed valley (tracked, not billed)." },
+   ],
+   formula: `billableLf = style = "open" ? openLf : 0
+ cost = billableLf x lookup("open-valley").pricePerFoot`,
+   contractEffect:
+-    "Shown for visibility only; NOT added to the grand total. Informs valley metal material counts.",
++    "Included as a line item and added to the grand total. Also informs valley metal material counts.",
+   notes: "Closed-valley LF is tracked only so the value is not lost when switching valley styles.",
+   compute: (ctx: JobContext) => valleyMetalCost(ctx.roofing.valleys, ctx.catalog),
+ };

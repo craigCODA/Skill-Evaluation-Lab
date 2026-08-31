@@ -1,0 +1,25 @@
+---
+pid: 30584
+cwd: "D:\\Downloads\\Skill-Evaluation-Lab\\ACTIVE\\ShingleFile-main"
+command: "dir shared\\contracts\\modules"
+title: "List contracts modules directory"
+status: succeeded
+started_at: 2026-08-31T23:10:55.226Z
+running_for_ms: 35052    
+---
+
+    Directory: D:\Downloads\Skill-Evaluation-Lab\ACTIVE\ShingleFile-main\shared\contracts\modules
+
+Mode                 LastWriteTime         Length Name
+----                 -------------         ------ ----
+-a---           8/31/2026  6:07 PM          12945 catalog.ts
+-a---           8/31/2026  6:07 PM          10614 compose.ts
+-a---           8/31/2026  6:07 PM           1164 index.ts
+-a---           8/31/2026  6:07 PM           5746 normalize.ts
+-a---           8/31/2026  6:07 PM           3663 types.ts
+
+---
+exit_code: 0
+elapsed_ms: 35052
+ended_at: 2026-08-31T23:11:30.278Z
+---

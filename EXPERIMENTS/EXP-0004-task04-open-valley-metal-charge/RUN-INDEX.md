@@ -7,7 +7,7 @@ The experiment begins when global run `0024` is cut. These rows define the froze
 | `0024` | GPT-5.1 | 00-SUPPLIED | primary | supplied original, forced | preserved |
 | `0025` | GPT-5.1 | NO-SKILL | primary | no explicit architecture skill | preserved |
 | `0026` | GPT-5.1 | 01-V1-CANDIDATE | primary | V1, forced | preserved |
-| `0027` | GPT-5.1 | 02-V2-GRAPH | primary | V2, forced | planned |
+| `0027` | GPT-5.1 | 02-V2-GRAPH | primary | V2, forced | preserved |
 
 ## Run-Order Rule
 

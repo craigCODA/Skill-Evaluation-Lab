@@ -1,0 +1,41 @@
+---
+pid: 29000
+cwd: "D:\\Downloads\\Skill-Evaluation-Lab\\ACTIVE\\ShingleFile-main"
+command: "dir shared\\options"
+title: "List options files"
+status: succeeded
+started_at: 2026-08-31T23:10:10.185Z
+running_for_ms: 33460    
+---
+
+    Directory: D:\Downloads\Skill-Evaluation-Lab\ACTIVE\ShingleFile-main\shared\options
+
+Mode                 LastWriteTime         Length Name
+----                 -------------         ------ ----
+-a---           8/31/2026  6:07 PM           3387 accessories.ts
+-a---           8/31/2026  6:07 PM           1601 antenna.ts
+-a---           8/31/2026  6:07 PM           1835 chimneyKit.ts
+-a---           8/31/2026  6:07 PM           2418 chimneyRemoval.ts
+-a---           8/31/2026  6:07 PM           3305 dripEdge.ts
+-a---           8/31/2026  6:07 PM           2051 gutterRemoval.ts
+-a---           8/31/2026  6:07 PM           5576 iceWater.ts
+-a---           8/31/2026  6:07 PM           3119 index.ts
+-a---           8/31/2026  6:07 PM           5569 install.ts
+-a---           8/31/2026  6:07 PM           1730 lightningRods.ts
+-a---           8/31/2026  6:07 PM           2058 lowSlope.ts
+-a---           8/31/2026  6:07 PM           6533 materials.ts
+-a---           8/31/2026  6:07 PM           2715 noAccess.ts
+-a---           8/31/2026  6:07 PM           3256 ridge.ts
+-a---           8/31/2026  6:07 PM           1648 satellite.ts
+-a---           8/31/2026  6:07 PM           2185 skylights.ts
+-a---           8/31/2026  6:07 PM           1775 stepFlashing.ts
+-a---           8/31/2026  6:07 PM           3262 types.ts
+-a---           8/31/2026  6:07 PM           2519 underlayment.ts
+-a---           8/31/2026  6:07 PM           2452 valleyMetal.ts
+-a---           8/31/2026  6:07 PM           2079 warranty.ts
+
+---
+exit_code: 0
+elapsed_ms: 33459
+ended_at: 2026-08-31T23:10:43.644Z
+---

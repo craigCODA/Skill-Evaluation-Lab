@@ -1,0 +1,29 @@
+{
+  "run_id": "0027",
+  "experiment": "EXP-0004-task04-open-valley-metal-charge",
+  "model": "GPT-5.1",
+  "condition": "02-V2-GRAPH",
+  "baseline_commit": "cd393ddd60548823dabd6875060247693a22c1be",
+  "archive": "ARCHIVES/local/run-0027-gpt51-v2-exp0004-candidate.zip",
+  "archive_sha256": "44d5876deb6f0ff0577518e5fd1ba9984616c1ea32864f87323f76afc990b791",
+  "archive_created_at": "2026-08-31T23:17:53.893877+00:00",
+  "testzip": "OK",
+  "entry_count": 677,
+  "archive_size": 3482835,
+  "has_git": true,
+  "matching_transcript_entries": [],
+  "node_modules": false,
+  "dot_nuxt": false,
+  "dot_output": false,
+  "terminal_logs_preserved": [
+    "cursor-terminal-869165.txt",
+    "cursor-terminal-869166.txt",
+    "cursor-terminal-869167.txt",
+    "cursor-terminal-869168.txt",
+    "cursor-terminal-869169.txt",
+    "cursor-terminal-869170.txt",
+    "cursor-terminal-869171.txt"
+  ],
+  "global_skill_present_during_preserve": true,
+  "subject_cursor_dir_present_in_archive": false
+}

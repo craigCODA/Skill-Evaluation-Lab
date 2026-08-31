@@ -1,0 +1,4 @@
+ shared/calculator/calculateEstimate.ts  |  3 ++-
+ shared/contracts/roofProposalPricing.ts |  8 ++++++++
+ shared/options/valleyMetal.ts           | 20 ++++++++++++--------
+ 3 files changed, 22 insertions(+), 9 deletions(-)
