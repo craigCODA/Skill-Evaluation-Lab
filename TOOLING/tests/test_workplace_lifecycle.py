@@ -39,6 +39,20 @@ def init_source_repo(path):
 
 
 def write_temp_lab(root, source_repo, baseline_commit):
+    workplace.write_json(
+        root / "workplace.json",
+        {
+            "format_version": 1,
+            "repo_name": "ShingleFile-main",
+            "baseline_sha": baseline_commit,
+            "baseline_branch": "main",
+            "baseline_tag": "workplace-baseline",
+            "mode": "skill-research",
+            "mother_path": "MOTHER/ShingleFile-main.git",
+            "active_path": "ACTIVE/ShingleFile-main",
+            "active_state_path": "ACTIVE/.run-state",
+        },
+    )
     (root / "MOTHER").mkdir()
     run_git(["clone", "--mirror", str(source_repo), str(root / "MOTHER" / "ShingleFile-main.git")], root)
     (root / "ACTIVE").mkdir()

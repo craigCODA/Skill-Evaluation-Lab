@@ -2,3 +2,8 @@
 .worktrees/
 .superpowers
 .superpowers/
+/MOTHER/
+/ACTIVE/
+/ARCHIVES/local/
+__pycache__/
+*.pyc

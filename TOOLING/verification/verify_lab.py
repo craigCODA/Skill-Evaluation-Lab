@@ -70,7 +70,7 @@ def load_runs(errors: list[str]) -> list[dict[str, str]]:
 
 
 def check_forbidden(errors: list[str]) -> None:
-    skip_parts = {".git", ".worktrees", ".superpowers"}
+    skip_parts = {".git", ".worktrees", ".superpowers", "ACTIVE", "MOTHER"}
     checked_suffixes = {".md", ".txt", ".json", ".py", ".ps1", ".sh"}
     for path in ROOT.rglob("*"):
         if any(part in skip_parts for part in path.parts):
@@ -117,15 +117,33 @@ def check_development_history(errors: list[str], expected: list[str]) -> None:
             fail(errors, f"{rel(path)} heading is {first!r}, expected '# {run_id}'")
 
 
-def check_run_index(errors: list[str], expected: list[str]) -> None:
-    path = ROOT / "EXPERIMENTS" / "EXP-0001-task01-roof-image-measure" / "RUN-INDEX.md"
-    text = read(path)
-    ids = []
-    for line in text.splitlines():
-        if line.startswith("| ") and re.match(r"^\| \d{4} \|", line):
-            ids.append(line.split("|")[1].strip())
-    if ids != expected:
-        fail(errors, f"RUN-INDEX IDs mismatch: got {ids}, expected {expected}")
+def check_run_indexes(errors: list[str], expected: list[str], completed_run: str) -> None:
+    index_paths = sorted((ROOT / "EXPERIMENTS").glob("*/RUN-INDEX.md"))
+    seen: dict[str, str] = {}
+    expected_set = set(expected)
+    completed_int = int(completed_run)
+
+    for path in index_paths:
+        for line in read(path).splitlines():
+            match = re.match(r"^\|\s*`?(\d{4})`?\s*\|", line)
+            if not match:
+                continue
+            run_id = match.group(1)
+            rel_path = rel(path)
+            if run_id in seen:
+                fail(errors, f"run {run_id} appears in multiple RUN-INDEX files: {seen[run_id]}, {rel_path}")
+            seen[run_id] = rel_path
+
+            cells = [cell.strip().strip("`").lower() for cell in line.strip().strip("|").split("|")]
+            status = cells[-1] if len(cells) >= 6 else None
+            if status == "planned" and run_id in expected_set:
+                fail(errors, f"completed run {run_id} is still planned in {rel_path}")
+            if status == "preserved" and int(run_id) > completed_int:
+                fail(errors, f"future run {run_id} is marked preserved in {rel_path}")
+
+    actual = sorted(run_id for run_id in seen if run_id in expected_set)
+    if actual != expected:
+        fail(errors, f"RUN-INDEX completed IDs mismatch: got {actual}, expected {expected}")
 
 
 def check_data(errors: list[str], runs: list[dict[str, str]], expected: list[str]) -> None:
@@ -226,32 +244,63 @@ def check_release_json(errors: list[str], runs: list[dict[str, str]], path: Path
                 fail(errors, f"release asset contains forbidden token: {name}")
 
 
+def current_completed_and_next(errors: list[str]) -> tuple[str, str]:
+    path = ROOT / "CURRENT-STATE.md"
+    if not path.exists():
+        fail(errors, "missing CURRENT-STATE.md")
+        return "0000", "0001"
+    text = read(path)
+    completed = parse_field(text, "Current completed global run")
+    next_run = parse_field(text, "Next global run")
+    if not completed or not RUN_ID_RE.match(completed):
+        fail(errors, "CURRENT-STATE.md has no valid Current completed global run")
+        completed = "0000"
+    if not next_run or not RUN_ID_RE.match(next_run):
+        fail(errors, "CURRENT-STATE.md has no valid Next global run")
+        next_run = f"{int(completed) + 1:04d}"
+    if int(next_run) != int(completed) + 1:
+        fail(errors, f"CURRENT-STATE.md next run {next_run} does not follow completed run {completed}")
+    return completed, next_run
+
+
+def verify(root: Path = ROOT, release_json_path: Path | None = None) -> list[str]:
+    global ROOT
+    previous_root = ROOT
+    ROOT = root.resolve()
+
+    errors: list[str] = []
+    try:
+        check_forbidden(errors)
+        completed_run, _ = current_completed_and_next(errors)
+        expected = [f"{i:04d}" for i in range(1, int(completed_run) + 1)]
+        evidence_ids = check_contiguous_dirs(errors, "evidence", ROOT / "EVIDENCE")
+        if evidence_ids != expected:
+            fail(errors, f"evidence IDs mismatch current state: got {evidence_ids}, expected {expected}")
+        runs = load_runs(errors)
+        check_development_history(errors, expected)
+        check_run_indexes(errors, expected, completed_run)
+        check_data(errors, runs, expected)
+        check_evidence(errors, runs, expected)
+        check_canonical_hashes(errors)
+        check_release_json(errors, runs, release_json_path)
+        return errors
+    finally:
+        ROOT = previous_root
+
+
 def main(argv: list[str]) -> int:
     parser = argparse.ArgumentParser()
     parser.add_argument("--release-json", type=Path)
     args = parser.parse_args(argv)
 
-    errors: list[str] = []
-    check_forbidden(errors)
-    runs = load_runs(errors)
-    evidence_ids = check_contiguous_dirs(errors, "evidence", ROOT / "EVIDENCE")
-    expected = expected_ids(evidence_ids)
-    if expected and expected[0] != "0001":
-        fail(errors, f"current first run should be 0001, got {expected[0]}")
-    if expected and expected[-1] != "0015":
-        fail(errors, f"current final run should be 0015, got {expected[-1]}")
-    check_development_history(errors, expected)
-    check_run_index(errors, expected)
-    check_data(errors, runs, expected)
-    check_evidence(errors, runs, expected)
-    check_canonical_hashes(errors)
-    check_release_json(errors, runs, args.release_json)
+    errors = verify(ROOT, args.release_json)
 
     if errors:
         for error in errors:
             print(f"ERROR: {error}", file=sys.stderr)
         return 1
-    print(f"OK: verified {len(expected)} canonical runs through {expected[-1]}")
+    completed, _ = current_completed_and_next([])
+    print(f"OK: verified {int(completed)} canonical runs through {completed}")
     return 0
 
 

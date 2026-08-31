@@ -1,0 +1,11 @@
+{
+  "format_version": 1,
+  "repo_name": "ShingleFile-main",
+  "baseline_sha": "cd393ddd60548823dabd6875060247693a22c1be",
+  "baseline_branch": "main",
+  "baseline_tag": "workplace-baseline",
+  "mode": "skill-research",
+  "mother_path": "MOTHER/ShingleFile-main.git",
+  "active_path": "ACTIVE/ShingleFile-main",
+  "active_state_path": "ACTIVE/.run-state"
+}
