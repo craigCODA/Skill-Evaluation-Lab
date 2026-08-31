@@ -53,6 +53,8 @@ EXP-0004 Task 04 first-model evidence preserved:
 - GPT-5.1 V1 candidate forced run (`0026`).
 - GPT-5.1 V2 candidate forced run (`0027`).
 
+EXP-0004 Task 04 first-model scoring is preserved in `REPORTS/layered-codebase-architecture/0024-0027-exp0004-open-valley-metal-charge.md`. Scores are: supplied original (`0024`) 22/30, no-skill control (`0025`) 16/30, V1 (`0026`) 14/30, and V2 (`0027`) 22/30. No arm earned Behavior Correctness 3 or Verification 3 because no preserved targeted behavior check proves open-valley charge propagation, proposal pricing inclusion, closed-valley preservation, and no double-counting.
+
 Process claims require preserved transcript/trace evidence. Verification claims require preserved command output or equivalent state proof at the level claimed. A transcript-only verification statement is a process claim, not independently preserved verification success.
 
 ## Current Run Observations
@@ -77,19 +79,19 @@ These are raw run observations. EXP-0003 scoring for `0020` through `0023` is pr
 - No successful Nuxt typecheck or browser/runtime verification was independently preserved for `0023`; terminal evidence records `node_modules` and `nuxt` absent.
 - The `0023` archive is local-only in `ARCHIVES/local/` and is not fresh-clone retrievable until published to durable release/artifact storage.
 - EXP-0004 baseline premise was verified directly against ShingleFile baseline `cd393ddd60548823dabd6875060247693a22c1be`.
-- EXP-0004 `0024` changed five tracked files and had no untracked subject-repository files.
+- EXP-0004 `0024` changed five tracked files and had no untracked subject-repository files; it scored 22/30.
 - Preserved terminal evidence for `0024` records `npm run typecheck` failing because `nuxt` was not recognized, and `rg "valley"` succeeding.
 - No successful typecheck, test, build, browser/runtime verification, or explicit open/closed-valley behavior check was independently preserved for `0024`.
 - The `0024` archive is local-only in `ARCHIVES/local/` and is not fresh-clone retrievable until published to durable release/artifact storage.
-- EXP-0004 `0025` changed three tracked files and had no untracked subject-repository files.
+- EXP-0004 `0025` changed three tracked files and had no untracked subject-repository files; it scored 16/30.
 - Preserved terminal evidence for `0025` records repository searches for `valley`, `contractEffect`, and `grandTotal` succeeding.
 - No successful typecheck, test, build, browser/runtime verification, proposal-pricing behavior check, or explicit open/closed-valley behavior check was independently preserved for `0025`.
 - The `0025` archive is local-only in `ARCHIVES/local/` and is not fresh-clone retrievable until published to durable release/artifact storage.
-- EXP-0004 `0026` changed one tracked file and had no untracked subject-repository files.
+- EXP-0004 `0026` changed one tracked file and had no untracked subject-repository files; it scored 14/30.
 - The transcript for `0026` records V1 inferring that the existing `billed` option metadata is the sufficient customer-billing authority.
 - No successful typecheck, test, build, browser/runtime verification, proposal-pricing behavior check, or explicit open/closed-valley behavior check was independently preserved for `0026`.
 - The `0026` archive is local-only in `ARCHIVES/local/` and is not fresh-clone retrievable until published to durable release/artifact storage.
-- EXP-0004 `0027` changed three tracked files and had no untracked subject-repository files.
+- EXP-0004 `0027` changed three tracked files and had no untracked subject-repository files; it scored 22/30.
 - Preserved terminal evidence for `0027` records `npm run typecheck` failing because `nuxt` was not recognized.
 - No successful typecheck, test, build, browser/runtime verification, proposal-pricing behavior check, or explicit open/closed-valley behavior check was independently preserved for `0027`.
 - The `0027` archive is local-only in `ARCHIVES/local/` and is not fresh-clone retrievable until published to durable release/artifact storage.
@@ -159,4 +161,4 @@ Do not expose `BASELINE.md`, `SCORECARD.md`, expected authority, positive-contro
 
 ## Next Action
 
-Score EXP-0004 first-model block `0024` through `0027` before cutting any further model block. The next unused global run is `0028`, but it should not be prepared until scoring or an explicit next-run plan requires it.
+Review EXP-0004 first-model scores before cutting another block. The next unused global run is `0028`, but it should not be prepared until an explicit second-model plan is chosen. Do not edit the skill from EXP-0004 alone; the current evidence supports replication before skill revision.
