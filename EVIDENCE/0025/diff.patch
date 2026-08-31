@@ -1,0 +1,13 @@
+diff --git a/components/roof/RoofQuickLinearCalculator.vue b/components/roof/RoofQuickLinearCalculator.vue
+index 1e750ee..a20be04 100644
+--- a/components/roof/RoofQuickLinearCalculator.vue
++++ b/components/roof/RoofQuickLinearCalculator.vue
+@@ -216,7 +216,7 @@ function pitchFactorLabel(line: RoofLineMeasurement): string {
+     </div>
+ 
+     <button type="button" class="button secondary roof-quick-reset" @click="reset">
+-      Clear entries
++      Clear manual entries
+     </button>
+   </section>
+ </template>

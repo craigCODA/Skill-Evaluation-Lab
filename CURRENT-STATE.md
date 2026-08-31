@@ -6,9 +6,9 @@ Current frozen experimental candidate: `02-V2-GRAPH`
 
 Promotion status: experimental, not promoted as a general improvement.
 
-Current completed global run: `0023`
+Current completed global run: `0027`
 
-Next global run: `0024`
+Next global run: `0028`
 
 Current experiment: `EXP-0002-task02-quick-calculator-clear-label`
 

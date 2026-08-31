@@ -1,0 +1,10 @@
+{
+  "run_id": "0024",
+  "archive": "run-0024-no-explicit-architecture-skill.zip",
+  "archive_sha256": "fc3f69897485b2b82c870934059ac77c88d401beec2520d3e2f534648e667d25",
+  "archive_size_bytes": 1174944,
+  "archive_entry_count": 679,
+  "archive_testzip": "OK",
+  "workspace": "D:\\Downloads\\Skill-Evaluation-Lab\\.worktrees\\cursor-runner-automation\\.worktrees\\cursor-runs\\run-0024",
+  "preserved_at_utc": "2026-08-31T09:15:50.822763+00:00"
+}

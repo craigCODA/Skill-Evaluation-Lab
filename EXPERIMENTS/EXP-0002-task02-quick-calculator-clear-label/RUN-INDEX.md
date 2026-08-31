@@ -12,10 +12,10 @@ The experiment begins when global run `0016` is cut. Rows marked `planned` are n
 | `0021` | Kimi K2.7 Code | 00-SUPPLIED | primary | supplied original, forced | preserved |
 | `0022` | Kimi K2.7 Code | 01-V1-CANDIDATE | primary | V1, forced | preserved |
 | `0023` | Kimi K2.7 Code | 02-V2-GRAPH | primary | V2, forced | preserved |
-| `0024` | GPT-5.1 | NO-SKILL | primary | no explicit architecture skill | planned |
-| `0025` | GPT-5.1 | 00-SUPPLIED | primary | supplied original, forced | planned |
-| `0026` | GPT-5.1 | 01-V1-CANDIDATE | primary | V1, forced | planned |
-| `0027` | GPT-5.1 | 02-V2-GRAPH | primary | V2, forced | planned |
+| `0024` | GPT-5.1 | NO-SKILL | primary | no explicit architecture skill | preserved |
+| `0025` | GPT-5.1 | 00-SUPPLIED | primary | supplied original, forced | preserved |
+| `0026` | GPT-5.1 | 01-V1-CANDIDATE | primary | V1, forced | preserved |
+| `0027` | GPT-5.1 | 02-V2-GRAPH | primary | V2, forced | preserved |
 
 ## Run-order rule
 

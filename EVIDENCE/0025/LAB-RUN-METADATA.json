@@ -1,0 +1,24 @@
+{
+  "run_id": "0025",
+  "experiment": "EXP-0002-task02-quick-calculator-clear-label",
+  "skill": "layered-codebase-architecture",
+  "skill_version": "00-SUPPLIED",
+  "condition": "supplied original, forced",
+  "evidence_class": "primary",
+  "slash_invocation": true,
+  "model_label": "GPT-5.1",
+  "cursor_model_id": "gpt-5.1",
+  "baseline": {
+    "repo_name": "ShingleFile-main",
+    "commit": "cd393ddd60548823dabd6875060247693a22c1be",
+    "source": "D:/Downloads/ShingleFile-original-workplace/ShingleFile-original-workplace/MOTHER/ShingleFile-main.git"
+  },
+  "prompt_file": "EXPERIMENTS/EXP-0002-task02-quick-calculator-clear-label/PROMPT.txt",
+  "prompt_sha256": "e1ca2c01abd9c524d6b53912758901ddf815cac142cce59b4139a071b25009a0",
+  "prepared_at_utc": "2026-08-31T09:15:56.231415+00:00",
+  "skill_artifact_path": "SKILLS/layered-codebase-architecture/00-SUPPLIED",
+  "skill_hashes": {
+    "SKILL.md": "d2fedfdcb0f4bd055b8605c00fc98ae0b99036e1a0fbfa3d34a458be876998c7",
+    "conventions.md": "912b9274ea5f829c1082b8ad40b1fd5bfdd96aa603b307c4f0c79d863c4fa5da"
+  }
+}

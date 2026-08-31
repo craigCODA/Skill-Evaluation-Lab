@@ -1,0 +1,3 @@
+ M components/roof/RoofQuickLinearCalculator.vue
+?? .cursor/
+?? .lab-run/
