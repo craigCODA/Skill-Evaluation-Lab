@@ -1,0 +1,32 @@
+---
+pid: 17328
+cwd: "D:\\Downloads\\Skill-Evaluation-Lab\\ACTIVE\\ShingleFile-main"
+command: "npx tsx -e \"import { roofLineMeasurementTotals, roofLinePitchIsComplete, roofLineAdjustedFeet } from './shared/roofLineMeasurements.ts'; const point = { x: 0, y: 0 }; const rakeNoPitch = { id: '1', type: 'rake', start: point, end: point, feet: 10 }; const rakePitched = { id: '2', type: 'rake', start: point, end: point, feet: 10, pitchRiseOver12: 6 }; const hipNoPitch = { id: '3', type: 'hip', start: point, end: point, feet: 8 }; const ridge = { id: '4', type: 'ridge', start: point, end: point, feet: 12 }; console.log(JSON.stringify({ rakeNoPitchComplete: roofLinePitchIsComplete(rakeNoPitch), rakePitchedComplete: roofLinePitchIsComplete(rakePitched), hipNoPitchComplete: roofLinePitchIsComplete(hipNoPitch), rakeNoPitchAdjusted: roofLineAdjustedFeet(rakeNoPitch), totals: roofLineMeasurementTotals([rakeNoPitch, rakePitched, hipNoPitch, ridge]) }, null, 2));\""
+title: "Verify rake completeness and totals logic"
+status: succeeded
+started_at: 2026-08-31T20:42:43.264Z
+running_for_ms: 43226    
+---
+npm warn Unknown env config "devdir". This will stop working in the next major version of npm. See `npm help npmrc` for supported config options.
+npm warn exec The following package was not found and will be installed: tsx@4.23.13
+{
+  "rakeNoPitchComplete": false,
+  "rakePitchedComplete": true,
+  "hipNoPitchComplete": true,
+  "rakeNoPitchAdjusted": 10,
+  "totals": {
+    "measurement": 0,
+    "ridge": 12,
+    "hip": 8,
+    "valley": 0,
+    "eave": 0,
+    "rake": 11.180339887498949,
+    "caution-tape": 0
+  }
+}
+
+---
+exit_code: 0
+elapsed_ms: 43225
+ended_at: 2026-08-31T20:43:26.489Z
+---

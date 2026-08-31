@@ -1,0 +1,75 @@
+---
+pid: 45952
+cwd: "D:\\Downloads\\Skill-Evaluation-Lab\\ACTIVE\\ShingleFile-main"
+command: "rg -n -g \"!node_modules\" -g \"!.nuxt\" -g \"!.git\" \"roofLineMeasurementTotals|roofLineAdjustedFeet|roofLineUsesPitch|pitchAdjustment|pitchRiseOver12|Plan only|RoofQuickLinearCalculator|measuredLines\""
+title: "Search rake pitch and calculator usages"
+status: succeeded
+started_at: 2026-08-31T20:38:33.790Z
+running_for_ms: 32932    
+---
+pages\roof-probe.vue:49:  measuredLines: latestMeasuredLines,
+composables\useRoofProbeReport.ts:11:  measuredLines: Ref<RoofLineMeasurement[]>;
+composables\useRoofProbeReport.ts:24:      measuredLines: input.measuredLines.value,
+shared\types.ts:497:  pitchRiseOver12?: number;
+shared\roofProbeReport.ts:2:import { roofLineMeasurementTotals } from "./roofLineMeasurements";
+shared\roofProbeReport.ts:68:  measuredLines: RoofLineMeasurement[];
+shared\roofProbeReport.ts:73:  const { measurement, measuredLines, wasteFactor, ridgeVentNfaPerFt } = input;
+shared\roofProbeReport.ts:109:      measuredLines,
+shared\roofProbeReport.ts:118:  measuredLines: RoofLineMeasurement[];
+shared\roofProbeReport.ts:130:  const availableRidgeFt = Math.round(roofLineMeasurementTotals(input.measuredLines).ridge);
+shared\roofProbeReport.ts:198:    .filter((segment) => segment.areaSqft && segment.pitchRiseOver12 !== undefined)
+shared\roofProbeReport.ts:200:      sum + (segment.areaSqft ?? 0) / pitchSurfaceMultiplier(segment.pitchRiseOver12 ?? 0)
+shared\roofProbeReport.ts:205:  const pitch = value.segments.find((segment) => segment.pitchRiseOver12 !== undefined)?.pitchRiseOver12;
+shared\roofProbeReport.ts:212:function pitchSurfaceMultiplier(pitchRiseOver12: number): number {
+shared\roofProbeReport.ts:213:  return Math.sqrt(pitchRiseOver12 ** 2 + 12 ** 2) / 12;
+shared\roofMeasurement.ts:208:        pitchRiseOver12: pitchDegrees
+shared\roofLineMeasurements.ts:17:  pitchRiseOver12?: number;
+shared\roofLineMeasurements.ts:109:  pitchAdjustment: "none" | "optional" | "required";
+shared\roofLineMeasurements.ts:116:    pitchAdjustment: "none",
+shared\roofLineMeasurements.ts:123:    pitchAdjustment: "none",
+shared\roofLineMeasurements.ts:130:    pitchAdjustment: "optional",
+shared\roofLineMeasurements.ts:137:    pitchAdjustment: "optional",
+shared\roofLineMeasurements.ts:144:    pitchAdjustment: "none",
+shared\roofLineMeasurements.ts:151:    pitchAdjustment: "required",
+shared\roofLineMeasurements.ts:158:    pitchAdjustment: "none",
+shared\roofLineMeasurements.ts:172:export function roofLineMeasurementTotals(lines: RoofLineMeasurement[]) {
+shared\roofLineMeasurements.ts:177:        .reduce((sum, line) => sum + roofLineAdjustedFeet(line), 0);
+shared\roofLineMeasurements.ts:184:export function roofLinePitchFactor(pitchRiseOver12: number): number {
+shared\roofLineMeasurements.ts:185:  return Math.sqrt(pitchRiseOver12 ** 2 + 12 ** 2) / 12;
+shared\roofLineMeasurements.ts:188:export function roofLineAdjustedFeet(line: RoofLineMeasurement): number {
+shared\roofLineMeasurements.ts:190:  if (meta.pitchAdjustment === "none" || line.pitchRiseOver12 === undefined) {
+shared\roofLineMeasurements.ts:193:  return line.feet * roofLinePitchFactor(line.pitchRiseOver12);
+shared\roofLineMeasurements.ts:196:export function roofLineUsesPitch(type: RoofLineMeasurementType): boolean {
+shared\roofLineMeasurements.ts:197:  return roofLineTypeMeta(type).pitchAdjustment !== "none";
+components\roof\RoofImageMeasurePanel.vue:7:import { roofAreaShapeColorMeta, roofAreaShapeColors, roofIconMarkerMeta, roofIconMarkerTypes, roofLineMeasurementTypes, roofLinePitchFactor, roofLineUsesPitch, roofPitchRiseOptions, roofLineTypeMeta } from "~~/shared/roofLineMeasurements";
+components\roof\RoofImageMeasurePanel.vue:54:  return measurement.segments.find((segment) => segment.pitchRiseOver12 !== undefined)?.pitchRiseOver12;
+components\roof\RoofImageMeasurePanel.vue:173:  return roofLineUsesPitch(activeLineType.value);
+components\roof\RoofImageMeasurePanel.vue:347:          pitchRiseOver12: activeTypeUsesPitch() ? activePitchRiseOver12.value : undefined,
+components\roof\RoofMeasurementWorkspaceSection.vue:24:const measuredLines = defineModel<RoofLineMeasurement[]>("lines", { required: true });
+components\roof\RoofMeasurementWorkspaceSection.vue:67:        v-model:lines="measuredLines"
+components\roof\RoofMeasurementWorkspaceSection.vue:79:      <RoofQuickLinearCalculator
+components\roof\RoofMeasurementWorkspaceSection.vue:80:        v-model:measured-lines="measuredLines"
+components\roof\RoofQuickLinearCalculator.vue:7:  roofLineAdjustedFeet,
+components\roof\RoofQuickLinearCalculator.vue:8:  roofLineMeasurementTotals,
+components\roof\RoofQuickLinearCalculator.vue:11:  roofLineUsesPitch,
+components\roof\RoofQuickLinearCalculator.vue:16:const measuredLines = defineModel<RoofLineMeasurement[]>("measuredLines", { required: true });
+components\roof\RoofQuickLinearCalculator.vue:36:const measuredTotals = computed(() => roofLineMeasurementTotals(measuredLines.value));
+components\roof\RoofQuickLinearCalculator.vue:38:  measuredLines.value.filter((line) => line.type !== "caution-tape"),
+components\roof\RoofQuickLinearCalculator.vue:75:function updateLinePitch(lineId: string, pitchRiseOver12?: number) {
+components\roof\RoofQuickLinearCalculator.vue:76:  measuredLines.value = measuredLines.value.map((line) => {
+components\roof\RoofQuickLinearCalculator.vue:80:      pitchRiseOver12,
+components\roof\RoofQuickLinearCalculator.vue:91:  measuredLines.value = measuredLines.value.filter((line) => line.id !== lineId);
+components\roof\RoofQuickLinearCalculator.vue:95:  measuredLines.value = measuredLines.value.filter((line) => line.type === "caution-tape");
+components\roof\RoofQuickLinearCalculator.vue:99:  return roofLineAdjustedFeet(line);
+components\roof\RoofQuickLinearCalculator.vue:103:  if (line.pitchRiseOver12 === undefined) return "plan";
+components\roof\RoofQuickLinearCalculator.vue:104:  return `x${roofLinePitchFactor(line.pitchRiseOver12).toFixed(3)}`;
+components\roof\RoofQuickLinearCalculator.vue:160:            <small v-if="roofLineUsesPitch(line.type)">
+components\roof\RoofQuickLinearCalculator.vue:165:            v-if="roofLineUsesPitch(line.type)"
+components\roof\RoofQuickLinearCalculator.vue:166:            :value="line.pitchRiseOver12 ?? ''"
+components\roof\RoofQuickLinearCalculator.vue:170:            <option value="">Plan only</option>
+
+---
+exit_code: 0
+elapsed_ms: 32931
+ended_at: 2026-08-31T20:39:06.721Z
+---

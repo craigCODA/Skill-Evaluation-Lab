@@ -1,0 +1,17 @@
+---
+pid: 41128
+cwd: "D:\\Downloads\\Skill-Evaluation-Lab\\ACTIVE\\ShingleFile-main"
+command: "if (Test-Path node_modules\\.bin\\nuxt.cmd) { Write-Output \"nuxt exists\" } else { Write-Output \"nuxt missing\" }; if (Test-Path node_modules) { Write-Output \"node_modules exists\" } else { Write-Output \"no node_modules\" }"
+title: "Check if Nuxt is installed locally"
+status: succeeded
+started_at: 2026-08-31T20:43:29.855Z
+running_for_ms: 31749    
+---
+nuxt missing
+no node_modules
+
+---
+exit_code: 0
+elapsed_ms: 31748
+ended_at: 2026-08-31T20:44:01.603Z
+---

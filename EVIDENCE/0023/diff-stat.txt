@@ -1,0 +1,3 @@
+ components/roof/RoofQuickLinearCalculator.vue | 32 ++++++++++++++++++++++++---
+ shared/roofLineMeasurements.ts                |  8 ++++++-
+ 2 files changed, 36 insertions(+), 4 deletions(-)

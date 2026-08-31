@@ -1,0 +1,81 @@
+---
+pid: 20224
+cwd: "D:\\Downloads\\Skill-Evaluation-Lab\\ACTIVE\\ShingleFile-main"
+command: "rg -n -g \"!node_modules\" -g \"!.nuxt\" -g \"!.git\" \"rake|roofLineAdjustedFeet|pitchAdjustment|Plan only\" --glob \"*.ts\" --glob \"*.vue\" --glob \"*.md\""
+title: "Search rake and pitch policy usages"
+status: succeeded
+started_at: 2026-08-31T20:39:32.926Z
+running_for_ms: 32966    
+---
+components\RoofingScopeForm.vue:70:          text="Each tab is one facet of the roof. Enter size from your measurement report (squares) or measure on site. Eave, rake, and valley edges are linear feet along those edges — not plane width."
+components\RoofingScopeForm.vue:181:        <select v-model="activeArea.rakeDripStyle" class="input">
+components\RoofingScopeForm.vue:191:      <div class="v2-breakdown-row"><dt>Rake drip</dt><dd>{{ formatMoney(activeAreaCost.drip.rakeCost) }}</dd></div>
+shared\types.ts:329:  rakeDripStyle: string;
+shared\types.ts:331:  rakeDripLf: number;
+shared\types.ts:516:  rakesFt?: number;
+shared\types.ts:545:    rakesFt?: number;
+shared\seedEstimate.ts:48:            rakeDripStyle: "ODE Style",
+shared\seedEstimate.ts:50:            rakeDripLf: 84
+components\roof\RoofQuickLinearCalculator.vue:7:  roofLineAdjustedFeet,
+components\roof\RoofQuickLinearCalculator.vue:23:  { key: "rake", label: "Rake", hint: "Sloped gable edges" },
+components\roof\RoofQuickLinearCalculator.vue:33:  rake: 0,
+components\roof\RoofQuickLinearCalculator.vue:55:const dripEdgeFt = computed(() => combinedTotals.value.eave + combinedTotals.value.rake);
+components\roof\RoofQuickLinearCalculator.vue:99:  return roofLineAdjustedFeet(line);
+components\roof\RoofQuickLinearCalculator.vue:170:            <option value="">Plan only</option>
+components\roof\RoofQuickLinearCalculator.vue:205:        <span>Drip edge (eave + rake)</span>
+shared\contracts\roofProposalScope.ts:95:          `${prefix}Drip edge — rakes`,
+shared\contracts\roofProposalScope.ts:96:          `${area.rakeDripLf} LF ${area.rakeDripStyle}`,
+shared\roofLineMeasurements.ts:9:  | "rake"
+shared\roofLineMeasurements.ts:109:  pitchAdjustment: "none" | "optional" | "required";
+shared\roofLineMeasurements.ts:116:    pitchAdjustment: "none",
+shared\roofLineMeasurements.ts:123:    pitchAdjustment: "none",
+shared\roofLineMeasurements.ts:130:    pitchAdjustment: "optional",
+shared\roofLineMeasurements.ts:137:    pitchAdjustment: "optional",
+shared\roofLineMeasurements.ts:144:    pitchAdjustment: "none",
+shared\roofLineMeasurements.ts:147:    type: "rake",
+shared\roofLineMeasurements.ts:151:    pitchAdjustment: "required",
+shared\roofLineMeasurements.ts:158:    pitchAdjustment: "none",
+shared\roofLineMeasurements.ts:177:        .reduce((sum, line) => sum + roofLineAdjustedFeet(line), 0);
+shared\roofLineMeasurements.ts:188:export function roofLineAdjustedFeet(line: RoofLineMeasurement): number {
+shared\roofLineMeasurements.ts:190:  if (meta.pitchAdjustment === "none" || line.pitchRiseOver12 === undefined) {
+shared\roofLineMeasurements.ts:197:  return roofLineTypeMeta(type).pitchAdjustment !== "none";
+shared\contracts\roofProposalNarrative.ts:139:  const rakeLf = Number(area.rakeDripLf) || 0
+shared\contracts\roofProposalNarrative.ts:140:  if (eaveLf <= 0 && rakeLf <= 0) return null
+shared\contracts\roofProposalNarrative.ts:142:  const rakeStyle = tidy(String(area.rakeDripStyle || "drip edge"))
+shared\contracts\roofProposalNarrative.ts:143:  if (eaveLf > 0 && rakeLf > 0 && eaveStyle === rakeStyle) {
+shared\contracts\roofProposalNarrative.ts:144:    return `Install ${eaveStyle} drip edge — ${eaveLf} LF at the eaves and ${rakeLf} LF at the rakes`
+shared\contracts\roofProposalNarrative.ts:148:    rakeLf > 0 ? `${rakeLf} LF of ${rakeStyle} at the rakes` : ""
+shared\contracts\roofProposalNarrative.ts:259:    sentence(`Install ${starter} along the eaves and rakes as required for this roof`)
+shared\roofArea.ts:105:    rakeDripStyle: input?.rakeDripStyle ?? "",
+shared\roofArea.ts:107:    rakeDripLf: input?.rakeDripLf ?? 0,
+components\roof\RoofPlaneEdgesSection.vue:22:        <span>Rake edge (linear ft) <EstimateHelp label="Rake drip LF" text="Length along the sloped gable edge. Drives rake drip edge." /></span>
+components\roof\RoofPlaneEdgesSection.vue:23:        <input v-model.number="area.rakeDripLf" class="input" type="number" min="0" step="0.1">
+components\roof\RoofMeasurementWorkspaceSection.vue:36:        <p>Measure ridge, hip, valley, eave, and rake lines directly on the aerial image.</p>
+components\roof\RoofJobTotalsSection.vue:13:        text="Ridge and hip length apply to the entire job — enter once here, not per plane. Per-plane eave, rake, and valley edges are on each plane tab."
+shared\pricebook\types.ts:60:  appliesTo: "eave" | "rake" | "either";
+shared\pricebook\schemas.ts:89:export const DripEdgeAppliesToSchema = z.enum(["eave", "rake", "either"]);
+shared\options\dripEdge.ts:5: *   rakeDripCost = rakeDripLf * lookup(rakeStyle).pricePerFoot
+shared\options\dripEdge.ts:6: *   total        = eaveDripCost + rakeDripCost
+shared\options\dripEdge.ts:18:  rakeStyle: string;
+shared\options\dripEdge.ts:20:  rakeLf: number;
+shared\options\dripEdge.ts:25:  rakePricePerFoot: Money;
+shared\options\dripEdge.ts:27:  rakeCost: Money;
+shared\options\dripEdge.ts:41:  const rakeStyle = findStyle(cat.dripEdgeStyles, inputs.rakeStyle);
+shared\options\dripEdge.ts:43:  const rakePricePerFoot = rakeStyle?.pricePerFoot ?? 0;
+shared\options\dripEdge.ts:45:  const rakeCost = inputs.rakeLf * rakePricePerFoot;
+shared\options\dripEdge.ts:48:    rakePricePerFoot,
+shared\options\dripEdge.ts:50:    rakeCost,
+shared\options\dripEdge.ts:51:    total: eaveCost + rakeCost,
+shared\options\dripEdge.ts:59:    "Per-area eave and rake drip edge, each billed by linear feet at the rate of its selected style.",
+shared\options\dripEdge.ts:63:    "Charged by the foot. The eave and the rake each have their own length and use the per-foot rate of the style you pick. They're figured separately, then added together.",
+shared\options\dripEdge.ts:65:    "55 ft of eave at $2.00/ft = $110, plus 84 ft of rake at $2.00/ft = $168 → $278 for this area.",
+shared\options\dripEdge.ts:75:rakeDripCost = rakeDripLf x lookup(rakeStyle).pricePerFoot
+shared\options\dripEdge.ts:76:total = eaveDripCost + rakeDripCost`,
+shared\options\dripEdge.ts:84:        rakeStyle: ctx.area.rakeDripStyle,
+shared\options\dripEdge.ts:86:        rakeLf: ctx.area.rakeDripLf,
+
+---
+exit_code: 0
+elapsed_ms: 32966
+ended_at: 2026-08-31T20:40:05.892Z
+---

@@ -1,0 +1,14 @@
+{
+  "run_id": "0023",
+  "experiment": "EXP-0003-task03-required-rake-pitch",
+  "model": "Grok 4.6 High",
+  "condition": "02-V2-GRAPH",
+  "active_path": "D:\\Downloads\\Skill-Evaluation-Lab\\ACTIVE\\ShingleFile-main",
+  "baseline": "cd393ddd60548823dabd6875060247693a22c1be",
+  "cursor_skill_path": "C:\\Users\\NeverAMoment\\.cursor\\skills-cursor\\layered-codebase-architecture",
+  "prompt_copied_to_clipboard": true,
+  "prompt_forced_skill_invocation": true,
+  "cursor_skill_folder_present": true,
+  "recorded_at": "2026-08-31T15:47:40.7839673-05:00",
+  "note": "Preparation was performed live before Cursor launch; this JSON record was written during preservation after the user reported done 0023."
+}

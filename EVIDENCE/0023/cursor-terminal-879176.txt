@@ -1,0 +1,16 @@
+---
+pid: 44656
+cwd: "D:\\Downloads\\Skill-Evaluation-Lab\\ACTIVE\\ShingleFile-main"
+command: "rg -n \"--sf-warning|--sf-danger|--sf-error|--sf-action\" --glob \"*.css\" -g \"!node_modules\" | Select-Object -First 40"
+title: "Find warning/error CSS variables"
+status: failed   
+started_at: 2026-08-31T20:40:42.498Z
+running_for_ms: 32031    
+---
+rg: unrecognized flag --sf-warning|--sf-danger|--sf-error|--sf-action
+
+---
+exit_code: 2
+elapsed_ms: 32029
+ended_at: 2026-08-31T20:41:14.527Z
+---
