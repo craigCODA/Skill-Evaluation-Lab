@@ -302,5 +302,21 @@
     "result_asset_sha256": "0e9df6a90797affe8f2c68cc305c2ad868f60408c854696ac0d80c9e971114d8",
     "release_tag": "local-only-pending-publication",
     "status": "preserved"
+  },
+  {
+    "run_id": "0020",
+    "model": "Grok 4.6 High",
+    "skill": "layered-codebase-architecture",
+    "skill_version": "00-SUPPLIED",
+    "experiment": "EXP-0003-task03-required-rake-pitch",
+    "evidence_class": "primary",
+    "condition": "supplied original",
+    "baseline_commit": "cd393ddd60548823dabd6875060247693a22c1be",
+    "evidence_path": "EVIDENCE/0020",
+    "experiment_run_path": "EXPERIMENTS/EXP-0003-task03-required-rake-pitch/runs/0020-grok46-original",
+    "result_asset": "run-0020-grok46-original-exp0003-supplied.zip",
+    "result_asset_sha256": "d98b643a796532d9e147fd69d4a1931aeb0165250cf017dce391721b5c981f0c",
+    "release_tag": "local-only-pending-publication",
+    "status": "preserved"
   }
 ]

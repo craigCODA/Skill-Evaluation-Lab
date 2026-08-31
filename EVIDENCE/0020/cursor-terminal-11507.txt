@@ -1,0 +1,165 @@
+---
+pid: 20024
+cwd: "D:\\Downloads\\Skill-Evaluation-Lab\\ACTIVE\\ShingleFile-main"
+command: "rg -i -n \"rake|planOnly|plan-only|Plan only|pitch|hip|valley|quick.?calc\" --glob \"!node_modules\" --glob \"!package-lock.json\" -g \"*.{ts,tsx,vue,js,md}\" . 2>&1 | Select-Object -First 150"
+title: "Ripgrep rake pitch hip valley"
+status: succeeded
+started_at: 2026-08-31T13:52:33.207Z
+running_for_ms: 33587    
+---
+.\docs\permissions-implementation.md:10:| **Company account** | What can they do inside their roofing company? | `sub_accounts.role` + ownership + role capabilities | `customer-account-admin` \| `estimator` \| `installer` \| `sub-account` (legacy) |
+.\docs\permissions-implementation.md:61:**Installer note:** no estimate access by default. Job assets use `resolveAccountJob` (ownership only), not `getEstimate` (requires `viewEstimates`).
+.\docs\permissions-implementation.md:100:  → filter by ownership / canSeeAll…         // which rows?
+.\infra\README.md:36:permanent passwords and group membership. It is idempotent and reads the pool id
+.\pages\roof-probe.vue:225:        Results include roof area, squares, segment pitch and orientation, plus a scaled aerial for measurements, icons, and shaded area markups.
+.\shared\calculator\calculateEstimate.ts:23:import { valleyMetalOption } from "../options/valleyMetal";
+.\shared\calculator\calculateEstimate.ts:50:  valleyMetal: ReturnType<typeof valleyMetalOption.compute>;
+.\shared\calculator\calculateEstimate.ts:131:  const valleyMetal = valleyMetalOption.compute(jobCtx);
+.\shared\calculator\calculateEstimate.ts:134:  // valleyMetal is intentionally excluded — it is not billed.
+.\shared\calculator\calculateEstimate.ts:170:    valleyMetal,
+.\pages\catalog\index.vue:30:  { section: "pitchRates", title: "Pitch Rates", rows: catalog.value.pitchRates },
+.\pages\catalog\index.vue:45:  { section: "valleyMetalRates", title: "Valley Metal", rows: catalog.value.valleyMetalRates },
+.\components\EstimateHelp.vue:44:  "Ridge Type": "Ridge cap style for asphalt roofs (standard or high hip).",
+.\components\EstimateHelp.vue:46:  "Hip LF": "Total hip length for the whole job, in linear feet.",
+.\components\RoofingScopeForm.vue:70:          text="Each tab is one facet of the roof. Enter size from your measurement report (squares) or measure on site. Eave, rake, and valley edges are linear feet along those edges — not plane width."
+.\components\RoofingScopeForm.vue:180:        <span>Rake style <EstimateHelp label="Rake drip style" /></span>
+.\components\RoofingScopeForm.vue:181:        <select v-model="activeArea.rakeDripStyle" class="input">
+.\components\RoofingScopeForm.vue:191:      <div class="v2-breakdown-row"><dt>Rake drip</dt><dd>{{ formatMoney(activeAreaCost.drip.rakeCost) }}</dd></div>
+.\components\RoofingScopeForm.vue:405:    <h2>Valley metal</h2>
+.\components\RoofingScopeForm.vue:409:        <span>Valley style <EstimateHelp label="Valley style" /></span>
+.\components\RoofingScopeForm.vue:410:        <select v-model="roofing.valleys.style" class="input">
+.\components\RoofingScopeForm.vue:411:          <option value="closed">Closed valley</option>
+.\components\RoofingScopeForm.vue:412:          <option value="open">Open valley</option>
+.\components\RoofingScopeForm.vue:416:        <span>Open valley (linear ft) <EstimateHelp label="Open valley LF" /></span>
+.\components\RoofingScopeForm.vue:417:        <input v-model.number="roofing.valleys.openLf" class="input" type="number" min="0">
+.\components\RoofingScopeForm.vue:420:        <span>Closed valley (linear ft) <EstimateHelp label="Closed valley LF" /></span>
+.\components\RoofingScopeForm.vue:421:        <input v-model.number="roofing.valleys.closedLf" class="input" type="number" min="0">
+.\components\RoofingScopeForm.vue:426:        <dt>{{ totals.valleyMetal.billableLf }} ft @ {{ formatMoney(totals.valleyMetal.pricePerFoot) }}/ft (not billed)</dt>
+.\components\RoofingScopeForm.vue:427:        <dd>{{ formatMoney(totals.valleyMetal.cost) }}</dd>
+.\shared\contracts\roofProposalScope.ts:8:  "new-high-hip": "High hip ridge",
+.\shared\contracts\roofProposalScope.ts:77:          [area.location, area.story, area.pitch, squares]
+.\shared\contracts\roofProposalScope.ts:95:          `${prefix}Drip edge — rakes`,
+.\shared\contracts\roofProposalScope.ts:96:          `${area.rakeDripLf} LF ${area.rakeDripStyle}`,
+.\shared\contracts\roofProposalScope.ts:102:  const valleyLf =
+.\shared\contracts\roofProposalScope.ts:103:    roofing.valleys.style === "open"
+.\shared\contracts\roofProposalScope.ts:104:      ? roofing.valleys.openLf
+.\shared\contracts\roofProposalScope.ts:105:      : roofing.valleys.closedLf;
+.\shared\contracts\roofProposalScope.ts:106:  const valleyLine =
+.\shared\contracts\roofProposalScope.ts:107:    valleyLf > 0
+.\shared\contracts\roofProposalScope.ts:109:          "Valleys",
+.\shared\contracts\roofProposalScope.ts:110:          `${valleyLf} LF — ${roofing.valleys.style === "open" ? "Open valley" : "Half lace valley"}`,
+.\shared\contracts\roofProposalScope.ts:112:      : line("Valleys", "None on this roof");
+.\shared\contracts\roofProposalScope.ts:136:    ...(roofing.hipLf && roofing.hipLf > 0
+.\shared\contracts\roofProposalScope.ts:137:      ? [line("Hip length (measurement)", `${roofing.hipLf} LF`)]
+.\shared\contracts\roofProposalScope.ts:146:    valleyLine,
+.\shared\contracts\roofProposalScope.ts:208:export function buildWorkmanshipLines(
+.\shared\contracts\roofProposalScope.ts:214:    { label: "Five (5) year workmanship warranty on installation labor" },
+.\shared\contracts\roofProposalScope.ts:362:      "Items not replaced by the contractor as part of this contract are not covered by the workmanship warranty."
+.\shared\contracts\roofProposalNarrative.ts:25:  "Valleys Only": "in the valleys",
+.\shared\contracts\roofProposalNarrative.ts:26:  "Valleys & Eaves": "in the valleys and along the eaves",
+.\shared\contracts\roofProposalNarrative.ts:39:  "new-high-hip": "high-hip ridge cap"
+.\shared\contracts\roofProposalNarrative.ts:139:  const rakeLf = Number(area.rakeDripLf) || 0
+.\shared\contracts\roofProposalNarrative.ts:140:  if (eaveLf <= 0 && rakeLf <= 0) return null
+.\shared\contracts\roofProposalNarrative.ts:142:  const rakeStyle = tidy(String(area.rakeDripStyle || "drip edge"))
+.\shared\contracts\roofProposalNarrative.ts:143:  if (eaveLf > 0 && rakeLf > 0 && eaveStyle === rakeStyle) {
+.\shared\contracts\roofProposalNarrative.ts:144:    return `Install ${eaveStyle} drip edge — ${eaveLf} LF at the eaves and ${rakeLf} LF at the rakes`
+.\shared\contracts\roofProposalNarrative.ts:148:    rakeLf > 0 ? `${rakeLf} LF of ${rakeStyle} at the rakes` : ""
+.\shared\contracts\roofProposalNarrative.ts:201:    const pitch = tidy(area.redeck.replace(/^Yes\s*-\s*/i, ""))
+.\shared\contracts\roofProposalNarrative.ts:203:      pitch
+.\shared\contracts\roofProposalNarrative.ts:204:        ? `replace deteriorated decking as needed on ${pitch.toLowerCase()} areas`
+.\shared\contracts\roofProposalNarrative.ts:259:    sentence(`Install ${starter} along the eaves and rakes as required for this roof`)
+.\shared\contracts\roofProposalNarrative.ts:262:  const valleyLf =
+.\shared\contracts\roofProposalNarrative.ts:263:    roofing.valleys.style === "open"
+.\shared\contracts\roofProposalNarrative.ts:264:      ? roofing.valleys.openLf
+.\shared\contracts\roofProposalNarrative.ts:265:      : roofing.valleys.closedLf
+.\shared\contracts\roofProposalNarrative.ts:266:  if (valleyLf > 0) {
+.\shared\contracts\roofProposalNarrative.ts:268:      roofing.valleys.style === "open"
+.\shared\contracts\roofProposalNarrative.ts:269:        ? "open metal valleys"
+.\shared\contracts\roofProposalNarrative.ts:270:        : "half-lace valleys over ice and water shield"
+.\shared\contracts\roofProposalNarrative.ts:271:    paragraphs.push(sentence(`Install ${valleyLf} LF of ${style}`))
+.\shared\contracts\roofProposalNarrative.ts:298:  if (roofing.hipLf && roofing.hipLf > 0) {
+.\shared\contracts\roofProposalNarrative.ts:299:    paragraphs.push(sentence(`Include ${roofing.hipLf} LF of hip as measured for this roof`))
+.\shared\contracts\roofProposalDocument.ts:20:  buildWorkmanshipLines,
+.\shared\contracts\roofProposalDocument.ts:80:        title: "Included Workmanship",
+.\shared\contracts\roofProposalDocument.ts:82:        lines: buildWorkmanshipLines(party.name, job.permit),
+.\shared\contracts\modules\catalog.ts:55:    description: "Stories, pitch, layers, and square footage from the estimate.",
+.\shared\contracts\modules\catalog.ts:107:    kind: "workmanship",
+.\shared\contracts\modules\catalog.ts:108:    key: "workmanship",
+.\shared\contracts\modules\catalog.ts:109:    label: "Included workmanship",
+.\shared\contracts\modules\catalog.ts:110:    description: "Standard workmanship bullets.",
+.\shared\contracts\modules\catalog.ts:215:    "INSURANCE CONTINGENCY: You may cancel this contract in connection with the repair or replacement of a roof system or related property damage within seventy-two (72) hours after you have been notified that your insurer has denied all or any part of your claim for goods and services to repair or replace the damaged property. To cancel under this contingency, deliver written notice to the company within that 72-hour period.\n\nCONSUMER'S RIGHT TO CANCEL: You may cancel this transaction, without any penalty or obligation, within three (3) business days from the date above.\n\nIf you cancel, any property traded in, any payments made by you under the contract or sale, and any negotiable instrument executed by you will be returned within ten (10) business days following receipt by the seller of your cancellation notice, and any security interest arising out of the transaction will be cancelled.\n\nIf you cancel, you must make available to the seller at your residence, in substantially as good condition as when received, any goods delivered to you under this contract or sale; or you may, if you wish, comply with the instructions of the seller regarding the return shipment of the goods at the seller's expense and risk.\n\nIf you do make the goods available to the seller and the seller does not pick them up within twenty (20) days of the date of your notice of cancellation, you may retain or dispose of the goods without any further obligation. If you fail to make the goods available to the seller, or if you agree to return the goods to the seller and fail to do so, then you remain liable for performance of all obligations under the contract.\n\nTo cancel this transaction, mail or deliver a signed and dated copy of this cancellation notice, or any other written notice, to the company address or email listed on this contract.",
+.\shared\contracts\modules\catalog.ts:221:    "Furnish and install siding materials as specified.\nTear off existing siding as noted.\nFurnish all material and labor.\n5 Year workmanship warranty.\nClean up and haul all trash daily.\nRoll yard with magnetic roller."
+.\shared\contracts\modules\compose.ts:16:  buildWorkmanshipLines,
+.\shared\contracts\modules\compose.ts:60:      area.pitch ? `Pitch: ${area.pitch}` : "",
+.\shared\contracts\modules\compose.ts:202:    case "workmanship":
+.\shared\contracts\modules\compose.ts:208:        buildWorkmanshipLines(party.name, job.permit)
+.\shared\contracts\modules\types.ts:34:  | "workmanship"
+.\shared\pricebook\types.ts:52:// Drip edge / valleys / ridge / underlayment
+.\shared\pricebook\types.ts:60:  appliesTo: "eave" | "rake" | "either";
+.\shared\pricebook\types.ts:168: * as `pricePerSquare × totalSquares`. The two "Dead Valley" picks carry
+.\shared\pricebook\types.ts:178: * Per-LF valley metal rate ($1.50/ft today). Open valleys compute
+.\shared\pricebook\types.ts:182:export type ValleyMetalRate = {
+.\shared\pricebook\types.ts:208: * Ice & water shield picker options. Only `Valleys Only` and `Valleys & Eaves`
+.\shared\pricebook\types.ts:209: * are billed today; all five options ship with `pricePerSquare: 0`. Edit the
+.\shared\pricebook\types.ts:214: *   coversValleys → valley LF × valley $/ft
+.\shared\pricebook\types.ts:220:  coversValleys: boolean;
+.\shared\pricebook\types.ts:227: *   "valley" → $1.50/ft
+.\shared\pricebook\types.ts:287: *   - Pitch rate:   "Walk" | "7/12" | "Flat - TPO" | "Mansard" | ...
+.\shared\pricebook\types.ts:303:  pitchRates: RateRow[];
+.\shared\pricebook\types.ts:317:  valleyMetalRates: ValleyMetalRate[];
+.\shared\pricebook\schemas.ts:60:// Per-area roofing rate tables (story, pitch, tearoff by layers)
+.\shared\pricebook\schemas.ts:64: * A simple (label, ratePerSqft) pair. Used for story difficulty, pitch
+.\shared\pricebook\schemas.ts:74:export const PitchRateSchema = RateRowSchema;
+.\shared\pricebook\schemas.ts:79:export const PitchRatesFileSchema = z.array(PitchRateSchema);
+.\shared\pricebook\schemas.ts:89:export const DripEdgeAppliesToSchema = z.enum(["eave", "rake", "either"]);
+.\shared\pricebook\schemas.ts:208:export const ValleyMetalRateSchema = z.object({
+.\shared\pricebook\schemas.ts:212:export const ValleyMetalRatesFileSchema = z.array(ValleyMetalRateSchema);
+.\shared\pricebook\schemas.ts:213:export type ValleyMetalRateData = z.infer<typeof ValleyMetalRateSchema>;
+.\shared\pricebook\schemas.ts:236:  coversValleys: z.boolean(),
+.\shared\pricebook\index.ts:14:  PitchRatesFileSchema,
+.\shared\pricebook\index.ts:29:  ValleyMetalRatesFileSchema,
+.\shared\pricebook\index.ts:49:import pitchRatesJson from "./data/pitchRates.json";
+.\shared\pricebook\index.ts:64:import valleyMetalRatesJson from "./data/valleyMetalRates.json";
+.\shared\pricebook\index.ts:91:  const pitchRates = PitchRatesFileSchema.parse(pitchRatesJson);
+.\shared\pricebook\index.ts:112:  const valleyMetalRates =
+.\shared\pricebook\index.ts:113:    ValleyMetalRatesFileSchema.parse(valleyMetalRatesJson);
+.\shared\pricebook\index.ts:127:    pitchRates,
+.\shared\pricebook\index.ts:141:    valleyMetalRates,
+.\shared\roofArea.ts:9:  Pitch,
+.\shared\roofArea.ts:22:  "East Slope", "West Slope", "Dead Valley", "Dormer", "Church",
+.\shared\roofArea.ts:27:  { id: "hip", label: "Hips / moderate (12%)", percent: 12 },
+.\shared\roofArea.ts:37:/** Approximate pitch factor: horizontal footprint → sloped surface area. */
+.\shared\roofArea.ts:38:export function pitchSurfaceMultiplier(pitch: Pitch): number {
+.\shared\roofArea.ts:39:  const slash = pitch.match(/(\d+)\/12/)
+.\shared\roofArea.ts:45:  const flat: Partial<Record<Pitch, number>> = {
+.\shared\roofArea.ts:53:  return flat[pitch] ?? 1.1
+.\shared\roofArea.ts:70:    return footprint * pitchSurfaceMultiplier(area.pitch)
+.\shared\roofArea.ts:97:    pitch: input?.pitch ?? "Walk",
+.\shared\roofArea.ts:105:    rakeDripStyle: input?.rakeDripStyle ?? "",
+.\shared\roofArea.ts:107:    rakeDripLf: input?.rakeDripLf ?? 0,
+.\shared\roofArea.ts:111:    iceWaterValleyLf: input?.iceWaterValleyLf ?? 0,
+.\components\roof\RoofJobTotalsSection.vue:13:        text="Ridge and hip length apply to the entire job — enter once here, not per plane. Per-plane eave, rake, and valley edges are on each plane tab."
+.\components\roof\RoofJobTotalsSection.vue:22:        <span>Hip (linear ft) <EstimateHelp label="Hip LF" /></span>
+.\components\roof\RoofJobTotalsSection.vue:23:        <input v-model.number="roofing.hipLf" class="input" type="number" min="0" step="0.1">
+.\components\roof\RoofImageMeasurePanel.vue:7:import { roofAreaShapeColorMeta, roofAreaShapeColors, roofIconMarkerMeta, roofIconMarkerTypes, roofLineMeasurementTypes, roofLinePitchFactor, roofLineUsesPitch, roofPitchRiseOptions, roofLineTypeMeta } from "~~/shared/roofLineMeasurements";
+.\components\roof\RoofImageMeasurePanel.vue:45:const activePitchRiseOver12 = ref(6);
+.\components\roof\RoofImageMeasurePanel.vue:53:const primaryPitchRiseOver12 = computed(() => {
+.\components\roof\RoofImageMeasurePanel.vue:54:  return measurement.segments.find((segment) => segment.pitchRiseOver12 !== undefined)?.pitchRiseOver12;
+.\components\roof\RoofImageMeasurePanel.vue:57:watch(primaryPitchRiseOver12, (pitch) => {
+.\components\roof\RoofImageMeasurePanel.vue:58:  if (pitch === undefined) return;
+.\components\roof\RoofImageMeasurePanel.vue:59:  activePitchRiseOver12.value = nearestPitchOption(pitch);
+.\components\roof\RoofImageMeasurePanel.vue:172:function activeTypeUsesPitch(): boolean {
+.\components\roof\RoofImageMeasurePanel.vue:173:  return roofLineUsesPitch(activeLineType.value);
+.\components\roof\RoofImageMeasurePanel.vue:176:function activePitchFactorLabel(): string {
+.\components\roof\RoofImageMeasurePanel.vue:177:  return roofLinePitchFactor(activePitchRiseOver12.value).toFixed(3);
+.\components\roof\RoofImageMeasurePanel.vue:347:          pitchRiseOver12: activeTypeUsesPitch() ? activePitchRiseOver12.value : undefined,
+.\components\roof\RoofImageMeasurePanel.vue:409:function nearestPitchOption(value: number): number {
+.\components\roof\RoofImageMeasurePanel.vue:410:  return roofPitchRiseOptions.reduce((nearest, option) => {
+.\components\roof\RoofImageMeasurePanel.vue:412:  }, roofPitchRiseOptions[0]);
+.\components\roof\RoofImageMeasurePanel.vue:640:        <label v-if="activeTypeUsesPitch()" class="roof-line-pitch-picker">
+
+---
+exit_code: 0
+elapsed_ms: 33586
+ended_at: 2026-08-31T13:53:06.793Z
+---

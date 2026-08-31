@@ -1,0 +1,2 @@
+.cursor/noun-map.md
+shared/roofLineMeasurements.test.ts

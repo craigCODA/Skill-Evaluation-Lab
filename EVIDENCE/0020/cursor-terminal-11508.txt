@@ -1,0 +1,49 @@
+---
+pid: 34024
+cwd: "D:\\Downloads\\Skill-Evaluation-Lab\\ACTIVE\\ShingleFile-main"
+command: "Get-ChildItem -Recurse components\\roof, shared\\calculator, pages\\calculator, composables | Select-Object FullName, Length | ForEach-Object { \"$($_.Length) $($_.FullName.Replace('D:\\Downloads\\Skill-Evaluation-Lab\\ACTIVE\\ShingleFile-main\\', ''))\" }"
+title: "List roof and calculator files"
+status: succeeded
+started_at: 2026-08-31T13:52:33.966Z
+running_for_ms: 33685    
+---
+3404 components\roof\RoofDrawingActionsPanel.vue
+27146 components\roof\RoofImageMeasurePanel.vue
+1144 components\roof\RoofJobTotalsSection.vue
+5303 components\roof\RoofMeasurementWorkspaceSection.vue
+2241 components\roof\RoofPlaneConditionsSection.vue
+1640 components\roof\RoofPlaneEdgesSection.vue
+1388 components\roof\RoofPlaneIdentifySection.vue
+6082 components\roof\RoofPlaneSizeSection.vue
+6219 components\roof\RoofProbeHistoryDrawer.vue
+1703 components\roof\RoofProbeMetaGrid.vue
+2929 components\roof\RoofProbePropertyAddressSection.vue
+1381 components\roof\RoofProbeStatsGrid.vue
+943 components\roof\RoofProbeTitleSection.vue
+5205 components\roof\RoofProductSection.vue
+11277 components\roof\RoofQuickLinearCalculator.vue
+3071 components\roof\RoofSegmentChartSection.vue
+4039 components\roof\RoofStreetViewPanel.vue
+9244 components\roof\RoofVentilationSummary.vue
+2861 components\roof\RoofWasteFactorControl.vue
+5830 shared\calculator\calculateEstimate.ts
+3008 pages\calculator\index.vue
+5186 composables\useAccount.ts
+1442 composables\useAdminUsers.ts
+5526 composables\useAuth.ts
+894 composables\useCatalog.ts
+764 composables\useCompanyProfile.ts
+2580 composables\useContractSetup.ts
+2053 composables\useCustomers.ts
+4335 composables\useEstimates.ts
+540 composables\useEstimateTotals.ts
+643 composables\useFormatters.ts
+3649 composables\useJobAssets.ts
+14176 composables\useRoofMeasurements.ts
+1034 composables\useRoofProbeReport.ts
+
+---
+exit_code: 0
+elapsed_ms: 33684
+ended_at: 2026-08-31T13:53:07.650Z
+---

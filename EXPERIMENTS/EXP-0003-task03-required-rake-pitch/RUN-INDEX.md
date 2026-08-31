@@ -4,7 +4,7 @@ The experiment begins when global run `0020` is cut. These rows define the froze
 
 | Run | Model | Version | Evidence class | Condition | Status |
 | --- | --- | --- | --- | --- | --- |
-| `0020` | Grok 4.6 High | 00-SUPPLIED | primary | supplied original, forced | planned |
+| `0020` | Grok 4.6 High | 00-SUPPLIED | primary | supplied original, forced | preserved |
 | `0021` | Grok 4.6 High | NO-SKILL | primary | no explicit architecture skill | planned |
 | `0022` | Grok 4.6 High | 01-V1-CANDIDATE | primary | V1, forced | planned |
 | `0023` | Grok 4.6 High | 02-V2-GRAPH | primary | V2, forced | planned |

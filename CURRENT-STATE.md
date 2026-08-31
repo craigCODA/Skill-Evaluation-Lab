@@ -6,9 +6,9 @@ Current frozen experimental candidate: `02-V2-GRAPH`
 
 Promotion status: experimental, not promoted as a general improvement.
 
-Current completed global run: `0019`
+Current completed global run: `0020`
 
-Next global run: `0020`
+Next global run: `0021`
 
 Current experiment: `EXP-0003-task03-required-rake-pitch`
 
@@ -31,6 +31,10 @@ EXP-0002 Task 02 holdout evidence preserved:
 
 EXP-0002 is retained as the restraint floor. All four Grok 4.6 High arms made the same one-line label-only change; no skill revision is justified by EXP-0002 alone.
 
+EXP-0003 Task 03 first-model evidence preserved:
+
+- Grok 4.6 High supplied original forced run (`0020`).
+
 Process claims require preserved transcript/trace evidence. Verification claims require preserved command output or equivalent state proof at the level claimed. A transcript-only verification statement is a process claim, not independently preserved verification success.
 
 ## Current Unscored Observations
@@ -40,7 +44,8 @@ These are not promoted findings until scored against the rubric.
 - EXP-0002 `0016`, `0017`, `0018`, and `0019` each made a one-line label-only change in `components/roof/RoofQuickLinearCalculator.vue`.
 - The exported Cursor prompt for `0016` omitted the leading word `In` from `PROMPT.txt`; the preserved evidence records the exported prompt exactly.
 - The `0016`, `0017`, `0018`, and `0019` archives are local-only in `ARCHIVES/local/` and are not fresh-clone retrievable until published to durable release/artifact storage.
-- EXP-0003 is planned as the next harder responsibility-boundary experiment. It uses the required-rake-pitch prompt without explicit no-restructure wording.
+- EXP-0003 `0020` changed two tracked files, created `.cursor/noun-map.md`, and added `shared/roofLineMeasurements.test.ts`; this is preserved but not scored.
+- The `0020` archive is local-only in `ARCHIVES/local/` and is not fresh-clone retrievable until published to durable release/artifact storage.
 
 ## EXP-0002 Holdout Block
 
@@ -63,8 +68,8 @@ Do not edit the skill during this block.
 
 Run Grok 4.6 High through the four frozen arms in this order:
 
-1. `0020` supplied original (`00-SUPPLIED`) - next
-2. `0021` no-skill control - planned
+1. `0020` supplied original (`00-SUPPLIED`) - preserved
+2. `0021` no-skill control - next
 3. `0022` V1 (`01-V1-CANDIDATE`) - planned
 4. `0023` V2 (`02-V2-GRAPH`) - planned
 
@@ -84,4 +89,4 @@ Use the Shingle workplace lifecycle: clone Mother to Active, open Cursor in Acti
 
 ## Next Action
 
-Prepare run `0020` from a fresh Active clone, install `00-SUPPLIED` into Cursor global `skills-cursor`, force `/layered-codebase-architecture`, and run the EXP-0003 prompt with Grok 4.6 High.
+Prepare run `0021` from a fresh Active clone, remove `layered-codebase-architecture` from Cursor global `skills-cursor`, do not use a slash invocation, and run the EXP-0003 prompt with Grok 4.6 High.

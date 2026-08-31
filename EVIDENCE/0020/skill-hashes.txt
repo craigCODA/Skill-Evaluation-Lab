@@ -1,0 +1,5 @@
+SKILL_DIR=C:\Users\NeverAMoment\.cursor\skills-cursor\layered-codebase-architecture
+093d1a371b695a8bdcf6bb2ae6bdd4c28b582ecd51ed1e4600db2630c7ae5221  conventions.md
+0cd727e9ea67ed5410c07bde1ab5c19f50f09d71f6ae643b9ce19f91b487a969  MANIFEST.txt
+306676f83773c6c1fb5c057113d0f0b67e61a31eaa05badf4730bd4de35ffb1c  RATIONALE.md
+0cb645117d1916616bc0474a049820a1a833c60f82b38d7a2f209510436fe4d0  SKILL.md

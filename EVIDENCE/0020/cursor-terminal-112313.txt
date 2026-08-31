@@ -1,0 +1,42 @@
+---
+pid: 28256
+cwd: "D:\\Downloads\\Skill-Evaluation-Lab\\ACTIVE\\ShingleFile-main"
+command: "npx tsx --test shared/roofLineMeasurements.test.ts"
+title: "Run roof line measurement domain tests"
+status: succeeded
+started_at: 2026-08-31T14:02:03.914Z
+running_for_ms: 53360    
+---
+npm warn Unknown env config "devdir". This will stop working in the next major version of npm. See `npm help npmrc` for supported config options.
+npm warn exec The following package was not found and will be installed: tsx@4.23.13
+▶ roof line pitch completeness
+  ✔ requires pitch only for rakes (1.3105ms)
+  ✔ treats hip and valley as complete without a pitch (0.2977ms)
+  ✔ treats an unpitched rake as incomplete (0.1626ms)
+✔ roof line pitch completeness (3.1612ms)
+▶ roof line totals
+  ✔ keeps an unpitched rake out of totals while still exposing plan length (0.4677ms)
+  ✔ counts a pitched rake at the pitch-adjusted length (0.2633ms)
+  ✔ still counts unpitched hip and valley at plan feet (0.208ms)
+  ✔ sums only complete rakes when mixed with plan-only rakes (0.2273ms)
+  ✔ does not change ridge totals used by the probe report (0.2149ms)
+✔ roof line totals (1.8154ms)
+ℹ tests 8
+ℹ suites 2
+ℹ pass 8
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 547.68
+npm notice
+npm notice New minor version of npm available! 11.17.0 -> 11.19.1
+npm notice Changelog: https://github.com/npm/cli/releases/tag/v11.19.1
+npm notice To update run: npm install -g npm@11.19.1
+npm notice
+
+---
+exit_code: 0
+elapsed_ms: 53359
+ended_at: 2026-08-31T14:02:57.273Z
+---

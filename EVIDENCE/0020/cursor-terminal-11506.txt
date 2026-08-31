@@ -1,0 +1,17 @@
+---
+pid: 49168
+cwd: "D:\\Downloads\\Skill-Evaluation-Lab\\ACTIVE\\ShingleFile-main"
+command: "Get-ChildItem -Force | Select-Object Mode, Name; Write-Host \"---\"; Get-ChildItem -Directory -Recurse -Depth 2 | Select-Object FullName | ForEach-Object { $_.FullName.Replace((Get-Location).Path + '\\', '') }"
+title: "List top-level and nested folders"
+status: succeeded
+started_at: 2026-08-31T13:50:50.695Z
+running_for_ms: 32052    
+---
+
+---
+
+---
+exit_code: 0
+elapsed_ms: 32051
+ended_at: 2026-08-31T13:51:22.746Z
+---
