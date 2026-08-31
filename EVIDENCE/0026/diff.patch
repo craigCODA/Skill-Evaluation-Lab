@@ -1,0 +1,46 @@
+diff --git a/shared/options/valleyMetal.ts b/shared/options/valleyMetal.ts
+index 498b92d..5839de7 100644
+--- a/shared/options/valleyMetal.ts
++++ b/shared/options/valleyMetal.ts
+@@ -3,8 +3,8 @@
+  *
+  *   cost = style === "open" ? openLf × pricePerFoot : 0
+  *
+- * This is computed and surfaced in the UI for visibility, but it is NOT rolled
+- * into the grand total (it only informs materials counts).
++ * For open valleys, this cost is billed to the customer and rolled into the
++ * grand total. Closed-valley footage is still tracked for materials only.
+  */
+ 
+ import type { Money, ValleySelection } from "../types";
+@@ -37,23 +37,23 @@ export const valleyMetalOption: JobOption<ValleyMetalBreakdown> = {
+   id: "valleyMetal",
+   title: "Valley Metal",
+   summary:
+-    "Open-valley metal computed for visibility. NOT billed to the customer; it only informs materials counts.",
++    "Open-valley metal billed to the customer; closed-valley footage is tracked for materials only.",
+   phase: "job",
+-  billed: false,
++  billed: true,
+   pricingPlain:
+-    "Only open valleys are figured: open-valley feet times the per-foot rate. This is shown for reference and is NOT added to the customer total.",
+-  example: "30 ft of open valley at $3/ft = $90 (reference only — not billed).",
++    "Only open valleys are billed: open-valley feet times the per-foot rate. The cost is added to the customer total when the valley style is \"open\".",
++  example: "30 ft of open valley at $3/ft = $90 (billed to the customer as part of the grand total).",
+   fieldLabels: ["Valley style", "Open valley LF", "Closed valley LF"],
+   catalogTables: ["valleyMetalRates"],
+   inputs: [
+-    { name: "Valley style", description: "'open' or 'closed'. Only 'open' is computed for billing visibility." },
++    { name: "Valley style", description: "'open' or 'closed'. Only 'open' is billed; closed valleys are tracked for materials only." },
+     { name: "Open valley LF", description: "Linear feet of open valley." },
+     { name: "Closed valley LF", description: "Linear feet of closed valley (tracked, not billed)." },
+   ],
+   formula: `billableLf = style = "open" ? openLf : 0
+ cost = billableLf x lookup("open-valley").pricePerFoot`,
+   contractEffect:
+-    "Shown for visibility only; NOT added to the grand total. Informs valley metal material counts.",
+-  notes: "Closed-valley LF is tracked only so the value is not lost when switching valley styles.",
++    "Adds the open-valley metal cost to the roofing proposal grand total and informs valley metal material counts.",
++  notes: "Closed-valley LF is tracked only for material counts so the value is not lost when switching valley styles.",
+   compute: (ctx: JobContext) => valleyMetalCost(ctx.roofing.valleys, ctx.catalog),
+ };

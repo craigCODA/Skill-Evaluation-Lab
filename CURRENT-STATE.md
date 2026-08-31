@@ -6,9 +6,9 @@ Current frozen experimental candidate: `02-V2-GRAPH`
 
 Promotion status: experimental, not promoted as a general improvement.
 
-Current completed global run: `0025`
+Current completed global run: `0026`
 
-Next global run: `0026`
+Next global run: `0027`
 
 Current experiment: `EXP-0004-task04-open-valley-metal-charge`
 
@@ -50,6 +50,7 @@ EXP-0004 Task 04 first-model evidence preserved:
 
 - GPT-5.1 supplied original forced run (`0024`).
 - GPT-5.1 no-skill control run (`0025`).
+- GPT-5.1 V1 candidate forced run (`0026`).
 
 Process claims require preserved transcript/trace evidence. Verification claims require preserved command output or equivalent state proof at the level claimed. A transcript-only verification statement is a process claim, not independently preserved verification success.
 
@@ -83,6 +84,10 @@ These are raw run observations. EXP-0003 scoring for `0020` through `0023` is pr
 - Preserved terminal evidence for `0025` records repository searches for `valley`, `contractEffect`, and `grandTotal` succeeding.
 - No successful typecheck, test, build, browser/runtime verification, proposal-pricing behavior check, or explicit open/closed-valley behavior check was independently preserved for `0025`.
 - The `0025` archive is local-only in `ARCHIVES/local/` and is not fresh-clone retrievable until published to durable release/artifact storage.
+- EXP-0004 `0026` changed one tracked file and had no untracked subject-repository files.
+- The transcript for `0026` records V1 inferring that the existing `billed` option metadata is the sufficient customer-billing authority.
+- No successful typecheck, test, build, browser/runtime verification, proposal-pricing behavior check, or explicit open/closed-valley behavior check was independently preserved for `0026`.
+- The `0026` archive is local-only in `ARCHIVES/local/` and is not fresh-clone retrievable until published to durable release/artifact storage.
 
 ## EXP-0002 Holdout Block
 
@@ -122,7 +127,7 @@ Run GPT-5.1 through the four frozen arms in this order:
 
 1. `0024` supplied original (`00-SUPPLIED`) - preserved
 2. `0025` no-skill control - preserved
-3. `0026` V1 (`01-V1-CANDIDATE`)
+3. `0026` V1 (`01-V1-CANDIDATE`) - preserved
 4. `0027` V2 (`02-V2-GRAPH`)
 
 Each run starts from a fresh clone of Mother at baseline `cd393ddd60548823dabd6875060247693a22c1be` and a fresh Cursor conversation.
@@ -149,4 +154,4 @@ Do not expose `BASELINE.md`, `SCORECARD.md`, expected authority, positive-contro
 
 ## Next Action
 
-Cut EXP-0004 run `0026` next: GPT-5.1 V1 candidate, fresh Mother-to-Active clone, fresh Cursor conversation, V1 installed in Cursor global skills-cursor, and forced /layered-codebase-architecture invocation.
+Cut EXP-0004 run `0027` next: GPT-5.1 V2 candidate, fresh Mother-to-Active clone, fresh Cursor conversation, V2 installed in Cursor global skills-cursor, and forced /layered-codebase-architecture invocation.

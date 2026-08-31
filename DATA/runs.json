@@ -398,5 +398,21 @@
     "result_asset_sha256": "06a229d17b2eb6bb18e56c214191e74701b5881fd89de2026a1de490177f05c0",
     "release_tag": "local-only-pending-publication",
     "status": "preserved"
+  },
+  {
+    "run_id": "0026",
+    "model": "GPT-5.1",
+    "skill": "layered-codebase-architecture",
+    "skill_version": "01-V1-CANDIDATE",
+    "experiment": "EXP-0004-task04-open-valley-metal-charge",
+    "evidence_class": "primary",
+    "condition": "candidate V1",
+    "baseline_commit": "cd393ddd60548823dabd6875060247693a22c1be",
+    "evidence_path": "EVIDENCE/0026",
+    "experiment_run_path": "EXPERIMENTS/EXP-0004-task04-open-valley-metal-charge/runs/0026-gpt51-v1",
+    "result_asset": "run-0026-gpt51-v1-exp0004-candidate.zip",
+    "result_asset_sha256": "7bfa93f2bcedf9272cef43f1427a1a820f0921cc78cc0a86b10c00ec88135f3a",
+    "release_tag": "local-only-pending-publication",
+    "status": "preserved"
   }
 ]
