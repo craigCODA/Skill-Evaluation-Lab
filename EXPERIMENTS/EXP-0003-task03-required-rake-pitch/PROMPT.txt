@@ -1,0 +1,3 @@
+In the roof quick calculator, a drawn rake can be put back on “Plan only,” and it still contributes to the totals like that is valid. Rake pitch is required; hip and valley pitch are optional.
+
+Make an unpitched rake clearly incomplete and keep it out of the quick calculator totals until a pitch is selected. Do not change the line-drawing workflow or proposal/report behavior.

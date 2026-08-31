@@ -10,7 +10,7 @@ Current completed global run: `0019`
 
 Next global run: `0020`
 
-Current experiment: `EXP-0002-task02-quick-calculator-clear-label`
+Current experiment: `EXP-0003-task03-required-rake-pitch`
 
 Baseline repository commit: `cd393ddd60548823dabd6875060247693a22c1be`
 
@@ -29,6 +29,8 @@ EXP-0002 Task 02 holdout evidence preserved:
 - Grok 4.6 High V1 forced run (`0018`).
 - Grok 4.6 High V2 forced run (`0019`).
 
+EXP-0002 is retained as the restraint floor. All four Grok 4.6 High arms made the same one-line label-only change; no skill revision is justified by EXP-0002 alone.
+
 Process claims require preserved transcript/trace evidence. Verification claims require preserved command output or equivalent state proof at the level claimed. A transcript-only verification statement is a process claim, not independently preserved verification success.
 
 ## Current Unscored Observations
@@ -38,10 +40,11 @@ These are not promoted findings until scored against the rubric.
 - EXP-0002 `0016`, `0017`, `0018`, and `0019` each made a one-line label-only change in `components/roof/RoofQuickLinearCalculator.vue`.
 - The exported Cursor prompt for `0016` omitted the leading word `In` from `PROMPT.txt`; the preserved evidence records the exported prompt exactly.
 - The `0016`, `0017`, `0018`, and `0019` archives are local-only in `ARCHIVES/local/` and are not fresh-clone retrievable until published to durable release/artifact storage.
+- EXP-0003 is planned as the next harder responsibility-boundary experiment. It uses the required-rake-pitch prompt without explicit no-restructure wording.
 
 ## EXP-0002 Holdout Block
 
-Do not edit the skill during this block.
+Do not edit the skill or rerun these specimens when using them as the restraint floor.
 
 Run Grok 4.6 High through the four frozen arms in this order:
 
@@ -53,6 +56,21 @@ Run Grok 4.6 High through the four frozen arms in this order:
 Each run starts from a fresh clone of Mother at baseline `cd393ddd60548823dabd6875060247693a22c1be` and a fresh Cursor conversation.
 
 Failed or incomplete runs remain evidence and consume their run ID. If a process comparison requires a rerun, use a new global run ID rather than replacing the preserved run.
+
+## EXP-0003 First-Model Block
+
+Do not edit the skill during this block.
+
+Run Grok 4.6 High through the four frozen arms in this order:
+
+1. `0020` supplied original (`00-SUPPLIED`) - next
+2. `0021` no-skill control - planned
+3. `0022` V1 (`01-V1-CANDIDATE`) - planned
+4. `0023` V2 (`02-V2-GRAPH`) - planned
+
+Each run starts from a fresh clone of Mother at baseline `cd393ddd60548823dabd6875060247693a22c1be` and a fresh Cursor conversation.
+
+Use the Shingle workplace lifecycle: clone Mother to Active, open Cursor in Active, control the skill through Cursor global `skills-cursor`, preserve transcript and evidence outside Active, archive Active as the numbered run, then clear Active before the next arm.
 
 ## Evidence Contract For The Holdout
 
@@ -66,4 +84,4 @@ Failed or incomplete runs remain evidence and consume their run ID. If a process
 
 ## Next Action
 
-Score the completed Grok 4.6 High EXP-0002 four-arm holdout block (`0016` through `0019`) before deciding whether to add another model block.
+Prepare run `0020` from a fresh Active clone, install `00-SUPPLIED` into Cursor global `skills-cursor`, force `/layered-codebase-architecture`, and run the EXP-0003 prompt with Grok 4.6 High.
