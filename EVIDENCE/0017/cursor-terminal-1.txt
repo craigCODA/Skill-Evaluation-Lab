@@ -1,0 +1,6 @@
+---
+pid: 41704
+cwd: |
+  D:\Downloads\Skill-Evaluation-Lab\ACTIVE\ShingleFile-main
+---
+PS D:\Downloads\Skill-Evaluation-Lab\ACTIVE\ShingleFile-main> 

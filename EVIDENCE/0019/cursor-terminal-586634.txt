@@ -1,0 +1,62 @@
+---
+pid: 8348
+cwd: "D:\\Downloads\\Skill-Evaluation-Lab\\ACTIVE\\ShingleFile-main"
+command: "Get-ChildItem -Recurse -Directory | Select-Object -ExpandProperty FullName"
+title: "List all directories in project"
+status: failed   
+started_at: 2026-08-31T13:26:36.858Z
+running_for_ms: 30106    
+---
+D:\Downloads\Skill-Evaluation-Lab\ACTIVE\ShingleFile-main\assets
+D:\Downloads\Skill-Evaluation-Lab\ACTIVE\ShingleFile-main\components
+D:\Downloads\Skill-Evaluation-Lab\ACTIVE\ShingleFile-main\composables
+D:\Downloads\Skill-Evaluation-Lab\ACTIVE\ShingleFile-main\docs
+D:\Downloads\Skill-Evaluation-Lab\ACTIVE\ShingleFile-main\drizzle
+D:\Downloads\Skill-Evaluation-Lab\ACTIVE\ShingleFile-main\infra
+D:\Downloads\Skill-Evaluation-Lab\ACTIVE\ShingleFile-main\layouts
+D:\Downloads\Skill-Evaluation-Lab\ACTIVE\ShingleFile-main\middleware
+D:\Downloads\Skill-Evaluation-Lab\ACTIVE\ShingleFile-main\pages
+D:\Downloads\Skill-Evaluation-Lab\ACTIVE\ShingleFile-main\plugins
+D:\Downloads\Skill-Evaluation-Lab\ACTIVE\ShingleFile-main\public
+D:\Downloads\Skill-Evaluation-Lab\ACTIVE\ShingleFile-main\server
+D:\Downloads\Skill-Evaluation-Lab\ACTIVE\ShingleFile-main\shared
+D:\Downloads\Skill-Evaluation-Lab\ACTIVE\ShingleFile-main\utils
+D:\Downloads\Skill-Evaluation-Lab\ACTIVE\ShingleFile-main\assets\css
+D:\Downloads\Skill-Evaluation-Lab\ACTIVE\ShingleFile-main\components\roof
+D:\Downloads\Skill-Evaluation-Lab\ACTIVE\ShingleFile-main\drizzle\meta
+D:\Downloads\Skill-Evaluation-Lab\ACTIVE\ShingleFile-main\infra\cloudformation
+D:\Downloads\Skill-Evaluation-Lab\ACTIVE\ShingleFile-main\infra\scripts
+D:\Downloads\Skill-Evaluation-Lab\ACTIVE\ShingleFile-main\pages\account
+D:\Downloads\Skill-Evaluation-Lab\ACTIVE\ShingleFile-main\pages\admin
+D:\Downloads\Skill-Evaluation-Lab\ACTIVE\ShingleFile-main\pages\auth
+D:\Downloads\Skill-Evaluation-Lab\ACTIVE\ShingleFile-main\pages\calculator
+D:\Downloads\Skill-Evaluation-Lab\ACTIVE\ShingleFile-main\pages\catalog
+D:\Downloads\Skill-Evaluation-Lab\ACTIVE\ShingleFile-main\pages\customers
+D:\Downloads\Skill-Evaluation-Lab\ACTIVE\ShingleFile-main\pages\estimates
+D:\Downloads\Skill-Evaluation-Lab\ACTIVE\ShingleFile-main\pages\customers\[customerId]
+D:\Downloads\Skill-Evaluation-Lab\ACTIVE\ShingleFile-main\pages\customers\[customerId]\jobs
+D:\Downloads\Skill-Evaluation-Lab\ACTIVE\ShingleFile-main\pages\estimates\[estimateId]
+D:\Downloads\Skill-Evaluation-Lab\ACTIVE\ShingleFile-main\pages\estimates\[estimateId]\contracts
+D:\Downloads\Skill-Evaluation-Lab\ACTIVE\ShingleFile-main\public\roof-icons
+D:\Downloads\Skill-Evaluation-Lab\ACTIVE\ShingleFile-main\server\api
+D:\Downloads\Skill-Evaluation-Lab\ACTIVE\ShingleFile-main\server\db
+D:\Downloads\Skill-Evaluation-Lab\ACTIVE\ShingleFile-main\server\utils
+D:\Downloads\Skill-Evaluation-Lab\ACTIVE\ShingleFile-main\server\api\admin
+D:\Downloads\Skill-Evaluation-Lab\ACTIVE\ShingleFile-main\server\api\catalog
+D:\Downloads\Skill-Evaluation-Lab\ACTIVE\ShingleFile-main\server\api\customer-account
+D:\Downloads\Skill-Evaluation-Lab\ACTIVE\ShingleFile-main\server\api\customers
+D:\Downloads\Skill-Evaluation-Lab\ACTIVE\ShingleFile-main\server\api\job-assets
+D:\Downloads\Skill-Evaluation-Lab\ACTIVE\ShingleFile-main\server\api\jobs
+D:\Downloads\Skill-Evaluation-Lab\ACTIVE\ShingleFile-main\server\api\roof-probe
+D:\Downloads\Skill-Evaluation-Lab\ACTIVE\ShingleFile-main\server\api\admin\users
+D:\Downloads\Skill-Evaluation-Lab\ACTIVE\ShingleFile-main\server\api\admin\users\[userId]
+D:\Downloads\Skill-Evaluation-Lab\ACTIVE\ShingleFile-main\server\api\catalog\[section]
+D:\Downloads\Skill-Evaluation-Lab\ACTIVE\ShingleFile-main\server\api\customer-account\sub-accounts
+D:\Downloads\Skill-Evaluation-Lab\ACTIVE\ShingleFile-main\server\api\jobs\[jobId]
+D:\Downloads\Skill-Evaluation-Lab\ACTIVE\ShingleFile-main\server\api\jobs\[jobId]\contract
+D:\Downloads\Skill-Evaluation-Lab\ACTIVE\ShingleFile-main\shared\calculator
+D:\Downloads\Skill-Evaluation-Lab\ACTIVE\ShingleFile-main\shared\contracts
+D:\Downloads\Skill-Evaluation-Lab\ACTIVE\ShingleFile-main\shared\options
+D:\Downloads\Skill-Evaluation-Lab\ACTIVE\ShingleFile-main\shared\pricebook
+D:\Downloads\Skill-Evaluation-Lab\ACTIVE\ShingleFile-main\shared\contracts\modules
+D:\Downloads\Skill-Evaluation-Lab\ACTIVE\ShingleFile-main\shared\pricebook\data

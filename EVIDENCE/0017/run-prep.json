@@ -1,0 +1,11 @@
+{
+  "run_id": "0017",
+  "experiment": "EXP-0002-task02-quick-calculator-clear-label",
+  "model": "Grok 4.6 High",
+  "condition": "NO-SKILL",
+  "active_path": "D:\\Downloads\\Skill-Evaluation-Lab\\ACTIVE\\ShingleFile-main",
+  "baseline": "cd393ddd60548823dabd6875060247693a22c1be",
+  "cursor_skill_path_absent": true,
+  "prompt_copied_to_clipboard": true,
+  "prepared_at": "2026-08-31T07:44:09.7687858-05:00"
+}

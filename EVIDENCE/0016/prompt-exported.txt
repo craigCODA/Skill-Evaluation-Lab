@@ -1,0 +1,1 @@
+/layered-codebase-architecture  the roof quick calculator, the bottom button says “Clear entries,” but it only clears the manually entered ridge, hip, valley, eave, and rake values. Rename it to “Clear manual entries” so the label matches what it actually does. Don’t change the behavior. Do not restructure surrounding files.

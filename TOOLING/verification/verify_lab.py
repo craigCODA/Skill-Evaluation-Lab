@@ -117,15 +117,43 @@ def check_development_history(errors: list[str], expected: list[str]) -> None:
             fail(errors, f"{rel(path)} heading is {first!r}, expected '# {run_id}'")
 
 
+def check_current_state(errors: list[str]) -> str | None:
+    path = ROOT / "CURRENT-STATE.md"
+    if not path.exists():
+        fail(errors, "missing CURRENT-STATE.md")
+        return None
+    completed = parse_field(read(path), "Current completed global run")
+    if not completed:
+        fail(errors, "CURRENT-STATE.md missing current completed global run")
+        return None
+    if not RUN_ID_RE.match(completed):
+        fail(errors, f"invalid current completed global run: {completed}")
+        return None
+    return completed
+
+
 def check_run_index(errors: list[str], expected: list[str]) -> None:
-    path = ROOT / "EXPERIMENTS" / "EXP-0001-task01-roof-image-measure" / "RUN-INDEX.md"
-    text = read(path)
-    ids = []
-    for line in text.splitlines():
-        if line.startswith("| ") and re.match(r"^\| \d{4} \|", line):
-            ids.append(line.split("|")[1].strip())
-    if ids != expected:
-        fail(errors, f"RUN-INDEX IDs mismatch: got {ids}, expected {expected}")
+    paths = sorted((ROOT / "EXPERIMENTS").glob("*/RUN-INDEX.md"))
+    if not paths:
+        fail(errors, "missing experiment RUN-INDEX.md files")
+        return
+    ids: list[str] = []
+    seen: dict[str, str] = {}
+    for path in paths:
+        text = read(path)
+        for line in text.splitlines():
+            match = re.match(r"^\|\s*`?(\d{4})`?\s*\|", line)
+            if not match:
+                continue
+            run_id = match.group(1)
+            ids.append(run_id)
+            previous = seen.get(run_id)
+            if previous:
+                fail(errors, f"run {run_id} appears in multiple run indexes: {previous}, {rel(path)}")
+            seen[run_id] = rel(path)
+    missing = [run_id for run_id in expected if run_id not in seen]
+    if missing:
+        fail(errors, f"RUN-INDEX missing preserved run IDs: {missing}")
 
 
 def check_data(errors: list[str], runs: list[dict[str, str]], expected: list[str]) -> None:
@@ -211,9 +239,14 @@ def check_release_json(errors: list[str], runs: list[dict[str, str]], path: Path
     except json.JSONDecodeError as exc:
         fail(errors, f"invalid release JSON: {exc}")
         return
+    release_tag = data.get("tag_name") or data.get("name")
+    if release_tag:
+        release_runs = [item for item in runs if item.get("release_tag") == release_tag]
+    else:
+        release_runs = [item for item in runs if item.get("release_tag", "").startswith("evidence-")]
     assets = data.get("assets", [])
     names = sorted(asset.get("name", "") for asset in assets)
-    expected = sorted([item["result_asset"] for item in runs] + ["SHA256SUMS.txt"])
+    expected = sorted([item["result_asset"] for item in release_runs] + ["SHA256SUMS.txt"])
     if names != expected:
         fail(errors, f"release assets mismatch: got {names}, expected {expected}")
     body = str(data.get("body", "")).lower()
@@ -233,13 +266,14 @@ def main(argv: list[str]) -> int:
 
     errors: list[str] = []
     check_forbidden(errors)
+    current_completed = check_current_state(errors)
     runs = load_runs(errors)
     evidence_ids = check_contiguous_dirs(errors, "evidence", ROOT / "EVIDENCE")
     expected = expected_ids(evidence_ids)
     if expected and expected[0] != "0001":
         fail(errors, f"current first run should be 0001, got {expected[0]}")
-    if expected and expected[-1] != "0015":
-        fail(errors, f"current final run should be 0015, got {expected[-1]}")
+    if expected and current_completed and expected[-1] != current_completed:
+        fail(errors, f"current final run should be {current_completed}, got {expected[-1]}")
     check_development_history(errors, expected)
     check_run_index(errors, expected)
     check_data(errors, runs, expected)

@@ -1,0 +1,11 @@
+{
+  "run_id": "0016",
+  "experiment": "EXP-0002-task02-quick-calculator-clear-label",
+  "model": "Grok 4.6 High",
+  "condition": "00-SUPPLIED",
+  "active_path": "D:\\Downloads\\Skill-Evaluation-Lab\\ACTIVE\\ShingleFile-main",
+  "baseline": "cd393ddd60548823dabd6875060247693a22c1be",
+  "cursor_skill_path": "C:\\Users\\NeverAMoment\\.cursor\\skills-cursor\\layered-codebase-architecture",
+  "prompt_copied_to_clipboard": true,
+  "prepared_at": "2026-08-31T07:25:11.8986916-05:00"
+}

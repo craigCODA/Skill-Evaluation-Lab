@@ -1,0 +1,66 @@
+---
+pid: 16376
+cwd: "D:\\Downloads\\Skill-Evaluation-Lab\\ACTIVE\\ShingleFile-main"
+command: "git ls-files | Select-String -Pattern \"roof|calc|quick\""
+title: "List roof and calculator related files"
+status: succeeded
+started_at: 2026-08-31T12:50:24.222Z
+running_for_ms: 30861    
+---
+
+assets/css/roof-image-measure-panel.css
+components/RoofMeasurementSummary.vue
+components/RoofingScopeForm.vue
+components/roof/RoofDrawingActionsPanel.vue
+components/roof/RoofImageMeasurePanel.vue
+components/roof/RoofJobTotalsSection.vue
+components/roof/RoofMeasurementWorkspaceSection.vue
+components/roof/RoofPlaneConditionsSection.vue
+components/roof/RoofPlaneEdgesSection.vue
+components/roof/RoofPlaneIdentifySection.vue
+components/roof/RoofPlaneSizeSection.vue
+components/roof/RoofProbeHistoryDrawer.vue
+components/roof/RoofProbeMetaGrid.vue
+components/roof/RoofProbePropertyAddressSection.vue
+components/roof/RoofProbeStatsGrid.vue
+components/roof/RoofProbeTitleSection.vue
+components/roof/RoofProductSection.vue
+components/roof/RoofQuickLinearCalculator.vue
+components/roof/RoofSegmentChartSection.vue
+components/roof/RoofStreetViewPanel.vue
+components/roof/RoofVentilationSummary.vue
+components/roof/RoofWasteFactorControl.vue
+composables/useRoofMeasurements.ts
+composables/useRoofProbeReport.ts
+pages/calculator/index.vue
+pages/roof-probe.vue
+public/roof-icons/downspout.svg
+public/roof-icons/ladder.svg
+public/roof-icons/roof-vent.svg
+server/api/roof-probe.post.ts
+server/api/roof-probe/street-view.get.ts
+server/utils/grokRoofLines.ts
+server/utils/roofImageProjection.ts
+server/utils/roofMaskGeometry.ts
+server/utils/roofProbeImageryStore.ts
+server/utils/roofProbeMeasurementStore.ts
+shared/calculator/calculateEstimate.ts
+shared/contracts/roofProposalDocument.ts
+shared/contracts/roofProposalNarrative.ts
+shared/contracts/roofProposalPricing.ts
+shared/contracts/roofProposalScope.ts
+shared/pricebook/data/shingles-metalroof.json
+shared/roofArea.ts
+shared/roofImageryGeoref.ts
+shared/roofImageryScale.ts
+shared/roofLineMeasurements.ts
+shared/roofMeasurement.ts
+shared/roofProbeAddress.ts
+shared/roofProbeReport.ts
+utils/captureRoofDrawingScreenshot.ts
+
+---
+exit_code: 0
+elapsed_ms: 30860
+ended_at: 2026-08-31T12:50:55.082Z
+---

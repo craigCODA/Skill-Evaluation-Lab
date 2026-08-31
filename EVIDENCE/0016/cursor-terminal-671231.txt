@@ -1,0 +1,44 @@
+---
+pid: 49816
+cwd: "D:\\Downloads\\Skill-Evaluation-Lab\\ACTIVE\\ShingleFile-main"
+command: "ls"
+title: "List workspace root contents"
+status: succeeded
+started_at: 2026-08-31T12:31:58.324Z
+running_for_ms: 32221    
+---
+
+    Directory: D:\Downloads\Skill-Evaluation-Lab\ACTIVE\ShingleFile-main
+
+Mode                 LastWriteTime         Length Name
+----                 -------------         ------ ----
+d----           8/31/2026  7:24 AM                assets
+d----           8/31/2026  7:24 AM                components
+d----           8/31/2026  7:24 AM                composables
+d----           8/31/2026  7:24 AM                docs
+d----           8/31/2026  7:24 AM                drizzle
+d----           8/31/2026  7:24 AM                infra
+d----           8/31/2026  7:24 AM                layouts
+d----           8/31/2026  7:24 AM                middleware
+d----           8/31/2026  7:24 AM                pages
+d----           8/31/2026  7:24 AM                plugins
+d----           8/31/2026  7:24 AM                public
+d----           8/31/2026  7:24 AM                server
+d----           8/31/2026  7:24 AM                shared
+d----           8/31/2026  7:24 AM                utils
+-a---           8/31/2026  7:24 AM            158 .env.example
+-a---           8/31/2026  7:24 AM            271 .gitignore
+-a---           8/31/2026  7:24 AM             20 .npmrc
+-a---           8/31/2026  7:24 AM             76 app.vue
+-a---           8/31/2026  7:24 AM            230 drizzle.config.ts
+-a---           8/31/2026  7:24 AM           1703 nuxt.config.ts
+-a---           8/31/2026  7:24 AM         353671 package-lock.json
+-a---           8/31/2026  7:24 AM           1414 package.json
+-a---           8/31/2026  7:24 AM           1517 README.md
+-a---           8/31/2026  7:24 AM             44 tsconfig.json
+
+---
+exit_code: 0
+elapsed_ms: 32220
+ended_at: 2026-08-31T12:32:30.544Z
+---

@@ -1,0 +1,44 @@
+---
+pid: 38464
+cwd: "D:\\Downloads\\Skill-Evaluation-Lab\\ACTIVE\\ShingleFile-main"
+command: "Get-ChildItem -Force | Format-Table Name, Mode, Length"
+title: "List workspace root contents"
+status: succeeded
+started_at: 2026-08-31T12:58:29.022Z
+running_for_ms: 30651    
+---
+
+Name              Mode  Length
+----              ----  ------
+.git              d--h- 
+assets            d---- 
+components        d---- 
+composables       d---- 
+docs              d---- 
+drizzle           d---- 
+infra             d---- 
+layouts           d---- 
+middleware        d---- 
+pages             d---- 
+plugins           d---- 
+public            d---- 
+server            d---- 
+shared            d---- 
+utils             d---- 
+.env.example      -a--- 158
+.gitignore        -a--- 271
+.npmrc            -a--- 20
+app.vue           -a--- 76
+drizzle.config.ts -a--- 230
+nuxt.config.ts    -a--- 1703
+package-lock.json -a--- 353671
+package.json      -a--- 1414
+README.md         -a--- 1517
+tsconfig.json     -a--- 44
+
+
+---
+exit_code: 0
+elapsed_ms: 30650
+ended_at: 2026-08-31T12:58:59.672Z
+---

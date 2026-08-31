@@ -1,0 +1,69 @@
+---
+pid: 22576
+cwd: "D:\\Downloads\\Skill-Evaluation-Lab\\ACTIVE\\ShingleFile-main"
+command: "git status; git ls-files | Select-Object -First 50"
+title: "Show git status and tracked files"
+status: succeeded
+started_at: 2026-08-31T12:49:45.405Z
+running_for_ms: 30332    
+---
+On branch main
+Your branch is up to date with 'origin/main'.
+
+nothing to commit, working tree clean
+.env.example
+.gitignore
+.npmrc
+README.md
+app.vue
+assets/css/brand-logo.css
+assets/css/contract-documents.css
+assets/css/customer-file.css
+assets/css/estimate-help.css
+assets/css/estimate-list.css
+assets/css/estimate-v2.css
+assets/css/login.css
+assets/css/main.css
+assets/css/mobile.css
+assets/css/roof-image-measure-panel.css
+components/AccountRolePermissionsEditor.vue
+components/AccountTeamInviteForm.vue
+components/AccountTeamRoster.vue
+components/AppSidebar.vue
+components/BrandLogo.vue
+components/CatalogSection.vue
+components/CompanyLocationsSection.vue
+components/CompanyProfileForm.vue
+components/ComposedContractDocument.vue
+components/ContractSetupEditor.vue
+components/EstimateDashboardHero.vue
+components/EstimateHelp.vue
+components/EstimateListSection.vue
+components/EstimateStatusLegend.vue
+components/EstimateSummaryCard.vue
+components/EstimateTable.vue
+components/PageHeader.vue
+components/RoofMeasurementSummary.vue
+components/RoofingScopeForm.vue
+components/StatCard.vue
+components/StatusBadge.vue
+components/roof/RoofDrawingActionsPanel.vue
+components/roof/RoofImageMeasurePanel.vue
+components/roof/RoofJobTotalsSection.vue
+components/roof/RoofMeasurementWorkspaceSection.vue
+components/roof/RoofPlaneConditionsSection.vue
+components/roof/RoofPlaneEdgesSection.vue
+components/roof/RoofPlaneIdentifySection.vue
+components/roof/RoofPlaneSizeSection.vue
+components/roof/RoofProbeHistoryDrawer.vue
+components/roof/RoofProbeMetaGrid.vue
+components/roof/RoofProbePropertyAddressSection.vue
+components/roof/RoofProbeStatsGrid.vue
+components/roof/RoofProbeTitleSection.vue
+components/roof/RoofProductSection.vue
+
+---
+exit_code: 0
+elapsed_ms: 30332
+ended_at: 2026-08-31T12:50:15.737Z
+---

@@ -1,0 +1,1 @@
+SKILL_DIR=C:\Users\NeverAMoment\.cursor\skills-cursor\layered-codebase-architecture present=false condition=NO-SKILL

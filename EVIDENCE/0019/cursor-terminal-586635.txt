@@ -1,0 +1,40 @@
+---
+pid: 30940
+cwd: "D:\\Downloads\\Skill-Evaluation-Lab\\ACTIVE\\ShingleFile-main"
+command: "rg -i -n \"clear\" --glob \"*.vue\" --glob \"*.ts\" --glob \"*.js\""
+title: "Search for Clear in source files"
+status: failed   
+started_at: 2026-08-31T13:26:38.211Z
+running_for_ms: 30186    
+---
+composables\useAuth.ts:101:  function clearSession() {
+composables\useAuth.ts:107:    clearSession()
+composables\useAuth.ts:114:    clearSession()
+composables\useAuth.ts:119:    // users land on the sign-in page after the hosted UI clears the session.
+composables\useAuth.ts:130:    clearSession,
+composables\useRoofMeasurements.ts:112:  function clearLatestMeasurement(): void {
+composables\useRoofMeasurements.ts:233:    clearLatestMeasurement,
+pages\roof-probe.vue:9:  clearLatestMeasurement,
+pages\roof-probe.vue:59:  clearLatestMeasurement()
+pages\roof-probe.vue:77:  if (saveLinesTimer) clearTimeout(saveLinesTimer)
+pages\roof-probe.vue:85:  if (saveLinesTimer) clearTimeout(saveLinesTimer)
+pages\roof-probe.vue:93:  if (saveLinesTimer) clearTimeout(saveLinesTimer)
+shared\contracts\roofProposalNarrative.ts:375:      "Seal around vents, pipes, and flashings; furnish material and labor for the scope above; clean up daily; haul debris; clear roofing debris from gutters; and roll the yard with a magnetic roller"
+shared\contracts\roofProposalScope.ts:295:        "Clear the driveway before work begins so trucks and crews can access the job."
+server\utils\grokRoofLines.ts:8:  "central house so each separate roof plane is clearly outlined.",
+components\roof\RoofImageMeasurePanel.vue:208:function clearMeasureLines() {
+components\roof\RoofImageMeasurePanel.vue:213:function clearCautionTapeLines() {
+components\roof\RoofImageMeasurePanel.vue:244:function clearMarkers() {
+components\roof\RoofImageMeasurePanel.vue:291:function clearAreaShapes() {
+components\roof\RoofImageMeasurePanel.vue:659:            @click="clearMeasureLines"
+components\roof\RoofImageMeasurePanel.vue:661:            Clear lines
+components\roof\RoofImageMeasurePanel.vue:723:            @click="clearMarkers"
+components\roof\RoofImageMeasurePanel.vue:725:            Clear icons
+components\roof\RoofImageMeasurePanel.vue:731:            @click="clearCautionTapeLines"
+components\roof\RoofImageMeasurePanel.vue:733:            Clear caution tape
+components\roof\RoofImageMeasurePanel.vue:765:          @click="clearAreaShapes"
+components\roof\RoofImageMeasurePanel.vue:767:          Clear areas
+components\roof\RoofImageMeasurePanel.vue:796:      Click points to outline an area, then click the first point again to close it. Use Clear areas to remove finished areas.
+components\roof\RoofQuickLinearCalculator.vue:94:function clearLines() {
+components\roof\RoofQuickLinearCalculator.vue:146:        <button type="button" @click="clearLines">Clear</button>
+components\roof\RoofQuickLinearCalculator.vue:219:      Clear entries

@@ -22,14 +22,14 @@ Keep tool access, harness behavior, model selection/settings, and operator inter
 
 | Global run | Condition | Skill invocation |
 | --- | --- | --- |
-| `0016` | no skill | no slash invocation |
-| `0017` | supplied original (`00-SUPPLIED`) | forced `/layered-codebase-architecture` |
+| `0016` | supplied original (`00-SUPPLIED`) | forced `/layered-codebase-architecture` |
+| `0017` | no skill | no slash invocation |
 | `0018` | V1 (`01-V1-CANDIDATE`) | forced `/layered-codebase-architecture` |
 | `0019` | V2 (`02-V2-GRAPH`) | forced `/layered-codebase-architecture` |
 
 For the three skill arms, install/freeze the exact artifact for that condition before the run. Do not modify the skill between arms.
 
-For `0016`, do not explicitly invoke an architecture skill.
+For `0017`, do not explicitly invoke an architecture skill.
 
 ## Run validity contract
 
