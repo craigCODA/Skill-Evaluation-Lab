@@ -1,0 +1,34 @@
+Layered Codebase Architecture V2 Artifact Manifest
+Build date: 2026-08-30T16:40:54-05:00
+
+Skill name: layered-codebase-architecture
+Slash invocation: /layered-codebase-architecture
+Output directory: D:\Downloads\layered-codebase-architecture-v2
+
+Source baseline:
+V1 directory: C:\Users\NeverAMoment\.cursor\skills-cursor\layered-codebase-architecture
+Design spec source: D:\Downloads\layered-codebase-architecture-v2-graph-design-spec.md
+
+SHA-256:
+V1 SKILL.md: 4A2082288C161B6A43CC6C0D0E7BB05961C1F8FC7EDCD1647E4EBF8F0322432A
+V1 conventions.md: DD84C0ACFF48472B52B9F29D01DB5B7FF6157C70E0E7DCA872B3A42C5353CC3D
+V2 SKILL.md: C183D335CF06102F2D66AC716FC8D1D6E33B85D96F23DD014298D6BDD79E5CD1
+V2 conventions.md: 5A1DC4AF63C8605EE2998C7FBA0F1C98506FBBBA49ABB8BF7A084E9C03BE5255
+DESIGN-SPEC.md: E5A0FE981B2F19C4F25EB3E6A5E45EB57AB023DB665738442D6EECA002F2F5A6
+
+Included files:
+SKILL.md
+conventions.md
+DESIGN-SPEC.md
+V1-TO-V2.diff
+MANIFEST.txt
+
+Build notes:
+V1 files were read as the implementation baseline and were not modified.
+DESIGN-SPEC.md is the current public lab copy of the supplied design spec.
+It omits excluded diagnostic material from current public metadata.
+V1-TO-V2.diff was generated with git diff --no-index from V1 to V2.
+The skill was not installed globally.
+The skill was not run against ShingleFile.
+The ShingleFile test repository was not modified.
+Authored V2 files and DESIGN-SPEC.md are ASCII. The exact diff includes non-ASCII bytes inherited from removed V1 lines.

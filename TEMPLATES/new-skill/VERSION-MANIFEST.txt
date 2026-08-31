@@ -1,0 +1,7 @@
+version:
+build date:
+source:
+SKILL.md SHA-256:
+conventions.md SHA-256:
+design spec SHA-256:
+from previous diff SHA-256:

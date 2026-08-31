@@ -1,0 +1,110 @@
+--- 00-SUPPLIED/SKILL.md
++++ 01-V1-CANDIDATE/SKILL.md
+@@ -11,9 +11,11 @@
+ 
+ Laws for **shape**, **names**, and **security placement**. Procedures for placing files and revamping a messy tree. Stack-specific case and folder spelling live in [conventions.md](conventions.md) — apply them after the laws, never instead of them. If the repo under edit has `.cursor/architecture-conventions.md`, that file wins over [conventions.md](conventions.md).
+ 
++**Repository reality first.** Treat layers as responsibilities before treating them as folders. Discover the repository's framework-, language-, and project-owned structure before prescribing a physical tree; preserve coherent existing structure unless a responsibility or dependency violation requires change.
++
+ **Noun chain** (the findability test, stated once): a newcomer walks route → UI → contract → adapter → domain → definitions on **one name**. If a hop needs a translation dictionary, rename or record an alias (see When you cannot comply). Every other “walk the chain” line in this skill means this test.
+ 
+-The filled noun map is the committed file `.cursor/noun-map.md` in the repo under edit (create it from the template below if missing).
++Use an existing `.cursor/noun-map.md` as the durable noun/alias record. For a bounded task, do not create or expand a repository-wide noun map unless the user, repo rules, or a recurring ambiguity requires one; otherwise keep the touched capability trace temporary.
+ 
+ This skill is the source of truth for placement, naming, generated vs source, and frozen vs editable. A repo `FileRules` cursor rule should point here by skill name, not copy these laws.
+ 
+@@ -37,11 +39,11 @@
+ 
+ 1. Name the layer (Shape #9). If you cannot, stop.
+ 2. Name the capability noun (Names #2). Search the repo for that noun first (Shape #10).
+-3. Put the file on that row of `.cursor/noun-map.md` (Language).
++3. If a durable noun map is already in scope, put the file on that row; otherwise keep the noun trace temporary (Language).
+ 4. Name the file as a **thing** (noun) or an **action** (verb) (Language).
+ 5. Check: Sentence test on the full path.
+ 6. Check: Import matrix on the new file’s imports.
+-7. Update or mark N/A every hop on the noun chain (Feature hops).
++7. Update, verify, or mark N/A every **touched and applicable** hop on the noun chain (Feature hops).
+ 8. Add tests at the same layer.
+ 9. Apply [conventions.md](conventions.md) (or the repo overlay if present).
+ 
+@@ -65,7 +67,7 @@
+ 
+ ### Noun map template
+ 
+-The durable record is `.cursor/noun-map.md` in the repo under edit. Fill it before renaming a capability, auditing drift, or revamping. Collapse synonyms into one noun per row. Persist aliases there so they survive across sessions.
++When a durable noun map already exists or is explicitly required, use it before renaming a capability, auditing drift, or revamping. Collapse synonyms into one noun per row. Otherwise use the same mapping temporarily for the touched capability and do not create repository-wide documentation solely for the task.
+ 
+ | Noun | Route | UI | Contract | Adapter | Domain | Definitions | Alias (if any) |
+ | --- | --- | --- | --- | --- | --- | --- | --- |
+@@ -79,7 +81,7 @@
+ 
+ ## Check: Noun-chain walk
+ 
+-Start at the user-visible route (or the file under edit). Walk the noun chain against `.cursor/noun-map.md`. Each hop uses the map noun or is marked N/A.
++Start at the relevant entry point (or the file under edit). Walk the noun chain against the durable noun map when one is in scope; otherwise use a temporary trace. Each relevant hop uses the canonical noun, an explicit alias/mapping, or N/A.
+ 
+ **Fail** if any hop uses a synonym (`analytics` vs `reporting`) not listed as Alias on that file.
+ 
+@@ -119,15 +121,15 @@
+ 
+ ## Shape (10)
+ 
+-1. **Domain is the core.** Business rules, invariants, and transformations live in portable code. That code does not know about HTTP, UI, or a vendor SDK.
++1. **Domain is the core.** Business rules, invariants, and transformations whose meaning is independent of a delivery mechanism live in portable code. Purity or reuse alone does not make code domain logic: mechanism-dependent calculations remain with the boundary whose concepts give them meaning.
+ 2. **The edges are adapters.** Network, storage, auth, messaging, and other I/O only translate. They parse input, call domain, and map errors. They do not own the rules.
+-3. **The UI is another edge.** Screens compose existing primitives. Presentation stays in views; application behavior lives in UI state modules that call domain or adapters.
++3. **The UI is another edge.** Presentation and presentation state stay at the UI boundary. When behavior coordinates multiple rules, ports, side effects, authorization/transaction scope, or business sequencing, treat that as an application/use-case responsibility even if the repository has no `Application/` folder.
+ 4. **Declare what varies; code what is stable.** Product variants, forms, workflows, and report shapes are authored as data. Code interprets those definitions instead of growing a special case for each one.
+ 5. **Generated artifacts are not source.** Types, clients, and derived files come from definitions. You edit the definition. You never hand-edit the generated output.
+ 6. **Dependencies point inward.** UI and adapters may depend on domain and generated contracts. Domain depends on neither UI, adapters, nor vendor SDKs.
+ 7. **Share contracts, not platforms.** Front and back agree on names and types from a single schema (or equivalent contract). They do not share UI kits, cloud SDKs, or handler code.
+ 8. **Separate frozen from editable.** Vendor/template trees, generated files, and build output are off-limits. Application code lives only in designated trees.
+-9. **One concern, one home.** A new thing belongs in exactly one layer: a rule in domain, a definition in data, I/O in an adapter, a screen in UI. If you cannot name the layer, do not add the file.
++9. **One responsibility, one authority.** A rule or responsibility has one authoritative owner, but representations and supporting operations may exist at multiple boundaries. Do not create files, folders, or layers merely to satisfy the taxonomy; split only at a real responsibility or dependency seam.
+ 10. **Extend before inventing.** Prefer an existing package, module, or definition shape. A new top-level concept is last resort, not the default.
+ 
+ ---
+@@ -136,10 +138,10 @@
+ 
+ One capability name, reused everywhere. If the user is on `/patients`, you find `Patients` on the page, the UI tree, the contract, the adapter, and the domain package.
+ 
+-1. **Root folders are layers, not features.** Top level is UI, adapters, domain, contracts/clients, and definition data. A feature never gets its own root folder; it appears as the **same name** under each layer that needs it.
+-2. **The capability name is the index.** Pick one noun (`Patients`, `Reporting`, `Auditing`). That noun is the folder, the schema, the adapter prefix, the domain package, and the UI route segment. Do not invent a second word for the same thing.
+-3. **The URL is the frontend key.** The route segment is the noun. UI for that screen lives under the same noun. UI state modules are named from that noun ([conventions.md](conventions.md) for spelling).
+-4. **The adapter folder is `{Noun}-{Role}`.** Examples: `API-Patients`, `Reporting-QueryExecutor`, `Auditing-EventProcessor`. Role prefixes say *what kind of edge*, not a new domain. Entry-file spelling is in [conventions.md](conventions.md).
++1. **Root folders follow repository reality.** Conceptual responsibilities do not require universal physical roots. Respect framework-, language-, and project-owned top-level structure; reorganize it only when a demonstrated responsibility or dependency violation requires change.
++2. **The capability name is the index.** Pick one canonical noun (`Patients`, `Reporting`, `Auditing`) and reuse it where the repository can do so coherently. Published, framework-owned, or boundary-specific names may differ when the mapping is explicit; do not invent unexplained synonyms.
++3. **Use the repository's entry point as the boundary key.** In a routed UI this may be the URL segment; in another system it may be a command, endpoint, message, job, device interface, or other public entry. Keep its mapping to the canonical capability explicit.
++4. **Adapter naming exposes the boundary role.** Follow the repository's existing physical naming. `{Noun}-{Role}` is a compatible-stack default from [conventions.md](conventions.md), not a universal folder law; the role still says *what kind of edge*, not a new domain.
+ 5. **Domain packages are the noun; files are the type.** `Patients/Patient`, `Reporting/ReportDefinition`. Subfolders are kinds of work (`Definitions/`, `Factories/`, `Tables/`), not a second naming scheme. Tests sit next to the module they prove.
+ 6. **Definition data mirrors the noun.** Authored YAML/JSON/GraphQL for a capability lives in a tree named for that capability, not dumped in the adapter that loads it.
+ 7. **Contracts use the same noun.** Schema files, generated types, and client modules are named for the capability. Front and back import that public name; they do not each invent a DTO alias.
+@@ -163,7 +165,7 @@
+ 
+ ## Feature hops
+ 
+-A user-visible change is not done until every hop for that noun is updated or marked N/A:
++A user-visible change is not done until every **touched and applicable** hop for that capability is updated, verified unchanged, or marked N/A. Do not invent missing layers just to complete this list:
+ 
+ 1. Definition data (if the shape varies)
+ 2. Contract / schema
+@@ -188,16 +190,16 @@
+ 
+ ## Procedure: Revamp
+ 
+-**Done:** every live capability has one name and one home per layer, or is marked N/A (`.cursor/noun-map.md` complete; Check: Noun-chain walk passes per row).
+-
+-1. Fill `.cursor/noun-map.md` from live routes and folders. Collapse synonyms.
++**Done:** the touched capability has a coherent responsibility path and the requested behavior is preserved at the evidence level actually verified. Do not treat bounded work as permission to normalize unrelated capabilities.
++
++1. Inspect the touched capability and its immediate dependencies. Use an existing noun map when one is already in scope; otherwise keep the trace temporary unless a durable map is explicitly justified.
+ 2. For one noun, Check: Noun-chain walk. Note missing hops and extra names.
+ 3. Stop the bleeding: new files for that noun follow this skill. Do not add a second name.
+ 4. Move rules inward. Leave parse/map/render/authz at the edges.
+ 5. Thin adapters: parse, authorize, call domain, map errors, audit.
+ 6. Restore source of truth: hand-edited generated files go back to the definition; regenerate.
+ 7. Fix the noun chain (aliases if you cannot rename — below).
+-8. Repeat for the next noun. Do not start a parallel architecture.
++8. Repeat for another noun only when the task scope actually includes it. Do not widen the task just to normalize the repository or start a parallel architecture.
+ 
+ ---

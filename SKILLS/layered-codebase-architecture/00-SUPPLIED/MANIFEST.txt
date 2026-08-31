@@ -1,0 +1,2 @@
+SKILL.md SHA-256: d2fedfdcb0f4bd055b8605c00fc98ae0b99036e1a0fbfa3d34a458be876998c7
+conventions.md SHA-256: 912b9274ea5f829c1082b8ad40b1fd5bfdd96aa603b307c4f0c79d863c4fa5da

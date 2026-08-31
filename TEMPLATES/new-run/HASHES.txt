@@ -1,0 +1,4 @@
+SKILL.md SHA-256:
+conventions.md SHA-256:
+prompt SHA-256:
+result asset SHA-256:
