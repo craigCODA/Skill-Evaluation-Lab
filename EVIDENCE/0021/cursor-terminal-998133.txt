@@ -1,0 +1,17 @@
+---
+pid: 34460
+cwd: "D:\\Downloads\\Skill-Evaluation-Lab\\ACTIVE\\ShingleFile-main"
+command: "if (Test-Path node_modules) { \"node_modules: present\" } else { \"node_modules: absent\" }; if (Test-Path .nuxt) { \".nuxt: present\" } else { \".nuxt: absent\" }"
+title: "Check if app dependencies exist"
+status: succeeded
+started_at: 2026-08-31T14:31:32.901Z
+running_for_ms: 32492    
+---
+node_modules: absent
+.nuxt: absent
+
+---
+exit_code: 0
+elapsed_ms: 32491
+ended_at: 2026-08-31T14:32:05.392Z
+---

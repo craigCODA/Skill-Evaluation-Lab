@@ -1,0 +1,15 @@
+---
+pid: 52612
+cwd: "D:\\Downloads\\Skill-Evaluation-Lab\\ACTIVE\\ShingleFile-main"
+command: "Select-String -Path \"D:\\Downloads\\Skill-Evaluation-Lab\\ACTIVE\\ShingleFile-main\\**\\*.{ts,vue}\" -Pattern \"roofLineAdjustedFeet|roofLineMeasurementTotals|pitchAdjustment|roofLineUsesPitch|roofLineTypeMeta\" | Select-Object Path, LineNumber, Line"
+title: "Find pitch/totals usage across source"
+status: succeeded
+started_at: 2026-08-31T14:25:47.763Z
+running_for_ms: 35252    
+---
+
+---
+exit_code: 0
+elapsed_ms: 35251
+ended_at: 2026-08-31T14:26:23.014Z
+---
