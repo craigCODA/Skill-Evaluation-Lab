@@ -1,4 +1,5 @@
 import json
+import os
 import shutil
 import subprocess
 import sys
@@ -6,6 +7,7 @@ import tempfile
 import unittest
 import zipfile
 from pathlib import Path
+from unittest import mock
 
 
 ROOT = Path(__file__).resolve().parents[2]
@@ -108,6 +110,39 @@ def write_temp_lab(root, source_repo, baseline_commit):
 
 
 class CursorRunnerTests(unittest.TestCase):
+    def test_find_agent_uses_cursor_agent_install_dir_when_path_is_stale(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            install = Path(tmp) / "cursor-agent"
+            install.mkdir()
+            agent = install / "agent.cmd"
+            agent.write_text("@echo off\n", encoding="utf-8", newline="\n")
+
+            with mock.patch.object(runner.shutil, "which", return_value=None), mock.patch.dict(
+                os.environ, {"LOCALAPPDATA": str(Path(tmp))}
+            ):
+                self.assertEqual(Path(runner.find_agent()), agent)
+
+    def test_validate_agent_model_requires_authenticated_model_listing(self):
+        completed = subprocess.CompletedProcess(["agent", "--list-models"], 0, stdout="grok-4.6-high\n", stderr="")
+        with mock.patch.object(runner.subprocess, "run", return_value=completed):
+            runner.validate_agent_model("agent", "grok-4.6-high")
+
+        failed = subprocess.CompletedProcess(
+            ["agent", "--list-models"],
+            1,
+            stdout="",
+            stderr="Authentication required",
+        )
+        with mock.patch.object(runner.subprocess, "run", return_value=failed):
+            with self.assertRaisesRegex(runner.RunnerError, "model listing failed"):
+                runner.validate_agent_model("agent", "grok-4.6-high")
+
+    def test_validate_agent_model_rejects_missing_model_id(self):
+        completed = subprocess.CompletedProcess(["agent", "--list-models"], 0, stdout="gpt-5\n", stderr="")
+        with mock.patch.object(runner.subprocess, "run", return_value=completed):
+            with self.assertRaisesRegex(runner.RunnerError, "was not reported"):
+                runner.validate_agent_model("agent", "grok-4.6-high")
+
     def test_prompt_for_no_skill_does_not_include_slash_invocation(self):
         config = runner.load_config(ROOT / "TOOLING/cursor-runner/runs/EXP-0002-task02-quick-calculator-clear-label.json")
         run = config.get_run("0016")

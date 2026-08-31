@@ -290,17 +290,58 @@ def prepare_workspace(root: Path, config: LabRunConfig, run: LabRun, model_id: s
 
 
 def find_agent() -> str | None:
-    return shutil.which("agent") or shutil.which("agent.cmd") or shutil.which("cursor-agent") or shutil.which("cursor-agent.cmd")
+    for name in ("agent", "agent.cmd", "cursor-agent", "cursor-agent.cmd"):
+        resolved = shutil.which(name)
+        if resolved:
+            return resolved
+    bases = [os.environ.get("LOCALAPPDATA"), str(Path.home() / "AppData" / "Local")]
+    for base in bases:
+        if not base:
+            continue
+        install = Path(base) / "cursor-agent"
+        for name in ("agent.cmd", "agent.exe", "cursor-agent.cmd", "cursor-agent.exe"):
+            candidate = install / name
+            if candidate.exists():
+                return str(candidate)
+    return None
+
+
+def agent_probe(agent: str, args: list[str], timeout_seconds: int = 60) -> subprocess.CompletedProcess[str]:
+    try:
+        return subprocess.run(
+            [agent, *args],
+            text=True,
+            stdout=subprocess.PIPE,
+            stderr=subprocess.PIPE,
+            timeout=timeout_seconds,
+        )
+    except subprocess.TimeoutExpired as exc:
+        raise RunnerError(f"Cursor Agent CLI probe timed out: {agent} {' '.join(args)}") from exc
+
+
+def validate_agent_model(agent: str, model_id: str) -> None:
+    completed = agent_probe(agent, ["--list-models"])
+    if completed.returncode != 0:
+        detail = (completed.stderr or completed.stdout).strip()
+        raise RunnerError(
+            "Cursor Agent CLI is not ready to run: model listing failed. "
+            "Run agent login or set CURSOR_API_KEY/CURSOR_AUTH_TOKEN.\n"
+            + detail
+        )
+    if model_id.lower() not in completed.stdout.lower():
+        raise RunnerError(f"Cursor model ID {model_id!r} was not reported by agent --list-models")
 
 
 def preflight(root: Path, config: LabRunConfig, run: LabRun, model_id: str | None, require_agent: bool = True) -> list[str]:
     messages: list[str] = []
-    resolved_model_id(config, model_id)
+    resolved = resolved_model_id(config, model_id)
     if require_agent:
         agent = find_agent()
         if not agent:
             raise RunnerError("Cursor Agent CLI executable 'agent' is missing")
         messages.append(f"agent: {agent}")
+        validate_agent_model(agent, resolved)
+        messages.append("agent model/auth: OK")
     if not local_path_exists_or_url(config.baseline.source):
         raise RunnerError(f"baseline source is missing: {config.baseline.source}")
     if evidence_path(root, run).exists():
@@ -320,13 +361,16 @@ def preflight(root: Path, config: LabRunConfig, run: LabRun, model_id: str | Non
 
 
 def execute_agent(root: Path, config: LabRunConfig, run: LabRun, workspace: Path, model_id: str) -> ExecutionRecord:
+    agent = find_agent()
+    if not agent:
+        raise RunnerError("Cursor Agent CLI executable 'agent' is missing")
     lab_run = workspace / ".lab-run"
     lab_run.mkdir(parents=True, exist_ok=True)
     stdout_path = lab_run / "cursor-agent-stream.raw.jsonl"
     stderr_path = lab_run / "cursor-agent-stderr.txt"
     prompt = build_prompt(root, config, run)
     command = [
-        "agent",
+        agent,
         "-p",
         "--force",
         "--trust",

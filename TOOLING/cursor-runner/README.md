@@ -69,6 +69,8 @@ agent status
 agent --list-models
 ```
 
+If a fresh shell still cannot resolve `agent`, the runner also checks the standard `%LOCALAPPDATA%\cursor-agent` install directory directly.
+
 The run matrix intentionally leaves `default_model.cursor_model_id` blank until `agent --list-models` confirms the exact Cursor model ID for `Grok 4.6 High`.
 
 ## Evidence Rules
@@ -77,6 +79,8 @@ The runner must fail closed when:
 
 - `agent` is missing;
 - model ID is blank;
+- `agent --list-models` fails because Cursor is not authenticated;
+- the requested model ID is not reported by `agent --list-models`;
 - `EVIDENCE/<run-id>` already exists;
 - a matching archive already exists;
 - the planned run ID is missing from the matrix;
