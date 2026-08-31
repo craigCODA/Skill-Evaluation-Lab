@@ -21,6 +21,10 @@ Separate trigger accuracy from body quality. One run does not prove universal be
 
 A skill change is promoted only when the evidence shows a behavior change worth preserving.
 
+An artifact may be frozen for controlled runs while still experimental.
+
+`CANONICAL/` placement means operational current artifact, not proven general improvement.
+
 Prefer the smallest skill edit that explains the observed failure.
 
 Use matched reruns before claiming improvement.

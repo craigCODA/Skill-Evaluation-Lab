@@ -2,7 +2,9 @@
 
 Current skill under evaluation: `layered-codebase-architecture`
 
-Current canonical candidate: `02-V2-GRAPH`
+Current frozen experimental candidate: `02-V2-GRAPH`
+
+Promotion status: experimental, not promoted as a general improvement.
 
 Current completed global run: `0015`
 
@@ -18,18 +20,19 @@ Primary skill-effect evidence preserved through V1: Grok 4.6 High, Kimi K2.7 Cod
 
 Diagnostic evidence preserved: Gemini 2.5 because execution was inconsistent enough to make it a poor skill-effect instrument.
 
-V2 fourth-condition runs currently preserved: Grok 4.6 High (`0013`), Kimi K2.7 Code (`0014`), GPT-5.1 (`0015`).
+V2 fourth-condition experimental runs currently preserved: Grok 4.6 High (`0013`), Kimi K2.7 Code (`0014`), GPT-5.1 (`0015`).
 
 No V2 fourth-condition run for Gemini 2.5 is preserved as of `0015`.
 
-## Current open findings
+## Current unscored observations
 
-- V2 makes the real responsibility/dependency graph explicit before restructuring.
-- Grok V2 showed disciplined seam-based extraction and reactive measurement handling.
-- Kimi V2 preserved known behavior seams but still created more structural nodes and moved presentation-support helpers into shared scale code.
-- GPT-5.1 V2 chose an in-place authority cleanup instead of inventing a new node, a material contrast with its V1 run.
+These are not promoted findings until scored against the rubric.
+
+- V2 Task 01 experimental observations exist for runs `0013`, `0014`, and `0015`.
+- Any process claim not supported by transcript evidence must be treated as state-only.
 - V2 has not yet been evaluated on a second task prompt in this repository.
+- V2 has not yet been compared through scored V1.1 and V2.1 runs.
 
 ## Next Action
 
-Run frozen V2 against a second task prompt or add the next controlled model condition as global run `0016`.
+Prepare frozen experimental variants `V1.1` and `V2.1`, then run the next controlled workflow beginning at global run `0016`.

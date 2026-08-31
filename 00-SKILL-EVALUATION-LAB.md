@@ -30,7 +30,9 @@ Every retained change must be traceable to preserved evidence.
 
 `CURRENT-STATE.md` states the operational truth right now.
 
-`CANONICAL/` contains the current skill artifact to use.
+`CANONICAL/` contains the current frozen artifact for controlled runs.
+
+Canonical placement does not mean the artifact is promoted as a general improvement.
 
 `SKILLS/` preserves skill version history and version rationale.
 
