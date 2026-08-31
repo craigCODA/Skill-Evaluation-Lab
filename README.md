@@ -14,6 +14,6 @@ Start here:
 
 The repository is organized around evidence, not polished outcomes. Supplied skills, candidate versions, failed runs, model limitations, preserved run records, hashes, analysis, and external research stay connected without being collapsed into one narrative.
 
-The first study is `layered-codebase-architecture`, with canonical global runs `0001` through `0024` preserved. The current V2 artifact is experimental. EXP-0003 has a scored Grok 4.6 High responsibility-boundary holdout block. EXP-0004 is underway, with next global run `0025` for the GPT-5.1 no-skill control arm.
+The first study is `layered-codebase-architecture`, with canonical global runs `0001` through `0025` preserved. The current V2 artifact is experimental. EXP-0003 has a scored Grok 4.6 High responsibility-boundary holdout block. EXP-0004 is underway, with next global run `0026` for the GPT-5.1 V1 candidate arm.
 
 Run `py -3 TOOLING/verification/verify_lab.py` before trusting a changed current-state record.

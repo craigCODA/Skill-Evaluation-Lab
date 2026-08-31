@@ -1,0 +1,29 @@
+---
+pid: 8928
+cwd: "D:\\Downloads\\Skill-Evaluation-Lab\\ACTIVE\\ShingleFile-main"
+command: "rg -n \"grandTotal\""
+title: "Search for grandTotal usage"
+status: succeeded
+started_at: 2026-08-31T22:36:56.999Z
+running_for_ms: 63469    
+---
+shared\calculator\calculateEstimate.ts:52:  grandTotal: Money;
+shared\calculator\calculateEstimate.ts:135:  const grandTotal =
+shared\calculator\calculateEstimate.ts:172:    grandTotal,
+pages\estimates\[estimateId]\index.vue:89:const grandTotalSummary = computed(() => {
+pages\estimates\[estimateId]\index.vue:495:            <p class="v2-grand-total-summary">{{ grandTotalSummary }}</p>
+shared\contracts\roofProposalDocument.ts:66:            amount: roofingTotals.grandTotal,
+shared\contracts\roofProposalDocument.ts:160:            label: `Roof contract amount: ${formatContractAmount(roofingTotals.grandTotal)}`,
+shared\contracts\roofProposalDocument.ts:174:    total: roofingTotals.grandTotal,
+components\EstimateSummaryCard.vue:40:        <strong>{{ formatMoney(totals.grandTotal) }}</strong>
+shared\contracts\proposalDocuments.ts:72:            amount: roofingTotals.grandTotal,
+shared\contracts\proposalDocuments.ts:79:          { label: "Sub-Total", amount: roofingTotals.grandTotal },
+shared\contracts\proposalDocuments.ts:81:          { label: "Total Due", amount: roofingTotals.grandTotal },
+shared\contracts\proposalDocuments.ts:85:    total: roofingTotals.grandTotal,
+shared\contracts\modules\compose.ts:95:  if (ctx.recipeKind === "roofing") return ctx.roofingTotals?.grandTotal ?? 0
+
+---
+exit_code: 0
+elapsed_ms: 63469
+ended_at: 2026-08-31T22:38:00.468Z
+---

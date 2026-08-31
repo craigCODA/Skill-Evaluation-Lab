@@ -1,0 +1,35 @@
+---
+pid: 27540
+cwd: "D:\\Downloads\\Skill-Evaluation-Lab\\ACTIVE\\ShingleFile-main"
+command: "rg -n \"contractEffect\""
+title: "Search for contractEffect usage"
+status: succeeded
+started_at: 2026-08-31T22:36:11.986Z
+running_for_ms: 35115    
+---
+shared\options\accessories.ts:104:  contractEffect: "Adds the accessories total to the roofing proposal grand total.",
+shared\options\chimneyKit.ts:54:  contractEffect: "Adds a flat chimney-kit charge to the roofing proposal grand total.",
+shared\options\antenna.ts:48:  contractEffect: "Adds a flat antenna charge to the roofing proposal grand total.",
+shared\options\dripEdge.ts:77:  contractEffect:
+shared\options\chimneyRemoval.ts:66:  contractEffect:
+shared\options\iceWater.ts:128:  contractEffect:
+shared\options\gutterRemoval.ts:50:  contractEffect: "Adds the gutter removal cost to the roofing proposal grand total.",
+shared\options\lowSlope.ts:54:  contractEffect: "Adds the low-slope cost to the roofing proposal grand total.",
+shared\options\lightningRods.ts:48:  contractEffect: "Adds a flat lightning-rod charge to the roofing proposal grand total.",
+shared\options\install.ts:117:  contractEffect:
+shared\options\ridge.ts:77:  contractEffect: "Adds the ridge vent total to the roofing proposal grand total.",
+shared\options\noAccess.ts:69:  contractEffect: "Adds the no-access surcharge total to the roofing proposal grand total.",
+shared\options\stepFlashing.ts:53:  contractEffect: "Adds the step flashing cost to the roofing proposal grand total.",
+shared\options\skylights.ts:63:  contractEffect: "Adds the skylights total to the roofing proposal grand total.",
+shared\options\warranty.ts:59:  contractEffect: "Adds the warranty upcharge to the roofing proposal grand total.",
+shared\options\satellite.ts:48:  contractEffect: "Adds a flat satellite charge to the roofing proposal grand total.",
+shared\options\valleyMetal.ts:55:  contractEffect:
+shared\options\types.ts:74:  contractEffect: string;
+shared\options\underlayment.ts:66:  contractEffect:
+pages\calculator\index.vue:45:          <p class="muted">{{ spec.contractEffect }}</p>
+
+---
+exit_code: 0
+elapsed_ms: 35114
+ended_at: 2026-08-31T22:36:47.100Z
+---

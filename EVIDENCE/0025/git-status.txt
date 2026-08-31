@@ -1,0 +1,4 @@
+## HEAD (no branch)
+ M components/RoofingScopeForm.vue
+ M shared/calculator/calculateEstimate.ts
+ M shared/options/valleyMetal.ts

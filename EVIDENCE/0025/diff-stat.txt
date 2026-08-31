@@ -1,0 +1,4 @@
+ components/RoofingScopeForm.vue        |  6 ++++--
+ shared/calculator/calculateEstimate.ts |  2 +-
+ shared/options/valleyMetal.ts          | 14 +++++++-------
+ 3 files changed, 12 insertions(+), 10 deletions(-)

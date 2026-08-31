@@ -1,0 +1,85 @@
+diff --git a/components/RoofingScopeForm.vue b/components/RoofingScopeForm.vue
+index 1d6a7c1..60bb68c 100644
+--- a/components/RoofingScopeForm.vue
++++ b/components/RoofingScopeForm.vue
+@@ -403,7 +403,9 @@ function formatMoney(value: number) {
+ 
+   <section class="card v2-card v2-section-addon">
+     <h2>Valley metal</h2>
+-    <p class="v2-note">Computed for visibility only; not added to the customer total.</p>
++    <p class="v2-note">
++      Charge for open-valley metal based on open-valley linear feet. Closed-valley footage is tracked for materials only.
++    </p>
+     <div class="form-grid">
+       <label class="field">
+         <span>Valley style <EstimateHelp label="Valley style" /></span>
+@@ -423,7 +425,7 @@ function formatMoney(value: number) {
+     </div>
+     <dl v-if="totals" class="v2-breakdown">
+       <div class="v2-breakdown-row">
+-        <dt>{{ totals.valleyMetal.billableLf }} ft @ {{ formatMoney(totals.valleyMetal.pricePerFoot) }}/ft (not billed)</dt>
++        <dt>{{ totals.valleyMetal.billableLf }} ft @ {{ formatMoney(totals.valleyMetal.pricePerFoot) }}/ft</dt>
+         <dd>{{ formatMoney(totals.valleyMetal.cost) }}</dd>
+       </div>
+     </dl>
+diff --git a/shared/calculator/calculateEstimate.ts b/shared/calculator/calculateEstimate.ts
+index 88a3155..fbec3bb 100644
+--- a/shared/calculator/calculateEstimate.ts
++++ b/shared/calculator/calculateEstimate.ts
+@@ -131,7 +131,6 @@ export function calculateRoofingEstimate({
+   const valleyMetal = valleyMetalOption.compute(jobCtx);
+   const materials = materialsCounts(roofing, catalog);
+ 
+-  // valleyMetal is intentionally excluded — it is not billed.
+   const grandTotal =
+     areaCosts.reduce((sum, area) => sum + area.total, 0) +
+     ridge.total +
+@@ -147,6 +146,7 @@ export function calculateRoofingEstimate({
+     noAccess.total +
+     gutterRemoval.cost +
+     lowSlope.cost +
++    valleyMetal.cost +
+     permit +
+     extras.amount;
+ 
+diff --git a/shared/options/valleyMetal.ts b/shared/options/valleyMetal.ts
+index 498b92d..70771d5 100644
+--- a/shared/options/valleyMetal.ts
++++ b/shared/options/valleyMetal.ts
+@@ -3,8 +3,8 @@
+  *
+  *   cost = style === "open" ? openLf × pricePerFoot : 0
+  *
+- * This is computed and surfaced in the UI for visibility, but it is NOT rolled
+- * into the grand total (it only informs materials counts).
++ * This is computed and surfaced in the UI and is billed when the valley style
++ * is open. Closed-valley footage is tracked for materials only.
+  */
+ 
+ import type { Money, ValleySelection } from "../types";
+@@ -37,12 +37,12 @@ export const valleyMetalOption: JobOption<ValleyMetalBreakdown> = {
+   id: "valleyMetal",
+   title: "Valley Metal",
+   summary:
+-    "Open-valley metal computed for visibility. NOT billed to the customer; it only informs materials counts.",
++    "Open-valley metal charge based on open-valley linear feet; billed when valleys are open and also informs materials counts.",
+   phase: "job",
+-  billed: false,
++  billed: true,
+   pricingPlain:
+-    "Only open valleys are figured: open-valley feet times the per-foot rate. This is shown for reference and is NOT added to the customer total.",
+-  example: "30 ft of open valley at $3/ft = $90 (reference only — not billed).",
++    "Only open valleys are figured: open-valley feet times the per-foot rate. This amount is added to the customer total when the valley style is open.",
++  example: "30 ft of open valley at $3/ft = $90 added to the customer total.",
+   fieldLabels: ["Valley style", "Open valley LF", "Closed valley LF"],
+   catalogTables: ["valleyMetalRates"],
+   inputs: [
+@@ -53,7 +53,7 @@ export const valleyMetalOption: JobOption<ValleyMetalBreakdown> = {
+   formula: `billableLf = style = "open" ? openLf : 0
+ cost = billableLf x lookup("open-valley").pricePerFoot`,
+   contractEffect:
+-    "Shown for visibility only; NOT added to the grand total. Informs valley metal material counts.",
++    "Adds the open-valley metal cost to the roofing proposal grand total when the valley style is open; closed-valley footage is tracked for materials only.",
+   notes: "Closed-valley LF is tracked only so the value is not lost when switching valley styles.",
+   compute: (ctx: JobContext) => valleyMetalCost(ctx.roofing.valleys, ctx.catalog),
+ };
