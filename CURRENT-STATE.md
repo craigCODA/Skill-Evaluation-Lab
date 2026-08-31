@@ -31,6 +31,8 @@ EXP-0002 Task 02 holdout evidence preserved:
 
 EXP-0002 is retained as the restraint floor. All four Grok 4.6 High arms made the same one-line label-only change; no skill revision is justified by EXP-0002 alone.
 
+Historical closed-PR #2 EXP-0002 scoring from source commit `4bdf610` is preserved in `REPORTS/layered-codebase-architecture/closed-pr2-4bdf610-exp0002-0016-0027-score.md`. That report scores closed-PR evidence only; it does not import PR #2 run IDs into current-branch canonical evidence.
+
 EXP-0003 Task 03 first-model evidence preserved:
 
 - Grok 4.6 High supplied original forced run (`0020`).
