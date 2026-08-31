@@ -1,0 +1,13 @@
+ M components/roof/RoofQuickLinearCalculator.vue
+?? .cursor/cli.json
+?? .cursor/skills/layered-codebase-architecture/DESIGN-SPEC.md
+?? .cursor/skills/layered-codebase-architecture/FROM-01.diff
+?? .cursor/skills/layered-codebase-architecture/MANIFEST.txt
+?? .cursor/skills/layered-codebase-architecture/RATIONALE.md
+?? .cursor/skills/layered-codebase-architecture/SKILL.md
+?? .cursor/skills/layered-codebase-architecture/SOURCE-MANIFEST.txt
+?? .cursor/skills/layered-codebase-architecture/conventions.md
+?? .lab-run/LAB-RUN-METADATA.json
+?? .lab-run/cursor-agent-stderr.txt
+?? .lab-run/cursor-agent-stream.raw.jsonl
+?? .lab-run/execution.json
