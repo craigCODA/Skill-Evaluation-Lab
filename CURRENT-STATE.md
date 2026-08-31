@@ -10,7 +10,7 @@ Current completed global run: `0019`
 
 Next global run: `0020`
 
-Current experiment: `EXP-0001-task01-roof-image-measure`
+Current experiment: `EXP-0002-task02-quick-calculator-clear-label`
 
 Baseline repository commit: `cd393ddd60548823dabd6875060247693a22c1be`
 
@@ -40,7 +40,7 @@ These are not promoted findings until scored against the rubric.
 - Grok V2 produced a restrained seam-based restructuring result.
 - Kimi V2 still produced five structural UI nodes and moved presentation-support helpers into shared scale code despite V2 already containing a new-seam proof gate.
 - GPT-5.1 V2 chose a small in-place authority cleanup rather than creating a new structural node.
-- V2 has not yet been evaluated on a second task prompt.
+- EXP-0002 Grok 4.6 High rows `0016` through `0019` are preserved and unscored.
 - Task 01 has not yet been fully scored across the primary comparison cells using the current rubric.
 
 ## Method decision before run 0016
@@ -70,7 +70,7 @@ The next experiment is a second-task holdout with all four skill conditions froz
 
 Choose a task meaningfully different from Task 01. A fully correct result must be allowed to make no architectural change at all and still receive the highest structural-restraint score. Do not reuse another prompt whose main instruction is to clean up or restructure a large component.
 
-Run Grok 4.6 High through all four arms first because the existing controlled evidence shows the clearest skill-driven behavioral movement on that model.
+Run Grok 4.6 High through all four arms first because the existing controlled evidence shows the clearest skill-driven behavioral movement on that model. After the Grok block completed, the operator explicitly authorized continuation through Kimi K2.7 Code and GPT-5.1 using the same frozen four-arm design.
 
 Planned arm order beginning at global run `0016`:
 
@@ -78,6 +78,8 @@ Planned arm order beginning at global run `0016`:
 2. supplied original
 3. V1
 4. V2
+
+The same arm order repeats for Kimi K2.7 Code beginning at `0020` and GPT-5.1 beginning at `0024`.
 
 Failed or incomplete runs remain evidence and consume their run ID. If a process comparison requires a rerun, use a new global run ID rather than replacing the preserved run.
 
@@ -99,4 +101,4 @@ Trigger-selection studies and supplied-original ablation studies come later as s
 
 ## Next Action
 
-Score Task 01 primary cells; then run the EXP-0002 holdout on frozen no-skill / original / V1 / V2. No skill edit until a scored holdout names one instruction group.
+Continue the explicitly authorized EXP-0002 Kimi and GPT-5.1 blocks on frozen no-skill / original / V1 / V2. No skill edit until a scored holdout names one instruction group.

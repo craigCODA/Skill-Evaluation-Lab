@@ -1,0 +1,44 @@
+{
+  "experiment": "EXP-0002-task02-quick-calculator-clear-label",
+  "skill": "layered-codebase-architecture",
+  "prompt_file": "EXPERIMENTS/EXP-0002-task02-quick-calculator-clear-label/PROMPT.txt",
+  "baseline": {
+    "repo_name": "ShingleFile-main",
+    "commit": "cd393ddd60548823dabd6875060247693a22c1be",
+    "source": "D:/Downloads/ShingleFile-original-workplace/ShingleFile-original-workplace/MOTHER/ShingleFile-main.git"
+  },
+  "default_model": {
+    "label": "Kimi K2.7 Code",
+    "cursor_model_id": "kimi-k2.7-code"
+  },
+  "runs": [
+    {
+      "run_id": "0020",
+      "skill_version": "NO-SKILL",
+      "condition": "no explicit architecture skill",
+      "evidence_class": "primary",
+      "slash_invocation": false
+    },
+    {
+      "run_id": "0021",
+      "skill_version": "00-SUPPLIED",
+      "condition": "supplied original, forced",
+      "evidence_class": "primary",
+      "slash_invocation": true
+    },
+    {
+      "run_id": "0022",
+      "skill_version": "01-V1-CANDIDATE",
+      "condition": "V1, forced",
+      "evidence_class": "primary",
+      "slash_invocation": true
+    },
+    {
+      "run_id": "0023",
+      "skill_version": "02-V2-GRAPH",
+      "condition": "V2, forced",
+      "evidence_class": "primary",
+      "slash_invocation": true
+    }
+  ]
+}

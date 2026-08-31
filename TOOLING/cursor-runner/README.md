@@ -19,6 +19,22 @@ The planned order is:
 0017  00-SUPPLIED
 0018  01-V1-CANDIDATE
 0019  02-V2-GRAPH
+0020  Kimi K2.7 Code / NO-SKILL
+0021  Kimi K2.7 Code / 00-SUPPLIED
+0022  Kimi K2.7 Code / 01-V1-CANDIDATE
+0023  Kimi K2.7 Code / 02-V2-GRAPH
+0024  GPT-5.1 / NO-SKILL
+0025  GPT-5.1 / 00-SUPPLIED
+0026  GPT-5.1 / 01-V1-CANDIDATE
+0027  GPT-5.1 / 02-V2-GRAPH
+```
+
+Model-specific configs:
+
+```text
+TOOLING/cursor-runner/runs/EXP-0002-task02-quick-calculator-clear-label.json
+TOOLING/cursor-runner/runs/EXP-0002-task02-quick-calculator-clear-label-kimi.json
+TOOLING/cursor-runner/runs/EXP-0002-task02-quick-calculator-clear-label-gpt51.json
 ```
 
 ## Commands
@@ -39,6 +55,12 @@ Run the remaining planned block in order:
 
 ```powershell
 py -3 TOOLING/cursor_runner/run_cursor_eval.py run-block --model-id <cursor-model-id>
+```
+
+Run a non-default model config:
+
+```powershell
+py -3 TOOLING/cursor_runner/run_cursor_eval.py --config TOOLING/cursor-runner/runs/EXP-0002-task02-quick-calculator-clear-label-kimi.json run-block
 ```
 
 Prepare a workspace without launching Cursor:
