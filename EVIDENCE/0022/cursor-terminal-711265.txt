@@ -1,0 +1,16 @@
+---
+pid: 34532
+cwd: "D:\\Downloads\\Skill-Evaluation-Lab\\ACTIVE\\ShingleFile-main"
+command: "Get-ChildItem -Recurse docs,shared -File | Select-Object FullName"
+title: "List docs and shared files"
+status: succeeded
+started_at: 2026-08-31T20:15:02.983Z
+running_for_ms: 30713    
+---
+
+
+---
+exit_code: 0
+elapsed_ms: 30712
+ended_at: 2026-08-31T20:15:33.695Z
+---

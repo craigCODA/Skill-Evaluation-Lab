@@ -1,0 +1,17 @@
+---
+pid: 13932
+cwd: "D:\\Downloads\\Skill-Evaluation-Lab\\ACTIVE\\ShingleFile-main"
+command: "Get-ChildItem -Path docs -Recurse -File | Select-Object -ExpandProperty FullName; Get-ChildItem -Path shared -Filter \"*test*\" -Recurse | Select-Object -ExpandProperty FullName; Get-ChildItem -Path . -Filter \"vitest*\""
+title: "Find docs, tests, and vitest config"
+status: succeeded
+started_at: 2026-08-31T20:15:39.652Z
+running_for_ms: 30464    
+---
+D:\Downloads\Skill-Evaluation-Lab\ACTIVE\ShingleFile-main\docs\permissions-implementation.md
+D:\Downloads\Skill-Evaluation-Lab\ACTIVE\ShingleFile-main\shared\estimateStatus.ts
+
+---
+exit_code: 0
+elapsed_ms: 30463
+ended_at: 2026-08-31T20:16:10.115Z
+---

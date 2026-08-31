@@ -1,0 +1,34 @@
+---
+pid: 31652
+cwd: "D:\\Downloads\\Skill-Evaluation-Lab\\ACTIVE\\ShingleFile-main"
+command: "rg -n \"roofLineAdjustedFeet|roofLineMeasurementTotals|roofLineUsesPitch|pitchAdjustment|roofLineRequiresPitch\" --glob \"*.{ts,vue}\" -g \"!node_modules\" -g \"!.nuxt\""
+title: "Find all consumers of line pitch helpers"
+status: failed   
+started_at: 2026-08-31T20:13:53.833Z
+running_for_ms: 30252    
+---
+components\roof\RoofImageMeasurePanel.vue:7:import { roofAreaShapeColorMeta, roofAreaShapeColors, roofIconMarkerMeta, roofIconMarkerTypes, roofLineMeasurementTypes, roofLinePitchFactor, roofLineUsesPitch, roofPitchRiseOptions, roofLineTypeMeta } from "~~/shared/roofLineMeasurements";
+components\roof\RoofImageMeasurePanel.vue:173:  return roofLineUsesPitch(activeLineType.value);
+components\roof\RoofQuickLinearCalculator.vue:7:  roofLineAdjustedFeet,
+components\roof\RoofQuickLinearCalculator.vue:8:  roofLineMeasurementTotals,
+components\roof\RoofQuickLinearCalculator.vue:11:  roofLineUsesPitch,
+components\roof\RoofQuickLinearCalculator.vue:36:const measuredTotals = computed(() => roofLineMeasurementTotals(measuredLines.value));
+components\roof\RoofQuickLinearCalculator.vue:99:  return roofLineAdjustedFeet(line);
+components\roof\RoofQuickLinearCalculator.vue:160:            <small v-if="roofLineUsesPitch(line.type)">
+components\roof\RoofQuickLinearCalculator.vue:165:            v-if="roofLineUsesPitch(line.type)"
+shared\roofProbeReport.ts:2:import { roofLineMeasurementTotals } from "./roofLineMeasurements";
+shared\roofProbeReport.ts:130:  const availableRidgeFt = Math.round(roofLineMeasurementTotals(input.measuredLines).ridge);
+shared\roofLineMeasurements.ts:109:  pitchAdjustment: "none" | "optional" | "required";
+shared\roofLineMeasurements.ts:116:    pitchAdjustment: "none",
+shared\roofLineMeasurements.ts:123:    pitchAdjustment: "none",
+shared\roofLineMeasurements.ts:130:    pitchAdjustment: "optional",
+shared\roofLineMeasurements.ts:137:    pitchAdjustment: "optional",
+shared\roofLineMeasurements.ts:144:    pitchAdjustment: "none",
+shared\roofLineMeasurements.ts:151:    pitchAdjustment: "required",
+shared\roofLineMeasurements.ts:158:    pitchAdjustment: "none",
+shared\roofLineMeasurements.ts:172:export function roofLineMeasurementTotals(lines: RoofLineMeasurement[]) {
+shared\roofLineMeasurements.ts:177:        .reduce((sum, line) => sum + roofLineAdjustedFeet(line), 0);
+shared\roofLineMeasurements.ts:188:export function roofLineAdjustedFeet(line: RoofLineMeasurement): number {
+shared\roofLineMeasurements.ts:190:  if (meta.pitchAdjustment === "none" || line.pitchRiseOver12 === undefined) {
+shared\roofLineMeasurements.ts:196:export function roofLineUsesPitch(type: RoofLineMeasurementType): boolean {
+shared\roofLineMeasurements.ts:197:  return roofLineTypeMeta(type).pitchAdjustment !== "none";

@@ -1,0 +1,161 @@
+diff --git a/components/roof/RoofQuickLinearCalculator.vue b/components/roof/RoofQuickLinearCalculator.vue
+index 1e750ee..8f975e9 100644
+--- a/components/roof/RoofQuickLinearCalculator.vue
++++ b/components/roof/RoofQuickLinearCalculator.vue
+@@ -5,9 +5,11 @@ import type {
+ } from "~~/shared/roofLineMeasurements";
+ import {
+   roofLineAdjustedFeet,
++  roofLineIsComplete,
+   roofLineMeasurementTotals,
+   roofLineMeasurementTypes,
+   roofLinePitchFactor,
++  roofLineRequiresPitch,
+   roofLineUsesPitch,
+   roofPitchRiseOptions,
+   roofLineTypeMeta,
+@@ -54,6 +56,9 @@ const totalLinearFt = computed(() =>
+ 
+ const dripEdgeFt = computed(() => combinedTotals.value.eave + combinedTotals.value.rake);
+ const simpleMeasurementFt = computed(() => measuredTotals.value.measurement || 0);
++const incompleteRequiredPitchLines = computed(() =>
++  measuredRoofLines.value.filter((line) => !roofLineIsComplete(line)),
++);
+ 
+ function reset() {
+   for (const field of fields) lines[field.key] = 0;
+@@ -100,9 +105,14 @@ function adjustedFeet(line: RoofLineMeasurement): number {
+ }
+ 
+ function pitchFactorLabel(line: RoofLineMeasurement): string {
++  if (!roofLineIsComplete(line)) return "needs pitch";
+   if (line.pitchRiseOver12 === undefined) return "plan";
+   return `x${roofLinePitchFactor(line.pitchRiseOver12).toFixed(3)}`;
+ }
++
++function pitchPlaceholderLabel(type: RoofLineMeasurementType): string {
++  return roofLineRequiresPitch(type) ? "Select pitch" : "Plan only";
++}
+ </script>
+ 
+ <template>
+@@ -149,6 +159,7 @@ function pitchFactorLabel(line: RoofLineMeasurement): string {
+         <li
+           v-for="line in measuredRoofLines"
+           :key="line.id"
++          :class="{ 'is-incomplete': !roofLineIsComplete(line) }"
+           :style="{ '--line-color': roofLineTypeMeta(line.type).color }"
+         >
+           <span>
+@@ -156,18 +167,23 @@ function pitchFactorLabel(line: RoofLineMeasurement): string {
+             {{ roofLineTypeMeta(line.type).label }}
+           </span>
+           <div class="roof-measured-line-length">
+-            <strong>{{ formatFeet(adjustedFeet(line)) }} ft</strong>
+-            <small v-if="roofLineUsesPitch(line.type)">
++            <strong v-if="roofLineIsComplete(line)">{{ formatFeet(adjustedFeet(line)) }} ft</strong>
++            <strong v-else>{{ formatFeet(line.feet) }} ft</strong>
++            <small v-if="!roofLineIsComplete(line)" class="roof-line-incomplete-note">
++              Incomplete - needs pitch
++            </small>
++            <small v-else-if="roofLineUsesPitch(line.type)">
+               {{ formatFeet(line.feet) }} plan - {{ pitchFactorLabel(line) }}
+             </small>
+           </div>
+           <select
+             v-if="roofLineUsesPitch(line.type)"
+             :value="line.pitchRiseOver12 ?? ''"
+-            aria-label="Pitch adjustment"
++            :aria-invalid="roofLineIsComplete(line) ? undefined : 'true'"
++            :aria-label="roofLineRequiresPitch(line.type) ? `${roofLineTypeMeta(line.type).label} pitch (required)` : 'Pitch adjustment'"
+             @change="onPitchChange(line.id, $event)"
+           >
+-            <option value="">Plan only</option>
++            <option value="">{{ pitchPlaceholderLabel(line.type) }}</option>
+             <option
+               v-for="pitch in roofPitchRiseOptions"
+               :key="pitch"
+@@ -213,6 +229,11 @@ function pitchFactorLabel(line: RoofLineMeasurement): string {
+         <span>Simple measurements</span>
+         <strong>{{ formatFeet(simpleMeasurementFt) }} ft</strong>
+       </div>
++      <p v-if="incompleteRequiredPitchLines.length" class="roof-quick-incomplete-note">
++        {{ incompleteRequiredPitchLines.length }}
++        rake{{ incompleteRequiredPitchLines.length === 1 ? "" : "s" }}
++        need pitch before counting in totals.
++      </p>
+     </div>
+ 
+     <button type="button" class="button secondary roof-quick-reset" @click="reset">
+@@ -340,6 +361,16 @@ function pitchFactorLabel(line: RoofLineMeasurement): string {
+   padding: 0.35rem 0.45rem;
+ }
+ 
++.roof-measured-lines li.is-incomplete {
++  background: color-mix(in oklab, var(--sf-danger-soft) 70%, var(--sf-surface));
++  border-color: var(--sf-danger-border);
++}
++
++.roof-measured-lines li.is-incomplete select {
++  border-color: var(--sf-danger-border);
++  color: var(--sf-danger-text);
++}
++
+ .roof-measured-lines li span,
+ .roof-quick-total-row span {
+   align-items: center;
+@@ -372,6 +403,18 @@ function pitchFactorLabel(line: RoofLineMeasurement): string {
+   white-space: nowrap;
+ }
+ 
++.roof-line-incomplete-note,
++.roof-quick-incomplete-note {
++  color: var(--sf-danger-text);
++}
++
++.roof-quick-incomplete-note {
++  font-size: 0.7rem;
++  font-weight: 800;
++  grid-column: 1 / -1;
++  margin: 0.1rem 0 0;
++}
++
+ .roof-measured-lines select {
+   border: 1px solid var(--sf-border);
+   border-radius: 999px;
+diff --git a/shared/roofLineMeasurements.ts b/shared/roofLineMeasurements.ts
+index b45d715..fe60c30 100644
+--- a/shared/roofLineMeasurements.ts
++++ b/shared/roofLineMeasurements.ts
+@@ -174,7 +174,7 @@ export function roofLineMeasurementTotals(lines: RoofLineMeasurement[]) {
+     (totals, item) => {
+       totals[item.type] = lines
+         .filter((line) => line.type === item.type)
+-        .reduce((sum, line) => sum + roofLineAdjustedFeet(line), 0);
++        .reduce((sum, line) => sum + roofLineCountableFeet(line), 0);
+       return totals;
+     },
+     {} as Record<RoofLineMeasurementType, number>,
+@@ -193,6 +193,22 @@ export function roofLineAdjustedFeet(line: RoofLineMeasurement): number {
+   return line.feet * roofLinePitchFactor(line.pitchRiseOver12);
+ }
+ 
++/** Rake pitch is required. Hip and valley pitch may stay plan-only. */
++export function roofLineRequiresPitch(type: RoofLineMeasurementType): boolean {
++  return roofLineTypeMeta(type).pitchAdjustment === "required";
++}
++
++export function roofLineIsComplete(line: RoofLineMeasurement): boolean {
++  if (!roofLineRequiresPitch(line.type)) return true;
++  return line.pitchRiseOver12 !== undefined;
++}
++
++/** Incomplete required-pitch lines stay out of calculator totals. */
++export function roofLineCountableFeet(line: RoofLineMeasurement): number {
++  if (!roofLineIsComplete(line)) return 0;
++  return roofLineAdjustedFeet(line);
++}
++
+ export function roofLineUsesPitch(type: RoofLineMeasurementType): boolean {
+   return roofLineTypeMeta(type).pitchAdjustment !== "none";
+ }

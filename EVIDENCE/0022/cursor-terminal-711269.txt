@@ -1,0 +1,11 @@
+---
+pid: 24240
+cwd: "D:\\Downloads\\Skill-Evaluation-Lab\\ACTIVE\\ShingleFile-main"
+command: "if (Test-Path node_modules) { \"node_modules exists\" } else { \"node_modules missing\" }; if (Test-Path node_modules\\nuxt) { \"nuxt installed\" } else { \"nuxt not installed\" }"
+title: "Check whether local node_modules exist"
+status: failed   
+started_at: 2026-08-31T20:22:06.716Z
+running_for_ms: 30205    
+---
+node_modules missing
+nuxt not installed

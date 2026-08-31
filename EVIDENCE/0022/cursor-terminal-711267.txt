@@ -1,0 +1,16 @@
+---
+pid: 16916
+cwd: "D:\\Downloads\\Skill-Evaluation-Lab\\ACTIVE\\ShingleFile-main"
+command: "rg -n \"--sf-warning|--sf-danger|--sf-error|is-incomplete|needs pitch\" --glob \"*.{css,vue,scss}\" -g \"!node_modules\" -g \"!.nuxt\""
+title: "Find warning/incomplete UI color tokens"
+status: failed   
+started_at: 2026-08-31T20:16:38.432Z
+running_for_ms: 30030    
+---
+rg: unrecognized flag --sf-warning|--sf-danger|--sf-error|is-incomplete|needs pitch
+
+---
+exit_code: 2
+elapsed_ms: 30029
+ended_at: 2026-08-31T20:17:08.461Z
+---

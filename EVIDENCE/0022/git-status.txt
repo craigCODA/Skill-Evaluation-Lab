@@ -1,0 +1,3 @@
+ M components/roof/RoofQuickLinearCalculator.vue
+ M shared/roofLineMeasurements.ts
+?? shared/roofLineMeasurements.test.ts

@@ -1,0 +1,34 @@
+---
+pid: 42004
+cwd: "D:\\Downloads\\Skill-Evaluation-Lab\\ACTIVE\\ShingleFile-main"
+command: "npx tsx --test shared/roofLineMeasurements.test.ts"
+title: "Run domain rake pitch completeness tests"
+status: succeeded
+started_at: 2026-08-31T20:19:37.440Z
+running_for_ms: 62739    
+---
+npm warn Unknown env config "devdir". This will stop working in the next major version of npm. See `npm help npmrc` for supported config options.
+npm warn exec The following package was not found and will be installed: tsx@4.23.13
+✔ rake pitch is required; hip and valley pitch are optional (1.7197ms)
+✔ an unpitched rake is incomplete and stays out of totals (0.4754ms)
+✔ a pitched rake counts slope-adjusted feet (0.3036ms)
+✔ unpitched hip and valley still count plan feet (0.2407ms)
+ℹ tests 4
+ℹ suites 0
+ℹ pass 4
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 616.8607
+npm notice
+npm notice New minor version of npm available! 11.17.0 -> 11.19.1
+npm notice Changelog: https://github.com/npm/cli/releases/tag/v11.19.1
+npm notice To update run: npm install -g npm@11.19.1
+npm notice
+
+---
+exit_code: 0
+elapsed_ms: 62738
+ended_at: 2026-08-31T20:20:40.178Z
+---

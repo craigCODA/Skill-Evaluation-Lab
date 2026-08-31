@@ -1,0 +1,226 @@
+---
+pid: 22088
+cwd: "D:\\Downloads\\Skill-Evaluation-Lab\\ACTIVE\\ShingleFile-main"
+command: "rg -i -n \"rake|plan only|pitch\" --glob \"*.{ts,vue}\" -g \"!node_modules\" -g \"!.nuxt\""
+title: "Search rake pitch and plan-only usage"
+status: succeeded
+started_at: 2026-08-31T20:13:09.411Z
+running_for_ms: 31213    
+---
+pages\roof-probe.vue:225:        Results include roof area, squares, segment pitch and orientation, plus a scaled aerial for measurements, icons, and shaded area markups.
+pages\catalog\index.vue:30:  { section: "pitchRates", title: "Pitch Rates", rows: catalog.value.pitchRates },
+shared\types.ts:314:   * (footprint uses pitch multiplier for sloped area).
+shared\types.ts:318:  pitch: Pitch;
+shared\types.ts:329:  rakeDripStyle: string;
+shared\types.ts:331:  rakeDripLf: number;
+shared\types.ts:361:export type Pitch =
+shared\types.ts:379: * (pitch multiplier applied to convert to sloped surface area).
+shared\types.ts:496:  pitchDegrees?: number;
+shared\types.ts:497:  pitchRiseOver12?: number;
+shared\types.ts:498:  pitchLabel?: string;
+shared\types.ts:513:  primaryPitchLabel?: string;
+shared\types.ts:516:  rakesFt?: number;
+shared\types.ts:545:    rakesFt?: number;
+shared\types.ts:558:    pitch: number;
+shared\seedEstimate.ts:48:            rakeDripStyle: "ODE Style",
+shared\seedEstimate.ts:50:            rakeDripLf: 84
+shared\roofProbeReport.ts:48:  pitch: string;
+shared\roofProbeReport.ts:173:      id: "primary-pitch",
+shared\roofProbeReport.ts:174:      label: "Primary pitch",
+shared\roofProbeReport.ts:175:      value: primaryPitchLabel(measurement.segments),
+shared\roofProbeReport.ts:190:    pitch: segment.pitchLabel || "Unknown",
+shared\roofProbeReport.ts:198:    .filter((segment) => segment.areaSqft && segment.pitchRiseOver12 !== undefined)
+shared\roofProbeReport.ts:200:      sum + (segment.areaSqft ?? 0) / pitchSurfaceMultiplier(segment.pitchRiseOver12 ?? 0)
+shared\roofProbeReport.ts:205:  const pitch = value.segments.find((segment) => segment.pitchRiseOver12 !== undefined)?.pitchRiseOver12;
+shared\roofProbeReport.ts:206:  if (value.totalRoofAreaSqft && pitch !== undefined) {
+shared\roofProbeReport.ts:207:    return value.totalRoofAreaSqft / pitchSurfaceMultiplier(pitch);
+shared\roofProbeReport.ts:212:function pitchSurfaceMultiplier(pitchRiseOver12: number): number {
+shared\roofProbeReport.ts:213:  return Math.sqrt(pitchRiseOver12 ** 2 + 12 ** 2) / 12;
+shared\roofProbeReport.ts:225:function primaryPitchLabel(segments: RoofSegment[]): string {
+shared\roofProbeReport.ts:226:  return segments.find((segment) => segment.pitchLabel)?.pitchLabel ?? "Unknown";
+shared\roofMeasurement.ts:32:  pitchDegrees?: number;
+shared\roofMeasurement.ts:78:  const hasPitchData = segments.some((segment) => segment.pitchDegrees !== undefined);
+shared\roofMeasurement.ts:100:        hasPitchData,
+shared\roofMeasurement.ts:122:        hasPitchData,
+shared\roofMeasurement.ts:126:      pitch: hasPitchData ? 0.8 : 0.4,
+shared\roofMeasurement.ts:143:export function pitchDegreesToRiseOver12(degrees: number): number {
+shared\roofMeasurement.ts:147:export function pitchDegreesToLabel(degrees: number): string {
+shared\roofMeasurement.ts:148:  return `${Math.round(pitchDegreesToRiseOver12(degrees))}/12`;
+shared\roofMeasurement.ts:201:      const pitchDegrees = segment.pitchDegrees;
+shared\roofMeasurement.ts:207:        pitchDegrees,
+shared\roofMeasurement.ts:208:        pitchRiseOver12: pitchDegrees
+shared\roofMeasurement.ts:209:          ? roundTo(pitchDegreesToRiseOver12(pitchDegrees), 2)
+shared\roofMeasurement.ts:211:        pitchLabel: pitchDegrees ? pitchDegreesToLabel(pitchDegrees) : undefined,
+shared\roofMeasurement.ts:217:        confidence: pitchDegrees && areaM2 ? 0.82 : 0.55,
+shared\roofMeasurement.ts:250:  hasPitchData: boolean;
+shared\roofMeasurement.ts:254:  if (!input.hasPitchData) score -= 0.2;
+shared\roofLineMeasurements.ts:9:  | "rake"
+shared\roofLineMeasurements.ts:17:  pitchRiseOver12?: number;
+shared\roofLineMeasurements.ts:109:  pitchAdjustment: "none" | "optional" | "required";
+shared\roofLineMeasurements.ts:116:    pitchAdjustment: "none",
+shared\roofLineMeasurements.ts:123:    pitchAdjustment: "none",
+shared\roofLineMeasurements.ts:130:    pitchAdjustment: "optional",
+shared\roofLineMeasurements.ts:137:    pitchAdjustment: "optional",
+shared\roofLineMeasurements.ts:144:    pitchAdjustment: "none",
+shared\roofLineMeasurements.ts:147:    type: "rake",
+shared\roofLineMeasurements.ts:148:    label: "Rake",
+shared\roofLineMeasurements.ts:151:    pitchAdjustment: "required",
+shared\roofLineMeasurements.ts:158:    pitchAdjustment: "none",
+shared\roofLineMeasurements.ts:162:export const roofPitchRiseOptions = [3, 4, 5, 6, 7, 8, 9, 10, 11, 12] as const;
+shared\roofLineMeasurements.ts:184:export function roofLinePitchFactor(pitchRiseOver12: number): number {
+shared\roofLineMeasurements.ts:185:  return Math.sqrt(pitchRiseOver12 ** 2 + 12 ** 2) / 12;
+shared\roofLineMeasurements.ts:190:  if (meta.pitchAdjustment === "none" || line.pitchRiseOver12 === undefined) {
+shared\roofLineMeasurements.ts:193:  return line.feet * roofLinePitchFactor(line.pitchRiseOver12);
+shared\roofLineMeasurements.ts:196:export function roofLineUsesPitch(type: RoofLineMeasurementType): boolean {
+shared\roofLineMeasurements.ts:197:  return roofLineTypeMeta(type).pitchAdjustment !== "none";
+shared\roofArea.ts:9:  Pitch,
+shared\roofArea.ts:37:/** Approximate pitch factor: horizontal footprint → sloped surface area. */
+shared\roofArea.ts:38:export function pitchSurfaceMultiplier(pitch: Pitch): number {
+shared\roofArea.ts:39:  const slash = pitch.match(/(\d+)\/12/)
+shared\roofArea.ts:45:  const flat: Partial<Record<Pitch, number>> = {
+shared\roofArea.ts:53:  return flat[pitch] ?? 1.1
+shared\roofArea.ts:70:    return footprint * pitchSurfaceMultiplier(area.pitch)
+shared\roofArea.ts:97:    pitch: input?.pitch ?? "Walk",
+shared\roofArea.ts:105:    rakeDripStyle: input?.rakeDripStyle ?? "",
+shared\roofArea.ts:107:    rakeDripLf: input?.rakeDripLf ?? 0,
+shared\pricebook\types.ts:60:  appliesTo: "eave" | "rake" | "either";
+shared\pricebook\types.ts:287: *   - Pitch rate:   "Walk" | "7/12" | "Flat - TPO" | "Mansard" | ...
+shared\pricebook\types.ts:303:  pitchRates: RateRow[];
+shared\pricebook\schemas.ts:60:// Per-area roofing rate tables (story, pitch, tearoff by layers)
+shared\pricebook\schemas.ts:64: * A simple (label, ratePerSqft) pair. Used for story difficulty, pitch
+shared\pricebook\schemas.ts:74:export const PitchRateSchema = RateRowSchema;
+shared\pricebook\schemas.ts:79:export const PitchRatesFileSchema = z.array(PitchRateSchema);
+shared\pricebook\schemas.ts:89:export const DripEdgeAppliesToSchema = z.enum(["eave", "rake", "either"]);
+shared\pricebook\index.ts:14:  PitchRatesFileSchema,
+shared\pricebook\index.ts:49:import pitchRatesJson from "./data/pitchRates.json";
+shared\pricebook\index.ts:91:  const pitchRates = PitchRatesFileSchema.parse(pitchRatesJson);
+shared\pricebook\index.ts:127:    pitchRates,
+shared\contracts\roofProposalScope.ts:77:          [area.location, area.story, area.pitch, squares]
+shared\contracts\roofProposalScope.ts:95:          `${prefix}Drip edge — rakes`,
+shared\contracts\roofProposalScope.ts:96:          `${area.rakeDripLf} LF ${area.rakeDripStyle}`,
+shared\contracts\roofProposalNarrative.ts:139:  const rakeLf = Number(area.rakeDripLf) || 0
+shared\contracts\roofProposalNarrative.ts:140:  if (eaveLf <= 0 && rakeLf <= 0) return null
+shared\contracts\roofProposalNarrative.ts:142:  const rakeStyle = tidy(String(area.rakeDripStyle || "drip edge"))
+shared\contracts\roofProposalNarrative.ts:143:  if (eaveLf > 0 && rakeLf > 0 && eaveStyle === rakeStyle) {
+shared\contracts\roofProposalNarrative.ts:144:    return `Install ${eaveStyle} drip edge — ${eaveLf} LF at the eaves and ${rakeLf} LF at the rakes`
+shared\contracts\roofProposalNarrative.ts:148:    rakeLf > 0 ? `${rakeLf} LF of ${rakeStyle} at the rakes` : ""
+shared\contracts\roofProposalNarrative.ts:201:    const pitch = tidy(area.redeck.replace(/^Yes\s*-\s*/i, ""))
+shared\contracts\roofProposalNarrative.ts:203:      pitch
+shared\contracts\roofProposalNarrative.ts:204:        ? `replace deteriorated decking as needed on ${pitch.toLowerCase()} areas`
+shared\contracts\roofProposalNarrative.ts:259:    sentence(`Install ${starter} along the eaves and rakes as required for this roof`)
+shared\contracts\modules\catalog.ts:55:    description: "Stories, pitch, layers, and square footage from the estimate.",
+shared\contracts\modules\compose.ts:60:      area.pitch ? `Pitch: ${area.pitch}` : "",
+server\utils\googleSolar.ts:546:    notes.push("Elevation data shows meaningful roof-height variation that can help validate pitch assumptions.");
+shared\options\dripEdge.ts:5: *   rakeDripCost = rakeDripLf * lookup(rakeStyle).pricePerFoot
+shared\options\dripEdge.ts:6: *   total        = eaveDripCost + rakeDripCost
+shared\options\dripEdge.ts:18:  rakeStyle: string;
+shared\options\dripEdge.ts:20:  rakeLf: number;
+shared\options\dripEdge.ts:25:  rakePricePerFoot: Money;
+shared\options\dripEdge.ts:27:  rakeCost: Money;
+shared\options\dripEdge.ts:41:  const rakeStyle = findStyle(cat.dripEdgeStyles, inputs.rakeStyle);
+shared\options\dripEdge.ts:43:  const rakePricePerFoot = rakeStyle?.pricePerFoot ?? 0;
+shared\options\dripEdge.ts:45:  const rakeCost = inputs.rakeLf * rakePricePerFoot;
+shared\options\dripEdge.ts:48:    rakePricePerFoot,
+shared\options\dripEdge.ts:50:    rakeCost,
+shared\options\dripEdge.ts:51:    total: eaveCost + rakeCost,
+shared\options\dripEdge.ts:59:    "Per-area eave and rake drip edge, each billed by linear feet at the rate of its selected style.",
+shared\options\dripEdge.ts:63:    "Charged by the foot. The eave and the rake each have their own length and use the per-foot rate of the style you pick. They're figured separately, then added together.",
+shared\options\dripEdge.ts:65:    "55 ft of eave at $2.00/ft = $110, plus 84 ft of rake at $2.00/ft = $168 → $278 for this area.",
+shared\options\dripEdge.ts:66:  fieldLabels: ["Eave drip style", "Eave drip LF", "Rake drip style", "Rake drip LF"],
+shared\options\dripEdge.ts:71:    { name: "Rake drip style", description: "Rake drip edge style (keys dripEdgeStyles)." },
+shared\options\dripEdge.ts:72:    { name: "Rake drip LF", description: "Rake linear feet of drip edge." },
+shared\options\dripEdge.ts:75:rakeDripCost = rakeDripLf x lookup(rakeStyle).pricePerFoot
+shared\options\dripEdge.ts:76:total = eaveDripCost + rakeDripCost`,
+shared\options\dripEdge.ts:84:        rakeStyle: ctx.area.rakeDripStyle,
+shared\options\dripEdge.ts:86:        rakeLf: ctx.area.rakeDripLf,
+shared\options\install.ts:2: * Install (story / pitch / layers / redeck geometry + labor & material).
+shared\options\install.ts:8: *   laborRate            = storyRate + pitchRate                       // per sqft
+shared\options\install.ts:14: * Labels for story / pitch / tearoff / redeck are the exact picker strings
+shared\options\install.ts:25:  pitch: string;
+shared\options\install.ts:37:  pitchRate: Money;
+shared\options\install.ts:59:  const pitchRate = lookupRate(cat.pitchRates, inputs.pitch);
+shared\options\install.ts:63:  const m = storyRate + pitchRate;
+shared\options\install.ts:73:    pitchRate,
+shared\options\install.ts:84:  title: "Install (story, pitch, layers, redeck)",
+shared\options\install.ts:86:    "The per-area core: story and pitch set the labor rate, layers and redeck set the tearoff/redeck rate, and the plane size (squares, sq ft, or L×W) sets the squares. Combined with the shingle price, this produces the area's labor + material cost.",
+shared\options\install.ts:90:    "Enter the plane size from your measurement report (squares or sq ft) or measure length × width on site. Story and pitch set the labor rate; layers and redeck set tearoff/redeck. Waste is added on top to get ordering squares.",
+shared\options\install.ts:95:    "Pitch",
+shared\options\install.ts:101:  catalogTables: ["storyRates", "pitchRates", "tearoffRates", "redeckRates"],
+shared\options\install.ts:104:    { name: "Pitch", description: "Slope picker (Walk, 7/12, Flat - TPO, ...). Keys pitchRates." },
+shared\options\install.ts:107:    { name: "Plane size", description: "Squares, surface sq ft, or L×W (surface or horizontal footprint with pitch factor)." },
+shared\options\install.ts:111:  formula: `areaSqft  = squares x 100 | surface sq ft | L x W (x pitch factor if footprint)
+shared\options\install.ts:113:laborRate = storyRate + pitchRate                       (per sqft)
+shared\options\install.ts:120:    "Unknown story/pitch/layers/redeck labels resolve to a 0 rate. Layers also keys the no-access surcharge and felt material parity; redeck (when not 'No') drives plywood sheet counts.",
+shared\options\install.ts:125:        pitch: ctx.area.pitch,
+shared\options\materials.ts:89:      pitch: area.pitch,
+components\RoofingScopeForm.vue:70:          text="Each tab is one facet of the roof. Enter size from your measurement report (squares) or measure on site. Eave, rake, and valley edges are linear feet along those edges — not plane width."
+components\RoofingScopeForm.vue:180:        <span>Rake style <EstimateHelp label="Rake drip style" /></span>
+components\RoofingScopeForm.vue:181:        <select v-model="activeArea.rakeDripStyle" class="input">
+components\RoofingScopeForm.vue:191:      <div class="v2-breakdown-row"><dt>Rake drip</dt><dd>{{ formatMoney(activeAreaCost.drip.rakeCost) }}</dd></div>
+components\roof\RoofJobTotalsSection.vue:13:        text="Ridge and hip length apply to the entire job — enter once here, not per plane. Per-plane eave, rake, and valley edges are on each plane tab."
+components\roof\RoofImageMeasurePanel.vue:7:import { roofAreaShapeColorMeta, roofAreaShapeColors, roofIconMarkerMeta, roofIconMarkerTypes, roofLineMeasurementTypes, roofLinePitchFactor, roofLineUsesPitch, roofPitchRiseOptions, roofLineTypeMeta } from "~~/shared/roofLineMeasurements";
+components\roof\RoofImageMeasurePanel.vue:45:const activePitchRiseOver12 = ref(6);
+components\roof\RoofImageMeasurePanel.vue:53:const primaryPitchRiseOver12 = computed(() => {
+components\roof\RoofImageMeasurePanel.vue:54:  return measurement.segments.find((segment) => segment.pitchRiseOver12 !== undefined)?.pitchRiseOver12;
+components\roof\RoofImageMeasurePanel.vue:57:watch(primaryPitchRiseOver12, (pitch) => {
+components\roof\RoofImageMeasurePanel.vue:58:  if (pitch === undefined) return;
+components\roof\RoofImageMeasurePanel.vue:59:  activePitchRiseOver12.value = nearestPitchOption(pitch);
+components\roof\RoofImageMeasurePanel.vue:172:function activeTypeUsesPitch(): boolean {
+components\roof\RoofImageMeasurePanel.vue:173:  return roofLineUsesPitch(activeLineType.value);
+components\roof\RoofImageMeasurePanel.vue:176:function activePitchFactorLabel(): string {
+components\roof\RoofImageMeasurePanel.vue:177:  return roofLinePitchFactor(activePitchRiseOver12.value).toFixed(3);
+components\roof\RoofImageMeasurePanel.vue:347:          pitchRiseOver12: activeTypeUsesPitch() ? activePitchRiseOver12.value : undefined,
+components\roof\RoofImageMeasurePanel.vue:409:function nearestPitchOption(value: number): number {
+components\roof\RoofImageMeasurePanel.vue:410:  return roofPitchRiseOptions.reduce((nearest, option) => {
+components\roof\RoofImageMeasurePanel.vue:412:  }, roofPitchRiseOptions[0]);
+components\roof\RoofImageMeasurePanel.vue:640:        <label v-if="activeTypeUsesPitch()" class="roof-line-pitch-picker">
+components\roof\RoofImageMeasurePanel.vue:641:          <span>{{ roofLineTypeMeta(activeLineType).label }} pitch</span>
+components\roof\RoofImageMeasurePanel.vue:642:          <select v-model.number="activePitchRiseOver12">
+components\roof\RoofImageMeasurePanel.vue:644:              v-for="pitch in roofPitchRiseOptions"
+components\roof\RoofImageMeasurePanel.vue:645:              :key="pitch"
+components\roof\RoofImageMeasurePanel.vue:646:              :value="pitch"
+components\roof\RoofImageMeasurePanel.vue:648:              {{ pitch }}:12
+components\roof\RoofImageMeasurePanel.vue:651:          <small>x{{ activePitchFactorLabel() }}</small>
+components\roof\RoofMeasurementWorkspaceSection.vue:36:        <p>Measure ridge, hip, valley, eave, and rake lines directly on the aerial image.</p>
+components\roof\RoofPlaneConditionsSection.vue:15:        text="Story, pitch, layers, and redeck affect labor and tearoff rates for this plane — they do not change its square footage (except footprint L×W uses pitch to adjust area)."
+components\roof\RoofPlaneConditionsSection.vue:28:        <span>Pitch <EstimateHelp label="Pitch" /></span>
+components\roof\RoofPlaneConditionsSection.vue:29:        <select v-model="area.pitch" class="input">
+components\roof\RoofPlaneConditionsSection.vue:30:          <option v-for="rate in catalog.pitchRates" :key="rate.key" :value="rate.key">
+components\roof\RoofPlaneEdgesSection.vue:22:        <span>Rake edge (linear ft) <EstimateHelp label="Rake drip LF" text="Length along the sloped gable edge. Drives rake drip edge." /></span>
+components\roof\RoofPlaneEdgesSection.vue:23:        <input v-model.number="area.rakeDripLf" class="input" type="number" min="0" step="0.1">
+components\roof\RoofPlaneSizeSection.vue:78:          <span>Horizontal footprint <span class="muted">(pitch adjusts area)</span></span>
+components\roof\RoofQuickLinearCalculator.vue:10:  roofLinePitchFactor,
+components\roof\RoofQuickLinearCalculator.vue:11:  roofLineUsesPitch,
+components\roof\RoofQuickLinearCalculator.vue:12:  roofPitchRiseOptions,
+components\roof\RoofQuickLinearCalculator.vue:23:  { key: "rake", label: "Rake", hint: "Sloped gable edges" },
+components\roof\RoofQuickLinearCalculator.vue:33:  rake: 0,
+components\roof\RoofQuickLinearCalculator.vue:55:const dripEdgeFt = computed(() => combinedTotals.value.eave + combinedTotals.value.rake);
+components\roof\RoofQuickLinearCalculator.vue:75:function updateLinePitch(lineId: string, pitchRiseOver12?: number) {
+components\roof\RoofQuickLinearCalculator.vue:80:      pitchRiseOver12,
+components\roof\RoofQuickLinearCalculator.vue:85:function onPitchChange(lineId: string, event: Event) {
+components\roof\RoofQuickLinearCalculator.vue:87:  updateLinePitch(lineId, value ? Number(value) : undefined);
+components\roof\RoofQuickLinearCalculator.vue:102:function pitchFactorLabel(line: RoofLineMeasurement): string {
+components\roof\RoofQuickLinearCalculator.vue:103:  if (line.pitchRiseOver12 === undefined) return "plan";
+components\roof\RoofQuickLinearCalculator.vue:104:  return `x${roofLinePitchFactor(line.pitchRiseOver12).toFixed(3)}`;
+components\roof\RoofQuickLinearCalculator.vue:160:            <small v-if="roofLineUsesPitch(line.type)">
+components\roof\RoofQuickLinearCalculator.vue:161:              {{ formatFeet(line.feet) }} plan - {{ pitchFactorLabel(line) }}
+components\roof\RoofQuickLinearCalculator.vue:165:            v-if="roofLineUsesPitch(line.type)"
+components\roof\RoofQuickLinearCalculator.vue:166:            :value="line.pitchRiseOver12 ?? ''"
+components\roof\RoofQuickLinearCalculator.vue:167:            aria-label="Pitch adjustment"
+components\roof\RoofQuickLinearCalculator.vue:168:            @change="onPitchChange(line.id, $event)"
+components\roof\RoofQuickLinearCalculator.vue:170:            <option value="">Plan only</option>
+components\roof\RoofQuickLinearCalculator.vue:172:              v-for="pitch in roofPitchRiseOptions"
+components\roof\RoofQuickLinearCalculator.vue:173:              :key="pitch"
+components\roof\RoofQuickLinearCalculator.vue:174:              :value="pitch"
+components\roof\RoofQuickLinearCalculator.vue:176:              {{ pitch }}:12
+components\roof\RoofQuickLinearCalculator.vue:205:        <span>Drip edge (eave + rake)</span>
+components\roof\RoofSegmentChartSection.vue:15:        <p>Compare area, pitch, orientation, and confidence for every detected roof segment.</p>
+components\roof\RoofSegmentChartSection.vue:23:        <span>Pitch</span>
+components\roof\RoofSegmentChartSection.vue:34:        <span>{{ row.pitch }}</span>
+components\roof\RoofStreetViewPanel.vue:27:    pitch: "0",
+
+---
+exit_code: 0
+elapsed_ms: 31212
+ended_at: 2026-08-31T20:13:40.623Z
+---
