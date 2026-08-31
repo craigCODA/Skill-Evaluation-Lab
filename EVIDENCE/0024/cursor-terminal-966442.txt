@@ -1,0 +1,22 @@
+---
+pid: 28136
+cwd: "D:\\Downloads\\Skill-Evaluation-Lab\\ACTIVE\\ShingleFile-main"
+command: "npm run typecheck"
+title: "Run TypeScript typecheck for project"
+status: failed   
+started_at: 2026-08-31T22:17:10.180Z
+running_for_ms: 48586    
+---
+npm warn Unknown env config "devdir". This will stop working in the next major version of npm. See `npm help npmrc` for supported config options.
+
+> typecheck
+> nuxt typecheck
+
+'nuxt' is not recognized as an internal or external command,
+operable program or batch file.
+
+---
+exit_code: 1
+elapsed_ms: 48585
+ended_at: 2026-08-31T22:17:58.765Z
+---

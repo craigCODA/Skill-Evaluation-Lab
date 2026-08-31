@@ -6,9 +6,9 @@ Current frozen experimental candidate: `02-V2-GRAPH`
 
 Promotion status: experimental, not promoted as a general improvement.
 
-Current completed global run: `0023`
+Current completed global run: `0024`
 
-Next global run: `0024`
+Next global run: `0025`
 
 Current experiment: `EXP-0004-task04-open-valley-metal-charge`
 
@@ -46,6 +46,10 @@ The earlier EXP-0003 second-model block was a proposed next action only and was 
 
 EXP-0004 Task 04 setup is preserved in `EXPERIMENTS/EXP-0004-task04-open-valley-metal-charge/`. Its frozen first model is GPT-5.1, with planned four-arm runs `0024` through `0027`.
 
+EXP-0004 Task 04 first-model evidence preserved:
+
+- GPT-5.1 supplied original forced run (`0024`).
+
 Process claims require preserved transcript/trace evidence. Verification claims require preserved command output or equivalent state proof at the level claimed. A transcript-only verification statement is a process claim, not independently preserved verification success.
 
 ## Current Run Observations
@@ -70,7 +74,10 @@ These are raw run observations. EXP-0003 scoring for `0020` through `0023` is pr
 - No successful Nuxt typecheck or browser/runtime verification was independently preserved for `0023`; terminal evidence records `node_modules` and `nuxt` absent.
 - The `0023` archive is local-only in `ARCHIVES/local/` and is not fresh-clone retrievable until published to durable release/artifact storage.
 - EXP-0004 baseline premise was verified directly against ShingleFile baseline `cd393ddd60548823dabd6875060247693a22c1be`.
-- No EXP-0004 model run has been cut or preserved yet.
+- EXP-0004 `0024` changed five tracked files and had no untracked subject-repository files.
+- Preserved terminal evidence for `0024` records `npm run typecheck` failing because `nuxt` was not recognized, and `rg "valley"` succeeding.
+- No successful typecheck, test, build, browser/runtime verification, or explicit open/closed-valley behavior check was independently preserved for `0024`.
+- The `0024` archive is local-only in `ARCHIVES/local/` and is not fresh-clone retrievable until published to durable release/artifact storage.
 
 ## EXP-0002 Holdout Block
 
@@ -108,7 +115,7 @@ Do not edit the skill during this block.
 
 Run GPT-5.1 through the four frozen arms in this order:
 
-1. `0024` supplied original (`00-SUPPLIED`)
+1. `0024` supplied original (`00-SUPPLIED`) - preserved
 2. `0025` no-skill control
 3. `0026` V1 (`01-V1-CANDIDATE`)
 4. `0027` V2 (`02-V2-GRAPH`)
@@ -137,4 +144,4 @@ Do not expose `BASELINE.md`, `SCORECARD.md`, expected authority, positive-contro
 
 ## Next Action
 
-Cut EXP-0004 run `0024` first: GPT-5.1 with supplied original `00-SUPPLIED`, forced `/layered-codebase-architecture`, fresh Mother-to-Active clone, fresh Cursor conversation, and no subject-repository skill files.
+Cut EXP-0004 run `0025` next: GPT-5.1 no-skill control, fresh Mother-to-Active clone, fresh Cursor conversation, no global layered-codebase-architecture skill present, and no slash invocation.

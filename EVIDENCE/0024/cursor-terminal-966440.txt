@@ -1,0 +1,39 @@
+---
+pid: 21508
+cwd: "D:\\Downloads\\Skill-Evaluation-Lab\\ACTIVE\\ShingleFile-main"
+command: "ls components\\roof"
+title: "List components/roof directory"
+status: succeeded
+started_at: 2026-08-31T22:14:37.602Z
+running_for_ms: 36157    
+---
+
+    Directory: D:\Downloads\Skill-Evaluation-Lab\ACTIVE\ShingleFile-main\components\roof
+
+Mode                 LastWriteTime         Length Name
+----                 -------------         ------ ----
+-a---           8/31/2026  5:09 PM           3404 RoofDrawingActionsPanel.vue
+-a---           8/31/2026  5:09 PM          27146 RoofImageMeasurePanel.vue
+-a---           8/31/2026  5:09 PM           1144 RoofJobTotalsSection.vue
+-a---           8/31/2026  5:09 PM           5303 RoofMeasurementWorkspaceSection.vue
+-a---           8/31/2026  5:09 PM           2241 RoofPlaneConditionsSection.vue
+-a---           8/31/2026  5:09 PM           1640 RoofPlaneEdgesSection.vue
+-a---           8/31/2026  5:09 PM           1388 RoofPlaneIdentifySection.vue
+-a---           8/31/2026  5:09 PM           6082 RoofPlaneSizeSection.vue
+-a---           8/31/2026  5:09 PM           6219 RoofProbeHistoryDrawer.vue
+-a---           8/31/2026  5:09 PM           1703 RoofProbeMetaGrid.vue
+-a---           8/31/2026  5:09 PM           2929 RoofProbePropertyAddressSection.vue
+-a---           8/31/2026  5:09 PM           1381 RoofProbeStatsGrid.vue
+-a---           8/31/2026  5:09 PM            943 RoofProbeTitleSection.vue
+-a---           8/31/2026  5:09 PM           5205 RoofProductSection.vue
+-a---           8/31/2026  5:09 PM          11277 RoofQuickLinearCalculator.vue
+-a---           8/31/2026  5:09 PM           3071 RoofSegmentChartSection.vue
+-a---           8/31/2026  5:09 PM           4039 RoofStreetViewPanel.vue
+-a---           8/31/2026  5:09 PM           9244 RoofVentilationSummary.vue
+-a---           8/31/2026  5:09 PM           2861 RoofWasteFactorControl.vue
+
+---
+exit_code: 0
+elapsed_ms: 36157
+ended_at: 2026-08-31T22:15:13.759Z
+---

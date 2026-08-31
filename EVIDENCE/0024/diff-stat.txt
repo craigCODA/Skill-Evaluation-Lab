@@ -1,0 +1,6 @@
+ components/RoofingScopeForm.vue         |  4 ++--
+ shared/calculator/calculateEstimate.ts  |  2 +-
+ shared/contracts/roofProposalPricing.ts | 11 +++++++++++
+ shared/options/valleyMetal.ts           | 20 ++++++++++----------
+ shared/pricebook/types.ts               |  4 ++--
+ 5 files changed, 26 insertions(+), 15 deletions(-)

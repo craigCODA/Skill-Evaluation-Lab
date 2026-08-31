@@ -1,0 +1,132 @@
+---
+pid: 48008
+cwd: "D:\\Downloads\\Skill-Evaluation-Lab\\ACTIVE\\ShingleFile-main"
+command: "rg \"valley\""
+title: "Search for occurrences of 'valley' in repo"
+status: succeeded
+started_at: 2026-08-31T22:17:53.145Z
+running_for_ms: 64336    
+---
+shared\types.ts:  valleys: ValleySelection;
+shared\types.ts:   * Closed-valley LF receiving ice & water shield on this area. Tracked
+shared\types.ts:   * per-area so different areas can carry different valley footage.
+shared\types.ts:// --- Ridge / valleys --------------------------------------------------------
+shared\types.ts:   * Linear feet of valley. Two slots are kept so the unused side can carry
+shared\types.ts:  valleysFt?: number;
+shared\types.ts:    valleysFt?: number;
+shared\roofLineMeasurements.ts:  | "valley"
+shared\roofLineMeasurements.ts:    type: "valley",
+shared\pricebook\types.ts:// Drip edge / valleys / ridge / underlayment
+shared\pricebook\types.ts: * Per-LF valley metal rate ($1.50/ft today). Open valleys compute
+shared\pricebook\types.ts: *   coversValleys → valley LF × valley $/ft
+shared\pricebook\types.ts: *   "valley" → $1.50/ft
+shared\pricebook\types.ts:  valleyMetalRates: ValleyMetalRate[];
+shared\pricebook\index.ts:import valleyMetalRatesJson from "./data/valleyMetalRates.json";
+shared\pricebook\index.ts:  const valleyMetalRates =
+shared\pricebook\index.ts:    ValleyMetalRatesFileSchema.parse(valleyMetalRatesJson);
+shared\pricebook\index.ts:    valleyMetalRates,
+shared\pricebook\data\valleyMetalRates.json:    "key": "open-valley",
+shared\pricebook\data\iceWaterRates.json:    "key": "valley",
+shared\calculator\calculateEstimate.ts:import { valleyMetalOption } from "../options/valleyMetal";
+shared\calculator\calculateEstimate.ts:  valleyMetal: ReturnType<typeof valleyMetalOption.compute>;
+shared\calculator\calculateEstimate.ts:  const valleyMetal = valleyMetalOption.compute(jobCtx);
+shared\calculator\calculateEstimate.ts:    valleyMetal.cost +
+shared\calculator\calculateEstimate.ts:    valleyMetal,
+shared\options\valleyMetal.ts: * Open-valley metal is computed and billed as a customer charge. Closed-valley
+shared\options\valleyMetal.ts:   * Linear feet that would be billed at `pricePerFoot`. Equals `valleys.openLf`
+shared\options\valleyMetal.ts:function valleyMetalCost(
+shared\options\valleyMetal.ts:  valleys: ValleySelection,
+shared\options\valleyMetal.ts:  const row = (cat.valleyMetalRates as ValleyMetalRate[]).find(
+shared\options\valleyMetal.ts:    (r) => r.key === "open-valley",
+shared\options\valleyMetal.ts:  const billableLf = valleys.style === "open" ? valleys.openLf : 0;
+shared\options\valleyMetal.ts:export const valleyMetalOption: JobOption<ValleyMetalBreakdown> = {
+shared\options\valleyMetal.ts:  id: "valleyMetal",
+shared\options\valleyMetal.ts:    "Open-valley metal computed and billed to the customer; closed-valley feet are tracked only.",
+shared\options\valleyMetal.ts:    "Only open valleys are figured: open-valley feet times the per-foot rate, added to the customer total.",
+shared\options\valleyMetal.ts:  example: "30 ft of open valley at $3/ft = $90 billed to the customer.",
+shared\options\valleyMetal.ts:  fieldLabels: ["Valley style", "Open valley LF", "Closed valley LF"],
+shared\options\valleyMetal.ts:  catalogTables: ["valleyMetalRates"],
+shared\options\valleyMetal.ts:    { name: "Open valley LF", description: "Linear feet of open valley." },
+shared\options\valleyMetal.ts:    { name: "Closed valley LF", description: "Linear feet of closed valley (tracked only when switching styles)." },
+shared\options\valleyMetal.ts:cost = billableLf x lookup("open-valley").pricePerFoot`,
+shared\options\valleyMetal.ts:    "Billed to the customer as a separate line and included in the grand total. Also informs valley metal material counts.",
+shared\options\valleyMetal.ts:  notes: "Closed-valley LF is tracked so the value is not lost when switching valley styles but is not billed directly.",
+shared\options\valleyMetal.ts:  compute: (ctx: JobContext) => valleyMetalCost(ctx.roofing.valleys, ctx.catalog),
+shared\options\materials.ts:  valleys: boolean;
+shared\options\materials.ts:  return { eaves: opt?.coversEaves ?? false, valleys: opt?.coversValleys ?? false };
+shared\options\materials.ts:    if (cover.valleys) iceWaterSqft += area.iceWaterValleyLf;
+shared\options\index.ts:import { valleyMetalOption } from "./valleyMetal";
+shared\options\index.ts:  valleyMetalOption,
+shared\options\iceWater.ts: *   valleyCost = coversValleys ? valleyLf × valley $/ft              : 0
+shared\options\iceWater.ts: *   total       = eaveCost + valleyCost + surfaceCost
+shared\options\iceWater.ts:  /** Closed-valley LF receiving I&W. */
+shared\options\iceWater.ts:  valleyLf: number;
+shared\options\iceWater.ts:  valleyPricePerFoot: Money;
+shared\options\iceWater.ts:  valleyCost: Money;
+shared\options\iceWater.ts:const VALLEY_RATE_KEY = "valley";
+shared\options\iceWater.ts:  const valleyRate = findRate(cat.iceWaterRates, VALLEY_RATE_KEY);
+shared\options\iceWater.ts:  const valleyPricePerFoot = valleyRate?.pricePerFoot ?? 0;
+shared\options\iceWater.ts:  const valleyCost = opt?.coversValleys
+shared\options\iceWater.ts:    ? inputs.valleyLf * valleyPricePerFoot
+shared\options\iceWater.ts:    valleyPricePerFoot,
+shared\options\iceWater.ts:    valleyCost,
+shared\options\iceWater.ts:    total: eaveCost + valleyCost + surfaceCost,
+shared\options\iceWater.ts:    "Adds ice & water shield cost for a roof area based on the coverage option, the eave length (multiplied by an overhang row count), and the valley length.",
+shared\options\iceWater.ts:    "Charged along the eaves and valleys that your coverage choice includes. Eaves: eave feet × the overhang row count × the eave per-foot rate. Valleys: valley feet × the valley per-foot rate. Full-surface coverage isn't charged today.",
+shared\options\iceWater.ts:    "With eave coverage: 55 eave ft × 2 rows × $1.50/ft = $165, plus 20 valley ft × $2.00/ft = $40 → $205.",
+shared\options\iceWater.ts:  fieldLabels: ["Ice & water", "Overhang", "Ice & water valley LF"],
+shared\options\iceWater.ts:    { name: "Valley LF", description: "Closed-valley linear feet receiving I&W (iceWaterValleyLf)." },
+shared\options\iceWater.ts:valleyCost = coversValleys ? valleyLf x valleyRatePerFt    : 0
+shared\options\iceWater.ts:total = eaveCost + valleyCost + surfaceCost`,
+shared\options\iceWater.ts:        valleyLf: ctx.area.iceWaterValleyLf,
+shared\job.ts:    valleys: { style: "closed", openLf: 0, closedLf: 0 },
+server\utils\grokRoofLines.ts:  "Trace the roof perimeter and every internal ridge, hip, and valley of the main",
+shared\contracts\roofProposalScope.ts:  const valleyLf =
+shared\contracts\roofProposalScope.ts:    roofing.valleys.style === "open"
+shared\contracts\roofProposalScope.ts:      ? roofing.valleys.openLf
+shared\contracts\roofProposalScope.ts:      : roofing.valleys.closedLf;
+shared\contracts\roofProposalScope.ts:  const valleyLine =
+shared\contracts\roofProposalScope.ts:    valleyLf > 0
+shared\contracts\roofProposalScope.ts:          `${valleyLf} LF — ${roofing.valleys.style === "open" ? "Open valley" : "Half lace valley"}`,
+shared\contracts\roofProposalScope.ts:    valleyLine,
+shared\contracts\roofProposalPricing.ts:  if (totals.valleyMetal.cost > 0) {
+shared\contracts\roofProposalPricing.ts:        totals.valleyMetal.billableLf > 0
+shared\contracts\roofProposalPricing.ts:          ? `${totals.valleyMetal.billableLf} LF open valley`
+shared\contracts\roofProposalPricing.ts:      amount: totals.valleyMetal.cost,
+shared\contracts\roofProposalNarrative.ts:  "Valleys Only": "in the valleys",
+shared\contracts\roofProposalNarrative.ts:  "Valleys & Eaves": "in the valleys and along the eaves",
+shared\contracts\roofProposalNarrative.ts:  const valleyLf =
+shared\contracts\roofProposalNarrative.ts:    roofing.valleys.style === "open"
+shared\contracts\roofProposalNarrative.ts:      ? roofing.valleys.openLf
+shared\contracts\roofProposalNarrative.ts:      : roofing.valleys.closedLf
+shared\contracts\roofProposalNarrative.ts:  if (valleyLf > 0) {
+shared\contracts\roofProposalNarrative.ts:      roofing.valleys.style === "open"
+shared\contracts\roofProposalNarrative.ts:        ? "open metal valleys"
+shared\contracts\roofProposalNarrative.ts:        : "half-lace valleys over ice and water shield"
+shared\contracts\roofProposalNarrative.ts:    paragraphs.push(sentence(`Install ${valleyLf} LF of ${style}`))
+pages\catalog\index.vue:  { section: "valleyMetalRates", title: "Valley Metal", rows: catalog.value.valleyMetalRates },
+components\RoofingScopeForm.vue:          text="Each tab is one facet of the roof. Enter size from your measurement report (squares) or measure on site. Eave, rake, and valley edges are linear feet along those edges — not plane width."
+components\RoofingScopeForm.vue:    <p class="v2-note">Computed and billed as a customer charge for open valleys.</p>
+components\RoofingScopeForm.vue:        <select v-model="roofing.valleys.style" class="input">
+components\RoofingScopeForm.vue:          <option value="closed">Closed valley</option>
+components\RoofingScopeForm.vue:          <option value="open">Open valley</option>
+components\RoofingScopeForm.vue:        <span>Open valley (linear ft) <EstimateHelp label="Open valley LF" /></span>
+components\RoofingScopeForm.vue:        <input v-model.number="roofing.valleys.openLf" class="input" type="number" min="0">
+components\RoofingScopeForm.vue:        <span>Closed valley (linear ft) <EstimateHelp label="Closed valley LF" /></span>
+components\RoofingScopeForm.vue:        <input v-model.number="roofing.valleys.closedLf" class="input" type="number" min="0">
+components\RoofingScopeForm.vue:        <dt>{{ totals.valleyMetal.billableLf }} LF @ {{ formatMoney(totals.valleyMetal.pricePerFoot) }}/ft</dt>
+components\RoofingScopeForm.vue:        <dd>{{ formatMoney(totals.valleyMetal.cost) }}</dd>
+components\roof\RoofJobTotalsSection.vue:        text="Ridge and hip length apply to the entire job — enter once here, not per plane. Per-plane eave, rake, and valley edges are on each plane tab."
+components\roof\RoofMeasurementWorkspaceSection.vue:        <p>Measure ridge, hip, valley, eave, and rake lines directly on the aerial image.</p>
+components\roof\RoofPlaneEdgesSection.vue:        <span>Valley (linear ft) <EstimateHelp label="Ice & water valley LF" text="Closed-valley footage on this plane receiving ice & water shield." /></span>
+components\roof\RoofPlaneSizeSection.vue:        text="Enter what you have from a measurement report (squares or sq ft) or measure length × width on site. Linear feet for drip edge and valleys go in the Edges section — not here."
+components\roof\RoofPlaneSizeSection.vue:        <span>Waste <EstimateHelp label="Waste percent" text="Added on top of surface area for cuts, hips, and valleys. 10% simple gable, 12% hips, 15% complex." /></span>
+components\roof\RoofQuickLinearCalculator.vue:  { key: "valley", label: "Valley", hint: "Inner roof creases" },
+components\roof\RoofQuickLinearCalculator.vue:  valley: 0,
+components\roof\RoofWasteFactorControl.vue:        Adjust the expected waste for cuts, hips, valleys, and crew preference.
+
+---
+exit_code: 0
+elapsed_ms: 64333
+ended_at: 2026-08-31T22:18:57.478Z
+---

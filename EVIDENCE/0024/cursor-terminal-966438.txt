@@ -1,0 +1,33 @@
+---
+pid: 42120
+cwd: "D:\\Downloads\\Skill-Evaluation-Lab\\ACTIVE\\ShingleFile-main"
+command: "ls composables"
+title: "List composables directory"
+status: succeeded
+started_at: 2026-08-31T22:14:07.331Z
+running_for_ms: 35795    
+---
+
+    Directory: D:\Downloads\Skill-Evaluation-Lab\ACTIVE\ShingleFile-main\composables
+
+Mode                 LastWriteTime         Length Name
+----                 -------------         ------ ----
+-a---           8/31/2026  5:09 PM           5186 useAccount.ts
+-a---           8/31/2026  5:09 PM           1442 useAdminUsers.ts
+-a---           8/31/2026  5:09 PM           5526 useAuth.ts
+-a---           8/31/2026  5:09 PM            894 useCatalog.ts
+-a---           8/31/2026  5:09 PM            764 useCompanyProfile.ts
+-a---           8/31/2026  5:09 PM           2580 useContractSetup.ts
+-a---           8/31/2026  5:09 PM           2053 useCustomers.ts
+-a---           8/31/2026  5:09 PM           4335 useEstimates.ts
+-a---           8/31/2026  5:09 PM            540 useEstimateTotals.ts
+-a---           8/31/2026  5:09 PM            643 useFormatters.ts
+-a---           8/31/2026  5:09 PM           3649 useJobAssets.ts
+-a---           8/31/2026  5:09 PM          14176 useRoofMeasurements.ts
+-a---           8/31/2026  5:09 PM           1034 useRoofProbeReport.ts
+
+---
+exit_code: 0
+elapsed_ms: 35794
+ended_at: 2026-08-31T22:14:43.125Z
+---
