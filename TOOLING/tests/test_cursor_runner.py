@@ -165,6 +165,7 @@ class CursorRunnerTests(unittest.TestCase):
 
             self.assertTrue((evidence / "RUN.md").exists())
             self.assertTrue((evidence / "cursor-agent-stream.raw.jsonl").exists())
+            self.assertTrue((root / "DEVELOPMENT-HISTORY" / "0001.md").exists())
             archive_name = runner.parse_field((evidence / "RESULT-ASSET.md").read_text(encoding="utf-8"), "Asset")
             archive = root / "ARCHIVES" / "local" / archive_name
             self.assertTrue(archive.exists())

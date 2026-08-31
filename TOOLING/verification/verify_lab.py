@@ -12,6 +12,7 @@ from pathlib import Path
 
 
 ROOT = Path(__file__).resolve().parents[2]
+DEFAULT_ROOT = ROOT
 RUN_ID_RE = re.compile(r"^\d{4}$")
 FORBIDDEN = (
     "qw" + "en",
@@ -69,6 +70,22 @@ def load_runs(errors: list[str]) -> list[dict[str, str]]:
     return data
 
 
+def current_state_ids(errors: list[str]) -> tuple[str | None, str | None]:
+    path = ROOT / "CURRENT-STATE.md"
+    if not path.exists():
+        fail(errors, "missing CURRENT-STATE.md")
+        return None, None
+    text = read(path)
+    completed = parse_field(text, "Current completed global run")
+    next_run = parse_field(text, "Next global run")
+    for field, value in (("Current completed global run", completed), ("Next global run", next_run)):
+        if value is None:
+            fail(errors, f"missing CURRENT-STATE.md field: {field}")
+        elif not RUN_ID_RE.match(value):
+            fail(errors, f"invalid CURRENT-STATE.md {field}: {value}")
+    return completed, next_run
+
+
 def check_forbidden(errors: list[str]) -> None:
     skip_parts = {".git", ".worktrees", ".superpowers"}
     checked_suffixes = {".md", ".txt", ".json", ".py", ".ps1", ".sh"}
@@ -96,6 +113,9 @@ def expected_ids(ids: list[str]) -> list[str]:
 
 
 def check_contiguous_dirs(errors: list[str], name: str, path: Path) -> list[str]:
+    if not path.exists():
+        fail(errors, f"missing {rel(path)}")
+        return []
     ids = sorted(p.name for p in path.iterdir() if p.is_dir() and RUN_ID_RE.match(p.name))
     expected = expected_ids(ids)
     if ids != expected:
@@ -118,12 +138,23 @@ def check_development_history(errors: list[str], expected: list[str]) -> None:
 
 
 def check_run_index(errors: list[str], expected: list[str]) -> None:
-    path = ROOT / "EXPERIMENTS" / "EXP-0001-task01-roof-image-measure" / "RUN-INDEX.md"
-    text = read(path)
+    paths = sorted((ROOT / "EXPERIMENTS").glob("*/RUN-INDEX.md"))
+    if not paths:
+        fail(errors, "missing experiment RUN-INDEX.md files")
+        return
     ids = []
-    for line in text.splitlines():
-        if line.startswith("| ") and re.match(r"^\| \d{4} \|", line):
-            ids.append(line.split("|")[1].strip())
+    for path in paths:
+        text = read(path)
+        for line in text.splitlines():
+            if not line.startswith("|"):
+                continue
+            cells = [cell.strip().strip("`") for cell in line.strip().strip("|").split("|")]
+            if not cells or not RUN_ID_RE.match(cells[0]):
+                continue
+            status = cells[5].strip().lower() if len(cells) >= 6 else "preserved"
+            if status == "planned":
+                continue
+            ids.append(cells[0])
     if ids != expected:
         fail(errors, f"RUN-INDEX IDs mismatch: got {ids}, expected {expected}")
 
@@ -213,7 +244,11 @@ def check_release_json(errors: list[str], runs: list[dict[str, str]], path: Path
         return
     assets = data.get("assets", [])
     names = sorted(asset.get("name", "") for asset in assets)
-    expected = sorted([item["result_asset"] for item in runs] + ["SHA256SUMS.txt"])
+    tag = data.get("tagName") or data.get("tag_name")
+    release_runs = runs
+    if tag:
+        release_runs = [item for item in runs if item.get("release_tag") == tag]
+    expected = sorted([item["result_asset"] for item in release_runs] + ["SHA256SUMS.txt"])
     if names != expected:
         fail(errors, f"release assets mismatch: got {names}, expected {expected}")
     body = str(data.get("body", "")).lower()
@@ -226,32 +261,50 @@ def check_release_json(errors: list[str], runs: list[dict[str, str]], path: Path
                 fail(errors, f"release asset contains forbidden token: {name}")
 
 
+def verify(root: Path = DEFAULT_ROOT, release_json_path: Path | None = None) -> list[str]:
+    global ROOT
+    previous_root = ROOT
+    ROOT = Path(root).resolve()
+    errors: list[str] = []
+    try:
+        check_forbidden(errors)
+        runs = load_runs(errors)
+        completed, next_run = current_state_ids(errors)
+        evidence_ids = check_contiguous_dirs(errors, "evidence", ROOT / "EVIDENCE")
+        expected = expected_ids(evidence_ids)
+        if expected and expected[0] != "0001":
+            fail(errors, f"current first run should be 0001, got {expected[0]}")
+        if expected and completed and completed != expected[-1]:
+            fail(errors, f"CURRENT-STATE completed run mismatch: got {completed}, expected {expected[-1]}")
+        if expected and next_run and next_run != f"{int(expected[-1]) + 1:04d}":
+            fail(errors, f"CURRENT-STATE next run mismatch: got {next_run}, expected {int(expected[-1]) + 1:04d}")
+        if not expected and completed not in (None, "0000"):
+            fail(errors, f"CURRENT-STATE completed run mismatch: got {completed}, expected 0000")
+        check_development_history(errors, expected)
+        check_run_index(errors, expected)
+        check_data(errors, runs, expected)
+        check_evidence(errors, runs, expected)
+        check_canonical_hashes(errors)
+        check_release_json(errors, runs, release_json_path)
+        return errors
+    finally:
+        ROOT = previous_root
+
+
 def main(argv: list[str]) -> int:
     parser = argparse.ArgumentParser()
     parser.add_argument("--release-json", type=Path)
     args = parser.parse_args(argv)
 
-    errors: list[str] = []
-    check_forbidden(errors)
-    runs = load_runs(errors)
-    evidence_ids = check_contiguous_dirs(errors, "evidence", ROOT / "EVIDENCE")
-    expected = expected_ids(evidence_ids)
-    if expected and expected[0] != "0001":
-        fail(errors, f"current first run should be 0001, got {expected[0]}")
-    if expected and expected[-1] != "0015":
-        fail(errors, f"current final run should be 0015, got {expected[-1]}")
-    check_development_history(errors, expected)
-    check_run_index(errors, expected)
-    check_data(errors, runs, expected)
-    check_evidence(errors, runs, expected)
-    check_canonical_hashes(errors)
-    check_release_json(errors, runs, args.release_json)
+    errors = verify(ROOT, args.release_json)
 
     if errors:
         for error in errors:
             print(f"ERROR: {error}", file=sys.stderr)
         return 1
-    print(f"OK: verified {len(expected)} canonical runs through {expected[-1]}")
+    evidence_ids = sorted(p.name for p in (ROOT / "EVIDENCE").iterdir() if p.is_dir() and RUN_ID_RE.match(p.name))
+    through = evidence_ids[-1] if evidence_ids else "none"
+    print(f"OK: verified {len(evidence_ids)} canonical runs through {through}")
     return 0
 
 

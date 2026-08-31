@@ -16,8 +16,9 @@ py -3 TOOLING/verification/verify_lab.py --release-json release.json
 The verifier checks:
 
 - no excluded provider references in current text files or paths
-- contiguous canonical run IDs
+- contiguous canonical run IDs through `CURRENT-STATE.md`
 - matching evidence, development-history, experiment, and JSON records
+- planned future rows in experiment run indexes are ignored until preserved
 - result asset names and hashes
 - canonical skill file hashes
-- optional release asset names
+- optional release asset names for the requested release tag
