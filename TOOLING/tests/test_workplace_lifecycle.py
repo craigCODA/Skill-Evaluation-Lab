@@ -203,6 +203,50 @@ class WorkplaceLifecycleTests(unittest.TestCase):
             self.assertTrue(active.exists())
             self.assertFalse((root / "EVIDENCE" / "0001").exists())
 
+    def test_execute_refuses_prompt_hash_drift_before_agent_lookup(self):
+        tmp, root, matrix = self.make_lab()
+        with tmp:
+            run = matrix.get_run("0001")
+            workplace.fresh(root, matrix, run)
+            (root / matrix.prompt_file).write_text("Different prompt.\n", encoding="utf-8", newline="\n")
+
+            with self.assertRaisesRegex(workplace.WorkplaceError, "prompt_sha256 mismatch"):
+                workplace.execute_active(root, matrix, run)
+
+    def test_archive_refuses_source_skill_hash_drift_after_fresh(self):
+        tmp, root, matrix = self.make_lab()
+        with tmp:
+            set_current_state(root, "0001", "0002")
+            run = matrix.get_run("0002")
+            active = workplace.fresh(root, matrix, run)
+            (root / "SKILLS" / matrix.skill / "00-SUPPLIED" / "SKILL.md").write_text(
+                "# Changed Skill\n", encoding="utf-8", newline="\n"
+            )
+            write_execution(root, run_id="0002")
+
+            with self.assertRaisesRegex(workplace.WorkplaceError, "skill_hashes mismatch"):
+                workplace.archive_active(root, matrix, run)
+
+            self.assertTrue(active.exists())
+            self.assertFalse((root / "EVIDENCE" / "0002").exists())
+
+    def test_archive_refuses_injected_harness_skill_drift_after_fresh(self):
+        tmp, root, matrix = self.make_lab()
+        with tmp:
+            set_current_state(root, "0001", "0002")
+            run = matrix.get_run("0002")
+            active = workplace.fresh(root, matrix, run)
+            (active / ".cursor" / "skills" / matrix.skill / "SKILL.md").write_text(
+                "# Changed Injected Skill\n", encoding="utf-8", newline="\n"
+            )
+            write_execution(root, run_id="0002")
+
+            with self.assertRaisesRegex(workplace.WorkplaceError, "harness manifest mismatch"):
+                workplace.archive_active(root, matrix, run)
+
+            self.assertTrue(active.exists())
+            self.assertFalse((root / "EVIDENCE" / "0002").exists())
+
     def test_archive_preserves_active_then_removes_it_after_zip_verification(self):
         tmp, root, matrix = self.make_lab()
         with tmp:

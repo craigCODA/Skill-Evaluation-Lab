@@ -204,6 +204,56 @@ def load_harness_paths(state: Path) -> set[str]:
     return paths
 
 
+def harness_file_index(manifest: dict[str, object]) -> dict[str, dict[str, object]]:
+    files = manifest.get("files", [])
+    if not isinstance(files, list):
+        raise WorkplaceError("harness manifest files must contain a list")
+    index: dict[str, dict[str, object]] = {}
+    for item in files:
+        if not isinstance(item, dict) or not isinstance(item.get("path"), str):
+            raise WorkplaceError("harness manifest file entries must contain paths")
+        index[repo_path(item["path"])] = {
+            "role": item.get("role"),
+            "sha256": item.get("sha256"),
+            "size_bytes": item.get("size_bytes"),
+        }
+    return index
+
+
+def validate_harness_snapshot(root: Path, matrix: RunMatrix, run: LabRun) -> None:
+    state = run_state_dir(root)
+    path = state / "harness-manifest.json"
+    if not path.exists():
+        raise WorkplaceError(f"missing harness manifest: {path}")
+    manifest = read_json(path)
+    if not isinstance(manifest, dict):
+        raise WorkplaceError("harness manifest must contain an object")
+    current = collect_harness_manifest(root, matrix, run)
+    if harness_file_index(manifest) != harness_file_index(current):
+        raise WorkplaceError("harness manifest mismatch: active .cursor files changed after fresh")
+
+
+def validate_frozen_inputs(root: Path, matrix: RunMatrix, run: LabRun, metadata: dict[str, object]) -> None:
+    prompt_path = root / matrix.prompt_file
+    if not prompt_path.exists():
+        raise WorkplaceError(f"prompt file missing: {prompt_path}")
+    expected_prompt_hash = metadata.get("prompt_sha256")
+    actual_prompt_hash = sha256_file(prompt_path)
+    if expected_prompt_hash != actual_prompt_hash:
+        raise WorkplaceError(f"prompt_sha256 mismatch: {expected_prompt_hash!r} != {actual_prompt_hash!r}")
+
+    if run.skill_version == "NO-SKILL":
+        return
+
+    source = skill_source_path(root, matrix, run)
+    if not source.exists():
+        raise WorkplaceError(f"skill artifact not found: {source}")
+    expected_hashes = metadata.get("skill_hashes")
+    actual_hashes = skill_hashes(source)
+    if expected_hashes != actual_hashes:
+        raise WorkplaceError("skill_hashes mismatch: source skill artifact changed after fresh")
+
+
 def parse_field(text: str, field: str) -> str | None:
     pattern = re.compile(rf"^{re.escape(field)}:\s*`?([^`\n]+)`?\s*$", re.MULTILINE)
     match = pattern.search(text)
@@ -597,6 +647,8 @@ def validate_active_metadata(root: Path, matrix: RunMatrix, run: LabRun) -> dict
         mismatches.append("baseline.commit")
     if mismatches:
         raise WorkplaceError("metadata mismatch: " + "; ".join(mismatches))
+    validate_frozen_inputs(root, matrix, run, metadata)
+    validate_harness_snapshot(root, matrix, run)
     return metadata
 
 
