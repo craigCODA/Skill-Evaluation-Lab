@@ -6,11 +6,11 @@ Current frozen experimental candidate: `02-V2-GRAPH`
 
 Promotion status: experimental, not promoted as a general improvement.
 
-Current completed global run: `0015`
+Current completed global run: `0027`
 
-Next global run: `0016`
+Next global run: `0028`
 
-Current experiment: `EXP-0001-task01-roof-image-measure`
+Current experiment: `EXP-0002-task02-quick-calculator-clear-label`
 
 Baseline repository commit: `cd393ddd60548823dabd6875060247693a22c1be`
 
@@ -21,6 +21,10 @@ Primary skill-effect evidence preserved through V1: Grok 4.6 High, Kimi K2.7 Cod
 Diagnostic evidence preserved: Gemini 2.5 because execution was inconsistent enough to make it a poor skill-effect instrument.
 
 V2 fourth-condition experimental runs currently preserved as primary evidence: Grok 4.6 High (`0013`), Kimi K2.7 Code (`0014`), GPT-5.1 (`0015`).
+
+EXP-0002 second-task holdout evidence is preserved as primary evidence across Grok 4.6 High (`0016`-`0019`), Kimi K2.7 Code (`0020`-`0023`), and GPT-5.1 (`0024`-`0027`).
+
+EXP-0002 was captured through the workplace lifecycle: each run starts from `MOTHER`, writes an isolated `ACTIVE` clone, preserves the complete active repository archive after Cursor Agent execution, records runner metadata outside the subject repository, then removes `ACTIVE` only after ZIP verification.
 
 Process-evidence correction:
 
@@ -40,10 +44,10 @@ These are not promoted findings until scored against the rubric.
 - Grok V2 produced a restrained seam-based restructuring result.
 - Kimi V2 still produced five structural UI nodes and moved presentation-support helpers into shared scale code despite V2 already containing a new-seam proof gate.
 - GPT-5.1 V2 chose a small in-place authority cleanup rather than creating a new structural node.
-- V2 has not yet been evaluated on a second task prompt.
+- EXP-0002 second-task observations exist for runs `0016` through `0027`, but they have not yet been scored or compared.
 - Task 01 has not yet been fully scored across the primary comparison cells using the current rubric.
 
-## Method decision before run 0016
+## Method decision before run 0016, now completed
 
 Do not edit the skill yet.
 
@@ -64,13 +68,13 @@ Score the existing primary Task 01 cells with `SCORECARD.md` before starting ano
 
 Use preserved result state and command output for behavior/verification scoring. Use transcripts for process scoring. A second independent rating is preferred when practical.
 
-### Step 2 - EXP-0002 holdout
+### Step 2 - EXP-0002 holdout, captured
 
-The next experiment is a second-task holdout with all four skill conditions frozen.
+EXP-0002 is a second-task holdout with all four skill conditions frozen.
 
 Choose a task meaningfully different from Task 01. A fully correct result must be allowed to make no architectural change at all and still receive the highest structural-restraint score. Do not reuse another prompt whose main instruction is to clean up or restructure a large component.
 
-Run Grok 4.6 High through all four arms first because the existing controlled evidence shows the clearest skill-driven behavioral movement on that model.
+The preserved sequence ran Grok 4.6 High through all four arms first, then Kimi K2.7 Code and GPT-5.1 through the same frozen four-arm comparison.
 
 Planned arm order beginning at global run `0016`:
 
@@ -99,4 +103,4 @@ Trigger-selection studies and supplied-original ablation studies come later as s
 
 ## Next Action
 
-Score Task 01 primary cells; then run the EXP-0002 holdout on frozen no-skill / original / V1 / V2. No skill edit until a scored holdout names one instruction group.
+Score EXP-0002 runs `0016` through `0027` against `SCORECARD.md`, then compare the three model blocks against Task 01 before deciding whether another holdout or a skill revision is justified.

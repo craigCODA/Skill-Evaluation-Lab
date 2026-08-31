@@ -1,0 +1,21 @@
+{
+  "run_id": "0024",
+  "experiment": "EXP-0002-task02-quick-calculator-clear-label",
+  "skill": "layered-codebase-architecture",
+  "skill_version": "NO-SKILL",
+  "condition": "no explicit architecture skill",
+  "evidence_class": "primary",
+  "model": "GPT-5.1",
+  "cursor_model_id": "gpt-5.1",
+  "slash_invocation": false,
+  "baseline": {
+    "repo_name": "ShingleFile-main",
+    "commit": "cd393ddd60548823dabd6875060247693a22c1be",
+    "branch": "main"
+  },
+  "prompt_file": "EXPERIMENTS/EXP-0002-task02-quick-calculator-clear-label/PROMPT.txt",
+  "prompt_sha256": "e1ca2c01abd9c524d6b53912758901ddf815cac142cce59b4139a071b25009a0",
+  "prepared_at_utc": "2026-08-31T10:00:47.517833+00:00",
+  "active_path": "D:\\Downloads\\Skill-Evaluation-Lab\\.worktrees\\workplace-lifecycle-runner\\ACTIVE\\ShingleFile-main",
+  "run_state_path": "D:\\Downloads\\Skill-Evaluation-Lab\\.worktrees\\workplace-lifecycle-runner\\ACTIVE\\.run-state"
+}

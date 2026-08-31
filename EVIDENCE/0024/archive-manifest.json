@@ -1,0 +1,11 @@
+{
+  "run_id": "0024",
+  "archive": "run-0024-no-explicit-architecture-skill.zip",
+  "archive_sha256": "1952e6d3041eb49e0b85f3802cc7ecaa518781b1928bfe13264b643bf7098c6e",
+  "archive_size_bytes": 1173949,
+  "archive_entry_count": 676,
+  "archive_testzip": "OK",
+  "active": "D:\\Downloads\\Skill-Evaluation-Lab\\.worktrees\\workplace-lifecycle-runner\\ACTIVE\\ShingleFile-main",
+  "run_state": "D:\\Downloads\\Skill-Evaluation-Lab\\.worktrees\\workplace-lifecycle-runner\\ACTIVE\\.run-state",
+  "preserved_at_utc": "2026-08-31T10:01:55.324889+00:00"
+}

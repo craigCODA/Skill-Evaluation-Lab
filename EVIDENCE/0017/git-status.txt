@@ -1,0 +1,6 @@
+ M components/roof/RoofQuickLinearCalculator.vue
+?? .cursor/cli.json
+?? .cursor/skills/layered-codebase-architecture/MANIFEST.txt
+?? .cursor/skills/layered-codebase-architecture/RATIONALE.md
+?? .cursor/skills/layered-codebase-architecture/SKILL.md
+?? .cursor/skills/layered-codebase-architecture/conventions.md

@@ -1,0 +1,11 @@
+{
+  "run_id": "0017",
+  "archive": "run-0017-supplied-original-forced.zip",
+  "archive_sha256": "5f248f7072b1cd43814021d35dd963bcafb969f77f975c678c99b69e5a4f05e3",
+  "archive_size_bytes": 1181665,
+  "archive_entry_count": 680,
+  "archive_testzip": "OK",
+  "active": "D:\\Downloads\\Skill-Evaluation-Lab\\.worktrees\\workplace-lifecycle-runner\\ACTIVE\\ShingleFile-main",
+  "run_state": "D:\\Downloads\\Skill-Evaluation-Lab\\.worktrees\\workplace-lifecycle-runner\\ACTIVE\\.run-state",
+  "preserved_at_utc": "2026-08-31T09:55:30.202289+00:00"
+}
