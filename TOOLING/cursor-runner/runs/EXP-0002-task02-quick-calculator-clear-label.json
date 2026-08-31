@@ -9,7 +9,7 @@
   },
   "default_model": {
     "label": "Grok 4.6 High",
-    "cursor_model_id": ""
+    "cursor_model_id": "cursor-grok-4.6-high"
   },
   "runs": [
     {
