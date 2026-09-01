@@ -6,9 +6,9 @@ Current frozen experimental candidate: `02-V2-GRAPH`
 
 Promotion status: experimental, not promoted as a general improvement.
 
-Current completed global run: `0030`
+Current completed global run: `0031`
 
-Next global run: `0031`
+Next global run: `0032`
 
 Current experiment: `EXP-0004-task04-open-valley-metal-charge`
 
@@ -60,6 +60,7 @@ EXP-0004 Task 04 second-model evidence preserved:
 - Opus supplied original forced run (`0028`).
 - Opus no-skill control run (`0029`).
 - Opus V1 candidate forced run (`0030`).
+- Opus V2 candidate forced run (`0031`).
 
 Process claims require preserved transcript/trace evidence. Verification claims require preserved command output or equivalent state proof at the level claimed. A transcript-only verification statement is a process claim, not independently preserved verification success.
 
@@ -116,6 +117,12 @@ These are raw run observations. EXP-0003 scoring for `0020` through `0023` is pr
 - Preserved terminal evidence for `0030` records root/key-folder listing output; one terminal output includes a PowerShell `dir ... /b` error while exported metadata reports exit_code 0.
 - No successful typecheck, test, build, browser/runtime verification, proposal-pricing behavior check, explicit open/closed-valley behavior check, or no-double-counting check was independently preserved for `0030`.
 - The `0030` archive is local-only in `ARCHIVES/local/` and is not fresh-clone retrievable until published to durable release/artifact storage.
+- EXP-0004 `0031` changed four tracked files and had no untracked subject-repository files.
+- The transcript for `0031` records forced V2 invocation, two repository exploration subagents, and direct inspection of valley metal, estimate totals, proposal pricing, UI, material counts, contract store, docs, and persistence paths.
+- Preserved terminal evidence for `0031` records file/directory listing attempts and a contract snapshot persistence search; no separate terminal output for successful npm install or typecheck was found.
+- The `0031` archive includes ignored dependency/build directories `node_modules/` and `.nuxt/` created during the run.
+- No standalone successful typecheck, test, build, browser/runtime verification, proposal-pricing behavior check, explicit open/closed-valley behavior check, or no-double-counting check was independently preserved for `0031`.
+- The `0031` archive is local-only in `ARCHIVES/local/` and is not fresh-clone retrievable until published to durable release/artifact storage.
 
 ## EXP-0002 Holdout Block
 
@@ -177,9 +184,9 @@ Do not edit the skill during this block.
 Run Opus through the four frozen arms in this order:
 
 1. `0028` supplied original (`00-SUPPLIED`) - preserved
-2. `0029` no-skill control
-3. `0030` V1 (`01-V1-CANDIDATE`)
-4. `0031` V2 (`02-V2-GRAPH`)
+2. `0029` no-skill control - preserved
+3. `0030` V1 (`01-V1-CANDIDATE`) - preserved
+4. `0031` V2 (`02-V2-GRAPH`) - preserved
 
 Each run starts from a fresh clone of Mother at baseline `cd393ddd60548823dabd6875060247693a22c1be` and a fresh Cursor conversation.
 
@@ -205,4 +212,4 @@ Do not expose `BASELINE.md`, `SCORECARD.md`, expected authority, positive-contro
 
 ## Next Action
 
-Cut EXP-0004 run `0031` next: Opus V2 candidate, fresh Mother-to-Active clone, fresh Cursor conversation, V2 installed in Cursor global skills-cursor, and forced /layered-codebase-architecture invocation. Do not edit the skill from EXP-0004 alone; the current evidence supports replication before skill revision.
+Score EXP-0004 run `0028` through `0031` next, then compare the Opus block against the GPT-5.1 block. Do not edit the skill from EXP-0004 alone; score preserved evidence first.

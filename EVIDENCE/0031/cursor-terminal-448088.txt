@@ -1,0 +1,16 @@
+---
+pid: 37396
+cwd: "d:\\Downloads\\Skill-Evaluation-Lab\\ACTIVE\\ShingleFile-main"
+command: "Get-ChildItem -Path \"d:\\Downloads\\Skill-Evaluation-Lab\\ACTIVE\\ShingleFile-main\" -Force | Select-Object Name, Mode"
+title: "List top-level directory contents"
+status: succeeded
+started_at: 2026-09-01T05:41:03.036Z
+running_for_ms: 30114    
+---
+
+
+---
+exit_code: 0
+elapsed_ms: 30112
+ended_at: 2026-09-01T05:41:33.148Z
+---

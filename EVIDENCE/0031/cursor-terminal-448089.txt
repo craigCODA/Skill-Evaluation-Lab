@@ -1,0 +1,40 @@
+---
+pid: 29292
+cwd: "D:\\Downloads\\Skill-Evaluation-Lab\\ACTIVE\\ShingleFile-main"
+command: "dir \"d:\\Downloads\\Skill-Evaluation-Lab\\ACTIVE\\ShingleFile-main\\server\" /s /b 2>$null | Select-Object -First 80; dir \"d:\\Downloads\\Skill-Evaluation-Lab\\ACTIVE\\ShingleFile-main\\docs\" /b; dir \"d:\\Downloads\\Skill-Evaluation-Lab\\ACTIVE\\ShingleFile-main\\shared\" /b; dir \"d:\\Downloads\\Skill-Evaluation-Lab\\ACTIVE\\ShingleFile-main\\pages\" /b; dir \"d:\\Downloads\\Skill-Evaluation-Lab\\ACTIVE\\ShingleFile-main\\components\" /b"
+title: "List server, docs, shared, pages, components"
+status: succeeded
+started_at: 2026-09-01T05:42:10.535Z
+running_for_ms: 31317    
+---
+Get-ChildItem: C:\Users\NeverAMoment\AppData\Local\Temp\ps-script-fb21cc78-3ef3-4fd1-aeeb-a0f32fd0248e.ps1:146
+Line |
+ 146 |  dir "d:\Downloads\Skill-Evaluation-Lab\ACTIVE\ShingleFile-main\server .
+     |  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+     | A positional parameter cannot be found that accepts argument '/b'.
+Get-ChildItem: C:\Users\NeverAMoment\AppData\Local\Temp\ps-script-fb21cc78-3ef3-4fd1-aeeb-a0f32fd0248e.ps1:146
+Line |
+ 146 |  .  -First 80; dir "d:\Downloads\Skill-Evaluation-Lab\ACTIVE\ShingleFile .
+     |                ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+     | Second path fragment must not be a drive or UNC name. (Parameter 'expression')
+Get-ChildItem: C:\Users\NeverAMoment\AppData\Local\Temp\ps-script-fb21cc78-3ef3-4fd1-aeeb-a0f32fd0248e.ps1:146
+Line |
+ 146 |  . n\docs" /b; dir "d:\Downloads\Skill-Evaluation-Lab\ACTIVE\ShingleFile .
+     |                ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+     | Second path fragment must not be a drive or UNC name. (Parameter 'expression')
+Get-ChildItem: C:\Users\NeverAMoment\AppData\Local\Temp\ps-script-fb21cc78-3ef3-4fd1-aeeb-a0f32fd0248e.ps1:146
+Line |
+ 146 |  . shared" /b; dir "d:\Downloads\Skill-Evaluation-Lab\ACTIVE\ShingleFile .
+     |                ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+     | Second path fragment must not be a drive or UNC name. (Parameter 'expression')
+Get-ChildItem: C:\Users\NeverAMoment\AppData\Local\Temp\ps-script-fb21cc78-3ef3-4fd1-aeeb-a0f32fd0248e.ps1:146
+Line |
+ 146 |  . \pages" /b; dir "d:\Downloads\Skill-Evaluation-Lab\ACTIVE\ShingleFile .
+     |                ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+     | Second path fragment must not be a drive or UNC name. (Parameter 'expression')
+
+---
+exit_code: 0
+elapsed_ms: 31315
+ended_at: 2026-09-01T05:42:41.850Z
+---

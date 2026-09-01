@@ -1,0 +1,116 @@
+diff --git a/components/RoofingScopeForm.vue b/components/RoofingScopeForm.vue
+index 1d6a7c1..6c47d4e 100644
+--- a/components/RoofingScopeForm.vue
++++ b/components/RoofingScopeForm.vue
+@@ -403,7 +403,7 @@ function formatMoney(value: number) {
+ 
+   <section class="card v2-card v2-section-addon">
+     <h2>Valley metal</h2>
+-    <p class="v2-note">Computed for visibility only; not added to the customer total.</p>
++    <p class="v2-note">Only open valleys carry metal; closed valleys are $0.</p>
+     <div class="form-grid">
+       <label class="field">
+         <span>Valley style <EstimateHelp label="Valley style" /></span>
+@@ -423,7 +423,7 @@ function formatMoney(value: number) {
+     </div>
+     <dl v-if="totals" class="v2-breakdown">
+       <div class="v2-breakdown-row">
+-        <dt>{{ totals.valleyMetal.billableLf }} ft @ {{ formatMoney(totals.valleyMetal.pricePerFoot) }}/ft (not billed)</dt>
++        <dt>{{ totals.valleyMetal.billableLf }} ft @ {{ formatMoney(totals.valleyMetal.pricePerFoot) }}/ft</dt>
+         <dd>{{ formatMoney(totals.valleyMetal.cost) }}</dd>
+       </div>
+     </dl>
+diff --git a/shared/calculator/calculateEstimate.ts b/shared/calculator/calculateEstimate.ts
+index 88a3155..fbec3bb 100644
+--- a/shared/calculator/calculateEstimate.ts
++++ b/shared/calculator/calculateEstimate.ts
+@@ -131,7 +131,6 @@ export function calculateRoofingEstimate({
+   const valleyMetal = valleyMetalOption.compute(jobCtx);
+   const materials = materialsCounts(roofing, catalog);
+ 
+-  // valleyMetal is intentionally excluded — it is not billed.
+   const grandTotal =
+     areaCosts.reduce((sum, area) => sum + area.total, 0) +
+     ridge.total +
+@@ -147,6 +146,7 @@ export function calculateRoofingEstimate({
+     noAccess.total +
+     gutterRemoval.cost +
+     lowSlope.cost +
++    valleyMetal.cost +
+     permit +
+     extras.amount;
+ 
+diff --git a/shared/contracts/roofProposalPricing.ts b/shared/contracts/roofProposalPricing.ts
+index d95951b..73cd8a3 100644
+--- a/shared/contracts/roofProposalPricing.ts
++++ b/shared/contracts/roofProposalPricing.ts
+@@ -148,6 +148,14 @@ export function buildRoofPricingLines(
+     });
+   }
+ 
++  if (totals.valleyMetal.cost > 0) {
++    lines.push({
++      label: "Valley metal",
++      value: `${totals.valleyMetal.billableLf} LF open valley`,
++      amount: totals.valleyMetal.cost,
++    });
++  }
++
+   if (job.permit > 0) {
+     lines.push({
+       label: "Building permit",
+diff --git a/shared/options/valleyMetal.ts b/shared/options/valleyMetal.ts
+index 498b92d..6a8ac09 100644
+--- a/shared/options/valleyMetal.ts
++++ b/shared/options/valleyMetal.ts
+@@ -3,8 +3,7 @@
+  *
+  *   cost = style === "open" ? openLf × pricePerFoot : 0
+  *
+- * This is computed and surfaced in the UI for visibility, but it is NOT rolled
+- * into the grand total (it only informs materials counts).
++ * Closed valleys are woven with shingle, so only open-valley feet carry metal.
+  */
+ 
+ import type { Money, ValleySelection } from "../types";
+@@ -14,8 +13,8 @@ import type { JobContext, JobOption } from "./types";
+ export type ValleyMetalBreakdown = {
+   pricePerFoot: Money;
+   /**
+-   * Linear feet that would be billed at `pricePerFoot`. Equals `valleys.openLf`
+-   * when style is "open", else 0.
++   * Linear feet billed at `pricePerFoot`. Equals `valleys.openLf` when style
++   * is "open", else 0.
+    */
+   billableLf: number;
+   cost: Money;
+@@ -37,23 +36,23 @@ export const valleyMetalOption: JobOption<ValleyMetalBreakdown> = {
+   id: "valleyMetal",
+   title: "Valley Metal",
+   summary:
+-    "Open-valley metal computed for visibility. NOT billed to the customer; it only informs materials counts.",
++    "Open-valley metal, billed per linear foot of open valley; closed valleys are $0.",
+   phase: "job",
+-  billed: false,
++  billed: true,
+   pricingPlain:
+-    "Only open valleys are figured: open-valley feet times the per-foot rate. This is shown for reference and is NOT added to the customer total.",
+-  example: "30 ft of open valley at $3/ft = $90 (reference only — not billed).",
++    "Only open valleys are figured: open-valley feet times the per-foot rate. Closed valleys are woven with shingle instead of metal, so they cost $0.",
++  example: "30 ft of open valley at $1.50/ft = $45 (or $0 for a closed valley).",
+   fieldLabels: ["Valley style", "Open valley LF", "Closed valley LF"],
+   catalogTables: ["valleyMetalRates"],
+   inputs: [
+-    { name: "Valley style", description: "'open' or 'closed'. Only 'open' is computed for billing visibility." },
++    { name: "Valley style", description: "'open' or 'closed'. Only 'open' is billed." },
+     { name: "Open valley LF", description: "Linear feet of open valley." },
+     { name: "Closed valley LF", description: "Linear feet of closed valley (tracked, not billed)." },
+   ],
+   formula: `billableLf = style = "open" ? openLf : 0
+ cost = billableLf x lookup("open-valley").pricePerFoot`,
+   contractEffect:
+-    "Shown for visibility only; NOT added to the grand total. Informs valley metal material counts.",
++    "Adds the open-valley metal cost to the roofing proposal grand total as its own scope line.",
+   notes: "Closed-valley LF is tracked only so the value is not lost when switching valley styles.",
+   compute: (ctx: JobContext) => valleyMetalCost(ctx.roofing.valleys, ctx.catalog),
+ };

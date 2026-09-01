@@ -1,0 +1,73 @@
+---
+pid: 39564
+cwd: "d:\\Downloads\\Skill-Evaluation-Lab\\ACTIVE\\ShingleFile-main"
+command: "rg -n \"signed|snapshot|documents_json|body_json\" server/utils/jobContractStore.ts"
+title: "Check contract snapshot persistence"
+status: succeeded
+started_at: 2026-09-01T05:55:58.299Z
+running_for_ms: 36181    
+---
+30:    roofing: { unsigned: null, signed: null },
+31:    gutters: { unsigned: null, signed: null },
+32:    siding: { unsigned: null, signed: null }
+49:function normalizeSnapshot(snapshot: JobContractSnapshot): JobContractSnapshot {
+51:    ...snapshot,
+52:    recipeKind: parseContractRecipeKind(snapshot.recipeKind)
+56:function toBundle(snapshots: JobContractSnapshot[]): JobContractBundle {
+58:  for (const snapshot of snapshots) {
+59:    const kind = parseContractRecipeKind(snapshot.recipeKind)
+60:    if (snapshot.status === "signed") bundle[kind].signed = snapshot
+61:    else bundle[kind].unsigned = snapshot
+133:    item.status === "unsigned" && parseContractRecipeKind(item.recipeKind) === recipeKind
+135:  const snapshot: JobContractSnapshot = {
+140:    status: "unsigned",
+143:    signedPdf: existing?.signedPdf
+146:  await upsertSnapshot(snapshot)
+147:  return snapshot
+164:  let unsigned = (await listSnapshotsForJob(jobId)).find((item) =>
+165:    item.status === "unsigned" && parseContractRecipeKind(item.recipeKind) === recipeKind
+167:  if (!unsigned) {
+168:    unsigned = await regenerateJobContract(jobId, user, recipeKind)
+171:  const signedAt = new Date().toISOString()
+172:  const signed: JobContractSnapshot = {
+173:    ...unsigned,
+175:    status: "signed",
+176:    signedAt,
+177:    signedPdf: unsigned.signedPdf
+184:        && value.status === "signed"
+192:      item.status === "signed" && parseContractRecipeKind(item.recipeKind) === recipeKind
+201:  await upsertSnapshot(signed)
+202:  return signed
+223:  let signed = (await listSnapshotsForJob(jobId)).find((item) =>
+224:    item.status === "signed" && parseContractRecipeKind(item.recipeKind) === recipeKind
+226:  if (!signed) {
+227:    signed = await markJobContractSigned(jobId, user, recipeKind)
+231:  const key = signedPdfKey({
+234:    snapshotId: signed.id
+237:  if (signed.signedPdf?.key && signed.signedPdf.key !== key) {
+238:    await deletePdf(signed.signedPdf.key).catch(() => undefined)
+243:  const signedPdf: JobContractSignedPdf = {
+245:    fileName: input.fileName.trim() || "signed-contract.pdf",
+252:    ...signed,
+253:    signedPdf,
+254:    signedAt: signed.signedAt || signedPdf.uploadedAt
+264:): Promise<{ snapshot: JobContractSnapshot, dataUrl: string }> {
+269:  const signed = (await listSnapshotsForJob(jobId)).find((item) =>
+270:    item.status === "signed" && parseContractRecipeKind(item.recipeKind) === recipeKind
+272:  if (!signed?.signedPdf?.key) {
+277:    snapshot: signed,
+278:    dataUrl: await getPdfDataUrl(signed.signedPdf.key)
+289:async function upsertSnapshot(snapshot: JobContractSnapshot): Promise<void> {
+290:  const recipeKind = parseContractRecipeKind(snapshot.recipeKind)
+291:  const normalized = { ...snapshot, recipeKind }
+328:        signedAt: normalized.signedAt ? new Date(normalized.signedAt) : null,
+342:    signedAt: normalized.signedAt ? new Date(normalized.signedAt) : null,
+363:function signedPdfKey(input: {
+366:  snapshotId: string
+368:  return `job-contracts/${input.customerAccountId}/${input.jobId}/${input.snapshotId}.pdf`
+
+---
+exit_code: 0
+elapsed_ms: 36181
+ended_at: 2026-09-01T05:56:34.480Z
+---

@@ -1,0 +1,58 @@
+{
+  "run_id": "0031",
+  "experiment": "EXP-0004-task04-open-valley-metal-charge",
+  "model": "Opus",
+  "skill_version": "02-V2-GRAPH",
+  "condition": "candidate V2",
+  "created_at": "2026-09-01T01:09:30.197190-05:00",
+  "active_path": "D:\\Downloads\\Skill-Evaluation-Lab\\ACTIVE\\ShingleFile-main",
+  "active_head": "cd393ddd60548823dabd6875060247693a22c1be",
+  "archive_name": "run-0031-opus-v2-exp0004-candidate.zip",
+  "archive_path": "ARCHIVES/local/run-0031-opus-v2-exp0004-candidate.zip",
+  "archive_sha256": "25022cb8fe3309c51bbb7389fc7d168c2a65ea5abc711358bec8e12355dd49f8",
+  "archive_size": 104623855,
+  "testzip": "OK",
+  "entry_count": 24068,
+  "has_git": true,
+  "matching_transcript_entries": 9,
+  "node_modules": true,
+  "dot_nuxt": true,
+  "dot_output": false,
+  "node_modules_present_before_archive": true,
+  "dot_nuxt_present_before_archive": true,
+  "dot_output_present_before_archive": false,
+  "transcript_source": "C:\\Users\\NeverAMoment\\.cursor\\projects\\d-Downloads-Skill-Evaluation-Lab-ACTIVE-ShingleFile-main\\agent-transcripts\\96d3b58c-f314-4065-ad8b-366e01eac846\\96d3b58c-f314-4065-ad8b-366e01eac846.jsonl",
+  "transcript_sha256": "415828dbe8620de973e1cdc4f49d8c8e511b6c40007a704f9ae7a2896fa06726",
+  "subagent_transcripts": [
+    {
+      "source": "C:\\Users\\NeverAMoment\\.cursor\\projects\\d-Downloads-Skill-Evaluation-Lab-ACTIVE-ShingleFile-main\\agent-transcripts\\96d3b58c-f314-4065-ad8b-366e01eac846\\subagents\\57d86e3f-2e27-4280-a360-c011f54e6852.jsonl",
+      "evidence": "cursor-subagent-57d86e3f-2e27-4280-a360-c011f54e6852.raw.jsonl",
+      "sha256": "d0d36ca048be953520ea4d4d27ff941af473f8c223eca91c84c062843b1f8b34"
+    },
+    {
+      "source": "C:\\Users\\NeverAMoment\\.cursor\\projects\\d-Downloads-Skill-Evaluation-Lab-ACTIVE-ShingleFile-main\\agent-transcripts\\96d3b58c-f314-4065-ad8b-366e01eac846\\subagents\\17249b51-dac2-4e4a-ba34-48ca853bf505.jsonl",
+      "evidence": "cursor-subagent-17249b51-dac2-4e4a-ba34-48ca853bf505.raw.jsonl",
+      "sha256": "70d67be0510790ea7a331f8f6ca79ef39468fd96237d44a4b7ea835d6f1ab84b"
+    }
+  ],
+  "terminal_log_count": 4,
+  "terminal_logs_preserved": [
+    "cursor-terminal-557724.txt",
+    "cursor-terminal-448088.txt",
+    "cursor-terminal-448089.txt",
+    "cursor-terminal-322495.txt"
+  ],
+  "global_skill_present": true,
+  "subject_cursor_dir_present": false,
+  "matching_transcript_entries_paths": [
+    "node_modules/@speed-highlight/core/dist/terminal.d.ts",
+    "node_modules/@speed-highlight/core/dist/terminal.d.ts.map",
+    "node_modules/@speed-highlight/core/dist/terminal.js",
+    "node_modules/@speed-highlight/core/dist/node/terminal.d.ts",
+    "node_modules/@speed-highlight/core/dist/node/terminal.d.ts.map",
+    "node_modules/@speed-highlight/core/dist/node/terminal.js",
+    "node_modules/nuxt/node_modules/@nuxt/devtools/dist/client/_nuxt/terminals-lx3nbgm4.js",
+    "node_modules/nuxt/node_modules/@nuxt/devtools/dist/client/_nuxt/terminals.css-mejv43xm.css",
+    "node_modules/postcss/lib/terminal-highlight.js"
+  ]
+}
