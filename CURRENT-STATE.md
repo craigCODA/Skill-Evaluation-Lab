@@ -161,4 +161,4 @@ Do not expose `BASELINE.md`, `SCORECARD.md`, expected authority, positive-contro
 
 ## Next Action
 
-Review EXP-0004 first-model scores before cutting another block. The next unused global run is `0028`, but it should not be prepared until an explicit second-model plan is chosen. Do not edit the skill from EXP-0004 alone; the current evidence supports replication before skill revision.
+Cut EXP-0004 run `0028` next: Opus supplied original, fresh Mother-to-Active clone, fresh Cursor conversation, supplied original installed in Cursor global skills-cursor, and forced /layered-codebase-architecture invocation. Do not edit the skill from EXP-0004 alone; the current evidence supports replication before skill revision.

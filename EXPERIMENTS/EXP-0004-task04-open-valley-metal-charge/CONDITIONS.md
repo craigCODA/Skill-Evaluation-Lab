@@ -25,6 +25,17 @@ Keep tool access, harness behavior, model selection/settings, and operator inter
 | `0026` | V1 (`01-V1-CANDIDATE`) | forced `/layered-codebase-architecture` |
 | `0027` | V2 (`02-V2-GRAPH`) | forced `/layered-codebase-architecture` |
 
+## Second-Model Block
+
+Model: Opus
+
+| Global run | Condition | Skill invocation |
+| --- | --- | --- |
+| `0028` | supplied original (`00-SUPPLIED`) | forced `/layered-codebase-architecture` |
+| `0029` | no skill | no slash invocation |
+| `0030` | V1 (`01-V1-CANDIDATE`) | forced `/layered-codebase-architecture` |
+| `0031` | V2 (`02-V2-GRAPH`) | forced `/layered-codebase-architecture` |
+
 For the three skill arms, install/freeze the exact artifact for that condition before the run. Do not modify the skill between arms.
 
 For `0025`, remove `layered-codebase-architecture` from Cursor global `skills-cursor` before opening Cursor. Do not explicitly invoke an architecture skill.

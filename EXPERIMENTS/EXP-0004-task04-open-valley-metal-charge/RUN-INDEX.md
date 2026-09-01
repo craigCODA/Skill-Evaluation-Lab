@@ -1,6 +1,6 @@
 # EXP-0004 Run Index
 
-The experiment begins when global run `0024` is cut. These rows define the frozen GPT-5.1 first-model block; they are not evidence until each run is actually preserved.
+The experiment begins when global run `0024` is cut. These rows define the frozen first-model GPT-5.1 block and the second-model Opus block; they are not evidence until each run is actually preserved.
 
 | Run | Model | Version | Evidence class | Condition | Status |
 | --- | --- | --- | --- | --- | --- |
@@ -8,6 +8,10 @@ The experiment begins when global run `0024` is cut. These rows define the froze
 | `0025` | GPT-5.1 | NO-SKILL | primary | no explicit architecture skill | preserved |
 | `0026` | GPT-5.1 | 01-V1-CANDIDATE | primary | V1, forced | preserved |
 | `0027` | GPT-5.1 | 02-V2-GRAPH | primary | V2, forced | preserved |
+| `0028` | Opus | 00-SUPPLIED | primary | supplied original, forced | planned |
+| `0029` | Opus | NO-SKILL | primary | no explicit architecture skill | planned |
+| `0030` | Opus | 01-V1-CANDIDATE | primary | V1, forced | planned |
+| `0031` | Opus | 02-V2-GRAPH | primary | V2, forced | planned |
 
 ## Run-Order Rule
 
