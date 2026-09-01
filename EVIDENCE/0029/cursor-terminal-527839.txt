@@ -1,0 +1,16 @@
+---
+pid: 46636
+cwd: "D:\\Downloads\\Skill-Evaluation-Lab\\ACTIVE\\ShingleFile-main"
+command: "rg -n \"buildRoofPricingLines|pricing\" \"D:\\Downloads\\Skill-Evaluation-Lab\\ACTIVE\\ShingleFile-main\\shared\\contracts\\modules\" 2>&1"
+title: "Find pricing in composed contract modules"
+status: succeeded
+started_at: 2026-09-01T04:00:39.142Z
+running_for_ms: 32336    
+---
+D:\Downloads\Skill-Evaluation-Lab\ACTIVE\ShingleFile-main\shared\contracts\modules\compose.ts:163:      return buildModule(kind, key, label, "pricing", [
+
+---
+exit_code: 0
+elapsed_ms: 32335
+ended_at: 2026-09-01T04:01:11.477Z
+---

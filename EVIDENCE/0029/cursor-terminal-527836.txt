@@ -1,0 +1,44 @@
+---
+pid: 42384
+cwd: "D:\\Downloads\\Skill-Evaluation-Lab\\ACTIVE\\ShingleFile-main"
+command: "rg -n \"valleyMetal|valleyMetalRates|open-valley|ValleySelection\" \"D:\\Downloads\\Skill-Evaluation-Lab\\ACTIVE\\ShingleFile-main\" 2>&1"
+title: "Find all valley metal references with line numbers"
+status: succeeded
+started_at: 2026-09-01T03:58:46.147Z
+running_for_ms: 30039    
+---
+D:\Downloads\Skill-Evaluation-Lab\ACTIVE\ShingleFile-main\components\RoofingScopeForm.vue:426:        <dt>{{ totals.valleyMetal.billableLf }} ft @ {{ formatMoney(totals.valleyMetal.pricePerFoot) }}/ft (not billed)</dt>
+D:\Downloads\Skill-Evaluation-Lab\ACTIVE\ShingleFile-main\components\RoofingScopeForm.vue:427:        <dd>{{ formatMoney(totals.valleyMetal.cost) }}</dd>
+D:\Downloads\Skill-Evaluation-Lab\ACTIVE\ShingleFile-main\shared\calculator\calculateEstimate.ts:23:import { valleyMetalOption } from "../options/valleyMetal";
+D:\Downloads\Skill-Evaluation-Lab\ACTIVE\ShingleFile-main\shared\calculator\calculateEstimate.ts:50:  valleyMetal: ReturnType<typeof valleyMetalOption.compute>;
+D:\Downloads\Skill-Evaluation-Lab\ACTIVE\ShingleFile-main\shared\calculator\calculateEstimate.ts:131:  const valleyMetal = valleyMetalOption.compute(jobCtx);
+D:\Downloads\Skill-Evaluation-Lab\ACTIVE\ShingleFile-main\shared\calculator\calculateEstimate.ts:134:  // valleyMetal is intentionally excluded — it is not billed.
+D:\Downloads\Skill-Evaluation-Lab\ACTIVE\ShingleFile-main\shared\calculator\calculateEstimate.ts:170:    valleyMetal,
+D:\Downloads\Skill-Evaluation-Lab\ACTIVE\ShingleFile-main\shared\types.ts:290:  valleys: ValleySelection;
+D:\Downloads\Skill-Evaluation-Lab\ACTIVE\ShingleFile-main\shared\types.ts:407:export type ValleySelection = {
+D:\Downloads\Skill-Evaluation-Lab\ACTIVE\ShingleFile-main\shared\pricebook\types.ts:317:  valleyMetalRates: ValleyMetalRate[];
+D:\Downloads\Skill-Evaluation-Lab\ACTIVE\ShingleFile-main\pages\catalog\index.vue:45:  { section: "valleyMetalRates", title: "Valley Metal", rows: catalog.value.valleyMetalRates },
+D:\Downloads\Skill-Evaluation-Lab\ACTIVE\ShingleFile-main\shared\pricebook\index.ts:64:import valleyMetalRatesJson from "./data/valleyMetalRates.json";
+D:\Downloads\Skill-Evaluation-Lab\ACTIVE\ShingleFile-main\shared\pricebook\index.ts:112:  const valleyMetalRates =
+D:\Downloads\Skill-Evaluation-Lab\ACTIVE\ShingleFile-main\shared\pricebook\index.ts:113:    ValleyMetalRatesFileSchema.parse(valleyMetalRatesJson);
+D:\Downloads\Skill-Evaluation-Lab\ACTIVE\ShingleFile-main\shared\pricebook\index.ts:141:    valleyMetalRates,
+D:\Downloads\Skill-Evaluation-Lab\ACTIVE\ShingleFile-main\shared\options\valleyMetal.ts:10:import type { Money, ValleySelection } from "../types";
+D:\Downloads\Skill-Evaluation-Lab\ACTIVE\ShingleFile-main\shared\options\valleyMetal.ts:24:function valleyMetalCost(
+D:\Downloads\Skill-Evaluation-Lab\ACTIVE\ShingleFile-main\shared\options\valleyMetal.ts:25:  valleys: ValleySelection,
+D:\Downloads\Skill-Evaluation-Lab\ACTIVE\ShingleFile-main\shared\options\valleyMetal.ts:28:  const row = (cat.valleyMetalRates as ValleyMetalRate[]).find(
+D:\Downloads\Skill-Evaluation-Lab\ACTIVE\ShingleFile-main\shared\options\valleyMetal.ts:29:    (r) => r.key === "open-valley",
+D:\Downloads\Skill-Evaluation-Lab\ACTIVE\ShingleFile-main\shared\options\valleyMetal.ts:36:export const valleyMetalOption: JobOption<ValleyMetalBreakdown> = {
+D:\Downloads\Skill-Evaluation-Lab\ACTIVE\ShingleFile-main\shared\options\valleyMetal.ts:37:  id: "valleyMetal",
+D:\Downloads\Skill-Evaluation-Lab\ACTIVE\ShingleFile-main\shared\options\valleyMetal.ts:44:    "Only open valleys are figured: open-valley feet times the per-foot rate. This is shown for reference and is NOT added to the customer total.",
+D:\Downloads\Skill-Evaluation-Lab\ACTIVE\ShingleFile-main\shared\options\valleyMetal.ts:47:  catalogTables: ["valleyMetalRates"],
+D:\Downloads\Skill-Evaluation-Lab\ACTIVE\ShingleFile-main\shared\options\valleyMetal.ts:54:cost = billableLf x lookup("open-valley").pricePerFoot`,
+D:\Downloads\Skill-Evaluation-Lab\ACTIVE\ShingleFile-main\shared\options\valleyMetal.ts:58:  compute: (ctx: JobContext) => valleyMetalCost(ctx.roofing.valleys, ctx.catalog),
+D:\Downloads\Skill-Evaluation-Lab\ACTIVE\ShingleFile-main\shared\pricebook\data\valleyMetalRates.json:3:    "key": "open-valley",
+D:\Downloads\Skill-Evaluation-Lab\ACTIVE\ShingleFile-main\shared\options\index.ts:31:import { valleyMetalOption } from "./valleyMetal";
+D:\Downloads\Skill-Evaluation-Lab\ACTIVE\ShingleFile-main\shared\options\index.ts:56:  valleyMetalOption,
+
+---
+exit_code: 0
+elapsed_ms: 30037
+ended_at: 2026-09-01T03:59:16.184Z
+---

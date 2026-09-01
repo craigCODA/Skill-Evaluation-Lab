@@ -9,7 +9,7 @@ The experiment begins when global run `0024` is cut. These rows define the froze
 | `0026` | GPT-5.1 | 01-V1-CANDIDATE | primary | V1, forced | preserved |
 | `0027` | GPT-5.1 | 02-V2-GRAPH | primary | V2, forced | preserved |
 | `0028` | Opus | 00-SUPPLIED | primary | supplied original, forced | preserved |
-| `0029` | Opus | NO-SKILL | primary | no explicit architecture skill | planned |
+| `0029` | Opus | NO-SKILL | primary | no explicit architecture skill | preserved |
 | `0030` | Opus | 01-V1-CANDIDATE | primary | V1, forced | planned |
 | `0031` | Opus | 02-V2-GRAPH | primary | V2, forced | planned |
 

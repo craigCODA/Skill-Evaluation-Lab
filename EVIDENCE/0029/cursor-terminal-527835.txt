@@ -1,0 +1,45 @@
+---
+pid: 45208
+cwd: "d:\\Downloads\\Skill-Evaluation-Lab\\ACTIVE\\ShingleFile-main"
+command: "Get-ChildItem -Force \"d:\\Downloads\\Skill-Evaluation-Lab\\ACTIVE\\ShingleFile-main\" | Select-Object -First 30"
+title: "List ShingleFile-main directory contents"
+status: succeeded
+started_at: 2026-09-01T03:56:33.984Z
+running_for_ms: 33249    
+---
+
+    Directory: D:\Downloads\Skill-Evaluation-Lab\ACTIVE\ShingleFile-main
+
+Mode                 LastWriteTime         Length Name
+----                 -------------         ------ ----
+d--h-           8/31/2026 10:56 PM                .git
+d----           8/31/2026 10:06 PM                assets
+d----           8/31/2026 10:06 PM                components
+d----           8/31/2026 10:06 PM                composables
+d----           8/31/2026 10:06 PM                docs
+d----           8/31/2026 10:06 PM                drizzle
+d----           8/31/2026 10:06 PM                infra
+d----           8/31/2026 10:06 PM                layouts
+d----           8/31/2026 10:06 PM                middleware
+d----           8/31/2026 10:06 PM                pages
+d----           8/31/2026 10:06 PM                plugins
+d----           8/31/2026 10:06 PM                public
+d----           8/31/2026 10:06 PM                server
+d----           8/31/2026 10:06 PM                shared
+d----           8/31/2026 10:06 PM                utils
+-a---           8/31/2026 10:06 PM            158 .env.example
+-a---           8/31/2026 10:06 PM            271 .gitignore
+-a---           8/31/2026 10:06 PM             20 .npmrc
+-a---           8/31/2026 10:06 PM             76 app.vue
+-a---           8/31/2026 10:06 PM            230 drizzle.config.ts
+-a---           8/31/2026 10:06 PM           1703 nuxt.config.ts
+-a---           8/31/2026 10:06 PM         353671 package-lock.json
+-a---           8/31/2026 10:06 PM           1414 package.json
+-a---           8/31/2026 10:06 PM           1517 README.md
+-a---           8/31/2026 10:06 PM             44 tsconfig.json
+
+---
+exit_code: 0
+elapsed_ms: 33248
+ended_at: 2026-09-01T03:57:07.232Z
+---

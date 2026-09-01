@@ -1,0 +1,76 @@
+---
+pid: 48068
+cwd: "D:\\Downloads\\Skill-Evaluation-Lab\\ACTIVE\\ShingleFile-main"
+command: "rg -n \"lowSlope|gutterRemoval\" --glob \"*.vue\" --glob \"*.ts\" --glob \"!node_modules\" shared/contracts components/EstimateSummaryCard.vue 2>$null; echo \"---TESTS---\"; rg --files -g \"*test*\" -g \"*spec*\" --glob \"!node_modules\" . 2>$null; echo \"---PKG---\"; type package.json"
+title: "Check summary card, contracts, tests, package scripts"
+status: failed   
+started_at: 2026-09-01T04:06:09.205Z
+running_for_ms: 30626    
+---
+shared/contracts\roofProposalNarrative.ts:332:    const lf = Number(roofing.gutterRemovalLf) || 0
+shared/contracts\roofProposalNarrative.ts:350:  const lowSlope = tidy(String(roofing.lowSlope || ""))
+shared/contracts\roofProposalNarrative.ts:351:  if (lowSlope && lowSlope !== "NA" && !/^select/i.test(lowSlope)) {
+shared/contracts\roofProposalNarrative.ts:352:    paragraphs.push(sentence(`Complete low-slope work as scoped: ${lowSlope}`))
+shared/contracts\roofProposalPricing.ts:135:  if (totals.gutterRemoval.cost > 0) {
+shared/contracts\roofProposalPricing.ts:138:      value: `${roofing.gutterRemovalLf} LF`,
+shared/contracts\roofProposalPricing.ts:139:      amount: totals.gutterRemoval.cost,
+shared/contracts\roofProposalPricing.ts:143:  if (totals.lowSlope.cost > 0) {
+shared/contracts\roofProposalPricing.ts:146:      value: roofing.lowSlope.trim(),
+shared/contracts\roofProposalPricing.ts:147:      amount: totals.lowSlope.cost,
+shared/contracts\roofProposalScope.ts:184:  if (roofing.workAroundGutters === "Yes" && roofing.gutterRemovalLf > 0) {
+shared/contracts\roofProposalScope.ts:188:        `${roofing.gutterRemovalLf} LF`,
+shared/contracts\roofProposalScope.ts:193:  const lowSlope = roofing.lowSlope?.trim();
+shared/contracts\roofProposalScope.ts:194:  if (lowSlope && lowSlope !== " NA" && lowSlope !== "NA") {
+shared/contracts\roofProposalScope.ts:195:    lines.push(line("Low-slope roofing", lowSlope));
+---TESTS---
+---PKG---
+{
+  "name": "roof-calc-nuxt",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "nuxt dev --host 0.0.0.0 --port 6767",
+    "build": "nuxt build",
+    "db:generate": "drizzle-kit generate",
+    "db:migrate": "drizzle-kit migrate",
+    "deploy:aws": "infra/scripts/deploy-all.sh",
+    "deploy:aws:api": "infra/scripts/deploy-auth-api.sh",
+    "deploy:aws:data": "infra/scripts/deploy-network-data.sh",
+    "deploy:aws:frontend": "infra/scripts/deploy-frontend.sh",
+    "deploy:aws:migrate": "infra/scripts/migrate-aws-db.sh",
+    "seed:users": "infra/scripts/seed-users.sh",
+    "teardown:aws": "infra/scripts/teardown.sh",
+    "generate": "nuxt generate",
+    "preview": "nuxt preview --host 0.0.0.0 --port 6767",
+    "prepare": "nuxt prepare",
+    "typecheck": "nuxt typecheck"
+  },
+  "dependencies": {
+    "@aws-sdk/client-cognito-identity-provider": "^3.1072.0",
+    "@aws-sdk/client-s3": "^3.1073.0",
+    "@vueuse/nuxt": "^14.2.1",
+    "drizzle-orm": "^0.45.2",
+    "geotiff": "^3.0.5",
+    "nuxt": "4.3.1",
+    "pngjs": "^7.0.0",
+    "postgres": "^3.4.9",
+    "proj4": "^2.20.9",
+    "vue": "^3.5.33",
+    "zod": "^4.4.1"
+  },
+  "devDependencies": {
+    "@types/node": "^25.6.0",
+    "@types/pngjs": "^6.0.5",
+    "@types/proj4": "^2.5.6",
+    "drizzle-kit": "^0.31.10",
+    "tsx": "^4.21.0",
+    "typescript": "^6.0.3",
+    "vue-tsc": "^3.2.7"
+  }
+}
+
+---
+exit_code: 1
+elapsed_ms: 30625
+ended_at: 2026-09-01T04:06:39.830Z
+---

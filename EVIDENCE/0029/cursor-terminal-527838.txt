@@ -1,0 +1,21 @@
+---
+pid: 30328
+cwd: "D:\\Downloads\\Skill-Evaluation-Lab\\ACTIVE\\ShingleFile-main"
+command: "rg -n \"iceWaterValleyLf|RoofArea\" \"D:\\Downloads\\Skill-Evaluation-Lab\\ACTIVE\\ShingleFile-main\\shared\\types.ts\" 2>&1 | Select-Object -First 30"
+title: "Find RoofArea valley field in types"
+status: succeeded
+started_at: 2026-09-01T04:00:37.943Z
+running_for_ms: 32195    
+---
+230:  areas: RoofArea[];
+301:export type RoofArea = {
+350:  iceWaterValleyLf: number;
+509:  totalRoofAreaSqft?: number;
+535:  totalRoofAreaM2?: number;
+536:  totalRoofAreaSqft?: number;
+
+---
+exit_code: 0
+elapsed_ms: 32194
+ended_at: 2026-09-01T04:01:10.137Z
+---

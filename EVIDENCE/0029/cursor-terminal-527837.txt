@@ -1,0 +1,63 @@
+---
+pid: 52744
+cwd: "D:\\Downloads\\Skill-Evaluation-Lab\\ACTIVE\\ShingleFile-main"
+command: "rg -n \"buildProposalDocuments|ContractDocument|contract-preview|ContractPreview\" \"D:\\Downloads\\Skill-Evaluation-Lab\\ACTIVE\\ShingleFile-main\" 2>&1 | Select-Object -First 60"
+title: "Find contract document UI and API usage"
+status: failed   
+started_at: 2026-09-01T03:58:46.683Z
+running_for_ms: 30246    
+---
+D:\Downloads\Skill-Evaluation-Lab\ACTIVE\ShingleFile-main\assets\css\mobile.css:185:  .contract-preview-letterhead,
+D:\Downloads\Skill-Evaluation-Lab\ACTIVE\ShingleFile-main\assets\css\mobile.css:186:  .contract-preview-parties {
+D:\Downloads\Skill-Evaluation-Lab\ACTIVE\ShingleFile-main\assets\css\mobile.css:190:  .contract-preview-doc-meta {
+D:\Downloads\Skill-Evaluation-Lab\ACTIVE\ShingleFile-main\assets\css\contract-documents.css:123:.contract-preview-bullet-list {
+D:\Downloads\Skill-Evaluation-Lab\ACTIVE\ShingleFile-main\assets\css\contract-documents.css:129:.contract-preview-bullet-list li {
+D:\Downloads\Skill-Evaluation-Lab\ACTIVE\ShingleFile-main\assets\css\contract-documents.css:135:.contract-preview-bullet-list li::marker {
+D:\Downloads\Skill-Evaluation-Lab\ACTIVE\ShingleFile-main\assets\css\contract-documents.css:217:.contract-preview-signature-line {
+D:\Downloads\Skill-Evaluation-Lab\ACTIVE\ShingleFile-main\assets\css\contract-documents.css:238:.contract-preview-document:not(.contract-document) {
+D:\Downloads\Skill-Evaluation-Lab\ACTIVE\ShingleFile-main\assets\css\contract-documents.css:243:.contract-preview-letterhead,
+D:\Downloads\Skill-Evaluation-Lab\ACTIVE\ShingleFile-main\assets\css\contract-documents.css:244:.contract-preview-parties {
+D:\Downloads\Skill-Evaluation-Lab\ACTIVE\ShingleFile-main\assets\css\contract-documents.css:250:.contract-preview-company,
+D:\Downloads\Skill-Evaluation-Lab\ACTIVE\ShingleFile-main\assets\css\contract-documents.css:251:.contract-preview-doc-title {
+D:\Downloads\Skill-Evaluation-Lab\ACTIVE\ShingleFile-main\assets\css\contract-documents.css:256:.contract-preview-doc-meta {
+D:\Downloads\Skill-Evaluation-Lab\ACTIVE\ShingleFile-main\assets\css\contract-documents.css:260:.contract-preview-section {
+D:\Downloads\Skill-Evaluation-Lab\ACTIVE\ShingleFile-main\assets\css\contract-documents.css:265:.contract-preview-signatures {
+D:\Downloads\Skill-Evaluation-Lab\ACTIVE\ShingleFile-main\assets\css\contract-documents.css:310:  .contract-preview-signature-line {
+D:\Downloads\Skill-Evaluation-Lab\ACTIVE\ShingleFile-main\shared\contracts\types.ts:3:export type ContractDocumentKind =
+D:\Downloads\Skill-Evaluation-Lab\ACTIVE\ShingleFile-main\shared\contracts\types.ts:28:export type ContractDocumentMeta = {
+D:\Downloads\Skill-Evaluation-Lab\ACTIVE\ShingleFile-main\shared\contracts\types.ts:37:export type ContractDocument = {
+D:\Downloads\Skill-Evaluation-Lab\ACTIVE\ShingleFile-main\shared\contracts\types.ts:38:  kind: ContractDocumentKind;
+D:\Downloads\Skill-Evaluation-Lab\ACTIVE\ShingleFile-main\shared\contracts\types.ts:43:  meta?: ContractDocumentMeta;
+D:\Downloads\Skill-Evaluation-Lab\ACTIVE\ShingleFile-main\shared\contracts\roofProposalDocument.ts:7:import type { ContractDocument } from "./types";
+D:\Downloads\Skill-Evaluation-Lab\ACTIVE\ShingleFile-main\shared\contracts\roofProposalDocument.ts:34:): ContractDocument {
+D:\Downloads\Skill-Evaluation-Lab\ACTIVE\ShingleFile-main\shared\contracts\proposalDocuments.ts:7:import type { ContractDocument } from "./types";
+D:\Downloads\Skill-Evaluation-Lab\ACTIVE\ShingleFile-main\shared\contracts\proposalDocuments.ts:29:export function buildProposalDocuments(ctx: ContractContext): ContractDocument[] {
+D:\Downloads\Skill-Evaluation-Lab\ACTIVE\ShingleFile-main\shared\contracts\proposalDocuments.ts:52:): ContractDocument {
+D:\Downloads\Skill-Evaluation-Lab\ACTIVE\ShingleFile-main\shared\contracts\proposalDocuments.ts:92:): ContractDocument {
+D:\Downloads\Skill-Evaluation-Lab\ACTIVE\ShingleFile-main\shared\contracts\proposalDocuments.ts:119:): ContractDocument {
+D:\Downloads\Skill-Evaluation-Lab\ACTIVE\ShingleFile-main\shared\contracts\proposalDocuments.ts:151:): ContractDocument {
+D:\Downloads\Skill-Evaluation-Lab\ACTIVE\ShingleFile-main\shared\contracts\proposalDocuments.ts:186:): ContractDocument {
+D:\Downloads\Skill-Evaluation-Lab\ACTIVE\ShingleFile-main\shared\contracts\proposalDocuments.ts:229:): ContractDocument {
+D:\Downloads\Skill-Evaluation-Lab\ACTIVE\ShingleFile-main\shared\contracts\proposalDocuments.ts:241:): ContractDocument {
+D:\Downloads\Skill-Evaluation-Lab\ACTIVE\ShingleFile-main\shared\contracts\proposalDocuments.ts:285:): ContractDocument {
+D:\Downloads\Skill-Evaluation-Lab\ACTIVE\ShingleFile-main\shared\contracts\proposalDocuments.ts:345:  kind: ContractDocument["kind"],
+D:\Downloads\Skill-Evaluation-Lab\ACTIVE\ShingleFile-main\shared\contracts\proposalDocuments.ts:348:): ContractDocument {
+D:\Downloads\Skill-Evaluation-Lab\ACTIVE\ShingleFile-main\shared\contracts\modules\types.ts:9:import type { ContractDocumentMeta, ContractLine, ContractSection } from "../types"
+D:\Downloads\Skill-Evaluation-Lab\ACTIVE\ShingleFile-main\shared\contracts\modules\types.ts:99:  meta: ContractDocumentMeta
+D:\Downloads\Skill-Evaluation-Lab\ACTIVE\ShingleFile-main\pages\estimates\[estimateId]\contracts\[contractKind].vue:2:import type { ContractDocument, ContractLine, ContractSection } from "~~/shared/contracts/types"
+D:\Downloads\Skill-Evaluation-Lab\ACTIVE\ShingleFile-main\pages\estimates\[estimateId]\contracts\[contractKind].vue:10:const documents = ref<ContractDocument[]>([])
+D:\Downloads\Skill-Evaluation-Lab\ACTIVE\ShingleFile-main\pages\estimates\[estimateId]\contracts\[contractKind].vue:13:  documents.value = await $fetch<ContractDocument[]>(`/api/jobs/${estimateId.value}/contracts`, {
+D:\Downloads\Skill-Evaluation-Lab\ACTIVE\ShingleFile-main\pages\estimates\[estimateId]\contracts\[contractKind].vue:60:function companyName(doc: ContractDocument) {
+D:\Downloads\Skill-Evaluation-Lab\ACTIVE\ShingleFile-main\pages\estimates\[estimateId]\contracts\[contractKind].vue:102:      class="card contract-preview-document"
+D:\Downloads\Skill-Evaluation-Lab\ACTIVE\ShingleFile-main\pages\estimates\[estimateId]\contracts\[contractKind].vue:141:      <header v-else class="contract-preview-letterhead">
+D:\Downloads\Skill-Evaluation-Lab\ACTIVE\ShingleFile-main\pages\estimates\[estimateId]\contracts\[contractKind].vue:143:          <div class="contract-preview-company">{{ companyName(document) }}</div>
+D:\Downloads\Skill-Evaluation-Lab\ACTIVE\ShingleFile-main\pages\estimates\[estimateId]\contracts\[contractKind].vue:149:        <div class="contract-preview-doc-meta">
+D:\Downloads\Skill-Evaluation-Lab\ACTIVE\ShingleFile-main\pages\estimates\[estimateId]\contracts\[contractKind].vue:150:          <div class="contract-preview-doc-title">{{ document.title }}</div>
+D:\Downloads\Skill-Evaluation-Lab\ACTIVE\ShingleFile-main\pages\estimates\[estimateId]\contracts\[contractKind].vue:155:      <section :class="isContract ? 'contract-parties' : 'contract-preview-parties'">
+D:\Downloads\Skill-Evaluation-Lab\ACTIVE\ShingleFile-main\pages\estimates\[estimateId]\contracts\[contractKind].vue:183:        :class="isContract ? 'contract-section' : 'contract-preview-section'"
+D:\Downloads\Skill-Evaluation-Lab\ACTIVE\ShingleFile-main\pages\estimates\[estimateId]\contracts\[contractKind].vue:187:        <div v-if="section.kind === 'signatures'" :class="isContract ? 'contract-signatures' : 'contract-preview-signatures'">
+D:\Downloads\Skill-Evaluation-Lab\ACTIVE\ShingleFile-main\pages\estimates\[estimateId]\contracts\[contractKind].vue:191:            :class="isContract ? 'contract-signature-line' : 'contract-preview-signature-line'"
+D:\Downloads\Skill-Evaluation-Lab\ACTIVE\ShingleFile-main\pages\estimates\[estimateId]\contracts\[contractKind].vue:216:          :class="isContract ? 'contract-bullet-list' : 'contract-preview-bullet-list'"
+D:\Downloads\Skill-Evaluation-Lab\ACTIVE\ShingleFile-main\pages\estimates\[estimateId]\contracts\index.vue:284:      <ComposedContractDocument
+D:\Downloads\Skill-Evaluation-Lab\ACTIVE\ShingleFile-main\server\api\jobs\[jobId]\contracts.get.ts:2:import { buildProposalDocuments } from "~~/shared/contracts/proposalDocuments"
+D:\Downloads\Skill-Evaluation-Lab\ACTIVE\ShingleFile-main\server\api\jobs\[jobId]\contracts.get.ts:30:  return buildProposalDocuments({
