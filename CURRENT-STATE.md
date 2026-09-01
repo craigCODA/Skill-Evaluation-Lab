@@ -62,6 +62,8 @@ EXP-0004 Task 04 second-model evidence preserved:
 - Opus V1 candidate forced run (`0030`).
 - Opus V2 candidate forced run (`0031`).
 
+EXP-0004 Task 04 second-model scoring is preserved in `REPORTS/layered-codebase-architecture/0028-0031-exp0004-open-valley-metal-charge-opus.md`. Scores are: supplied original (`0028`) 22/30, no-skill control (`0029`) 23/30, V1 (`0030`) 22/30, and V2 (`0031`) 23/30. Opus flattened the condition gap: no-skill and V2 both found the estimate total plus proposal pricing path, while supplied original and V1 made the same functional fix with one extra type-comment/documentation surface.
+
 Process claims require preserved transcript/trace evidence. Verification claims require preserved command output or equivalent state proof at the level claimed. A transcript-only verification statement is a process claim, not independently preserved verification success.
 
 ## Current Run Observations
@@ -102,22 +104,22 @@ These are raw run observations. EXP-0003 scoring for `0020` through `0023` is pr
 - Preserved terminal evidence for `0027` records `npm run typecheck` failing because `nuxt` was not recognized.
 - No successful typecheck, test, build, browser/runtime verification, proposal-pricing behavior check, or explicit open/closed-valley behavior check was independently preserved for `0027`.
 - The `0027` archive is local-only in `ARCHIVES/local/` and is not fresh-clone retrievable until published to durable release/artifact storage.
-- EXP-0004 `0028` changed five tracked files and had no untracked subject-repository files.
+- EXP-0004 `0028` changed five tracked files and had no untracked subject-repository files; it scored 22/30.
 - The transcript for `0028` records supplied original tracing option metadata, estimate totals, proposal pricing, UI copy, pricebook type comments, contract document usage, and server contract routes.
 - Preserved terminal evidence for `0028` records a successful root listing and a repo-wide valley search command that returned failed status while emitting matching output.
 - The transcript for `0028` records an attempted `npm run typecheck`, but no independent successful typecheck, test, build, browser/runtime verification, proposal-pricing behavior check, or explicit open/closed-valley behavior check was preserved.
 - The `0028` archive is local-only in `ARCHIVES/local/` and is not fresh-clone retrievable until published to durable release/artifact storage.
-- EXP-0004 `0029` changed four tracked files and had no untracked subject-repository files.
+- EXP-0004 `0029` changed four tracked files and had no untracked subject-repository files; it scored 23/30.
 - The transcript for `0029` records no-skill exploration through a subagent plus direct cross-checking of valley metadata, estimate totals, proposal pricing, material counts, and contract paths.
 - Preserved terminal evidence for `0029` records repository listing/search output, proposal/contract search output, and package/test discovery output; one search command returned failed status while emitting matching output because the later test/spec file search found no matches.
 - No successful typecheck, test, build, browser/runtime verification, proposal-pricing behavior check, explicit open/closed-valley behavior check, or no-double-counting check was independently preserved for `0029`.
 - The `0029` archive is local-only in `ARCHIVES/local/` and is not fresh-clone retrievable until published to durable release/artifact storage.
-- EXP-0004 `0030` changed five tracked files and had no untracked subject-repository files.
+- EXP-0004 `0030` changed five tracked files and had no untracked subject-repository files; it scored 22/30.
 - The transcript for `0030` records forced V1 invocation, repository exploration through a subagent, and direct inspection of estimate, proposal, option metadata, type, UI, material-count, docs, and contract paths.
 - Preserved terminal evidence for `0030` records root/key-folder listing output; one terminal output includes a PowerShell `dir ... /b` error while exported metadata reports exit_code 0.
 - No successful typecheck, test, build, browser/runtime verification, proposal-pricing behavior check, explicit open/closed-valley behavior check, or no-double-counting check was independently preserved for `0030`.
 - The `0030` archive is local-only in `ARCHIVES/local/` and is not fresh-clone retrievable until published to durable release/artifact storage.
-- EXP-0004 `0031` changed four tracked files and had no untracked subject-repository files.
+- EXP-0004 `0031` changed four tracked files and had no untracked subject-repository files; it scored 23/30.
 - The transcript for `0031` records forced V2 invocation, two repository exploration subagents, and direct inspection of valley metal, estimate totals, proposal pricing, UI, material counts, contract store, docs, and persistence paths.
 - Preserved terminal evidence for `0031` records file/directory listing attempts and a contract snapshot persistence search; no separate terminal output for successful npm install or typecheck was found.
 - The `0031` archive includes ignored dependency/build directories `node_modules/` and `.nuxt/` created during the run.
@@ -212,4 +214,4 @@ Do not expose `BASELINE.md`, `SCORECARD.md`, expected authority, positive-contro
 
 ## Next Action
 
-Score EXP-0004 run `0028` through `0031` next, then compare the Opus block against the GPT-5.1 block. Do not edit the skill from EXP-0004 alone; score preserved evidence first.
+Compare EXP-0003 and EXP-0004 together before any skill edit. Do not edit, promote, rerun, or rewrite any skill or evidence solely from EXP-0004; decide whether a V2.1 draft is justified only if a repeated failure pattern is visible across the preserved scored blocks.
