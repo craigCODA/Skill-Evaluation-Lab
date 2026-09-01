@@ -430,5 +430,21 @@
     "result_asset_sha256": "44d5876deb6f0ff0577518e5fd1ba9984616c1ea32864f87323f76afc990b791",
     "release_tag": "local-only-pending-publication",
     "status": "preserved"
+  },
+  {
+    "run_id": "0028",
+    "model": "Opus",
+    "skill": "layered-codebase-architecture",
+    "skill_version": "00-SUPPLIED",
+    "experiment": "EXP-0004-task04-open-valley-metal-charge",
+    "evidence_class": "primary",
+    "condition": "supplied original",
+    "baseline_commit": "cd393ddd60548823dabd6875060247693a22c1be",
+    "evidence_path": "EVIDENCE/0028",
+    "experiment_run_path": "EXPERIMENTS/EXP-0004-task04-open-valley-metal-charge/runs/0028-opus-original",
+    "result_asset": "run-0028-opus-original-exp0004-supplied.zip",
+    "result_asset_sha256": "b28330a211146241ccc68a23f1f4706b3fccb9fcfa5cf1726b6dff78e3fa3ac9",
+    "release_tag": "local-only-pending-publication",
+    "status": "preserved"
   }
 ]

@@ -1,0 +1,14 @@
+{
+  "run_id": "0028",
+  "experiment": "EXP-0004-task04-open-valley-metal-charge",
+  "model": "Opus",
+  "condition": "00-SUPPLIED",
+  "active_path": "D:\\Downloads\\Skill-Evaluation-Lab\\ACTIVE\\ShingleFile-main",
+  "baseline": "cd393ddd60548823dabd6875060247693a22c1be",
+  "cursor_skill_path": "C:\\Users\\NeverAMoment\\.cursor\\skills-cursor\\layered-codebase-architecture",
+  "global_skill_present": true,
+  "prompt_copied_to_clipboard": true,
+  "subject_prompt_file": "EXPERIMENTS/EXP-0004-task04-open-valley-metal-charge/PROMPT.txt",
+  "cursor_message_has_forced_slash_invocation": true,
+  "prepared_at": "2026-08-31T21:27:01.1768716-05:00"
+}

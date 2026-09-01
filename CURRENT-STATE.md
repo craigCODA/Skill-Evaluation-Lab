@@ -6,9 +6,9 @@ Current frozen experimental candidate: `02-V2-GRAPH`
 
 Promotion status: experimental, not promoted as a general improvement.
 
-Current completed global run: `0027`
+Current completed global run: `0028`
 
-Next global run: `0028`
+Next global run: `0029`
 
 Current experiment: `EXP-0004-task04-open-valley-metal-charge`
 
@@ -55,6 +55,10 @@ EXP-0004 Task 04 first-model evidence preserved:
 
 EXP-0004 Task 04 first-model scoring is preserved in `REPORTS/layered-codebase-architecture/0024-0027-exp0004-open-valley-metal-charge.md`. Scores are: supplied original (`0024`) 22/30, no-skill control (`0025`) 16/30, V1 (`0026`) 14/30, and V2 (`0027`) 22/30. No arm earned Behavior Correctness 3 or Verification 3 because no preserved targeted behavior check proves open-valley charge propagation, proposal pricing inclusion, closed-valley preservation, and no double-counting.
 
+EXP-0004 Task 04 second-model evidence preserved:
+
+- Opus supplied original forced run (`0028`).
+
 Process claims require preserved transcript/trace evidence. Verification claims require preserved command output or equivalent state proof at the level claimed. A transcript-only verification statement is a process claim, not independently preserved verification success.
 
 ## Current Run Observations
@@ -95,6 +99,11 @@ These are raw run observations. EXP-0003 scoring for `0020` through `0023` is pr
 - Preserved terminal evidence for `0027` records `npm run typecheck` failing because `nuxt` was not recognized.
 - No successful typecheck, test, build, browser/runtime verification, proposal-pricing behavior check, or explicit open/closed-valley behavior check was independently preserved for `0027`.
 - The `0027` archive is local-only in `ARCHIVES/local/` and is not fresh-clone retrievable until published to durable release/artifact storage.
+- EXP-0004 `0028` changed five tracked files and had no untracked subject-repository files.
+- The transcript for `0028` records supplied original tracing option metadata, estimate totals, proposal pricing, UI copy, pricebook type comments, contract document usage, and server contract routes.
+- Preserved terminal evidence for `0028` records a successful root listing and a repo-wide valley search command that returned failed status while emitting matching output.
+- The transcript for `0028` records an attempted `npm run typecheck`, but no independent successful typecheck, test, build, browser/runtime verification, proposal-pricing behavior check, or explicit open/closed-valley behavior check was preserved.
+- The `0028` archive is local-only in `ARCHIVES/local/` and is not fresh-clone retrievable until published to durable release/artifact storage.
 
 ## EXP-0002 Holdout Block
 
@@ -149,6 +158,29 @@ When I choose an open valley and enter the footage, the estimate shows a valley 
 
 Do not expose `BASELINE.md`, `SCORECARD.md`, expected authority, positive-control findings, closed-valley expectations, prior experiment conclusions, implementation hints, or likely solution shape to the subject model.
 
+## EXP-0004 Second-Model Block
+
+Do not edit the skill during this block.
+
+Run Opus through the four frozen arms in this order:
+
+1. `0028` supplied original (`00-SUPPLIED`) - preserved
+2. `0029` no-skill control
+3. `0030` V1 (`01-V1-CANDIDATE`)
+4. `0031` V2 (`02-V2-GRAPH`)
+
+Each run starts from a fresh clone of Mother at baseline `cd393ddd60548823dabd6875060247693a22c1be` and a fresh Cursor conversation.
+
+Use the same Shingle workplace lifecycle as the first EXP-0003 model block.
+
+The subject prompt is exactly:
+
+```text
+When I choose an open valley and enter the footage, the estimate shows a valley metal amount but the customer total and roofing proposal ignore it. Open valley metal is a customer charge.
+```
+
+Do not expose `BASELINE.md`, `SCORECARD.md`, expected authority, positive-control findings, closed-valley expectations, prior experiment conclusions, implementation hints, or likely solution shape to the subject model.
+
 ## Evidence Contract For The Holdout
 
 - Preserve a transcript/trace for process claims.
@@ -161,4 +193,4 @@ Do not expose `BASELINE.md`, `SCORECARD.md`, expected authority, positive-contro
 
 ## Next Action
 
-Cut EXP-0004 run `0028` next: Opus supplied original, fresh Mother-to-Active clone, fresh Cursor conversation, supplied original installed in Cursor global skills-cursor, and forced /layered-codebase-architecture invocation. Do not edit the skill from EXP-0004 alone; the current evidence supports replication before skill revision.
+Cut EXP-0004 run `0029` next: Opus no-skill control, fresh Mother-to-Active clone, fresh Cursor conversation, no global layered-codebase-architecture skill folder, and no slash invocation. Do not edit the skill from EXP-0004 alone; the current evidence supports replication before skill revision.

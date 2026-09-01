@@ -1,0 +1,5 @@
+M	components/RoofingScopeForm.vue
+M	shared/calculator/calculateEstimate.ts
+M	shared/contracts/roofProposalPricing.ts
+M	shared/options/valleyMetal.ts
+M	shared/pricebook/types.ts
