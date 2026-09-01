@@ -1,0 +1,76 @@
+---
+pid: 19244
+cwd: "D:\\Downloads\\Skill-Evaluation-Lab\\ACTIVE\\ShingleFile-main"
+command: "ls docs; ls shared; ls server; ls composables"
+title: "List key folders"
+status: succeeded
+started_at: 2026-09-01T04:45:31.299Z
+running_for_ms: 31579    
+---
+
+    Directory: D:\Downloads\Skill-Evaluation-Lab\ACTIVE\ShingleFile-main\docs
+
+Mode                 LastWriteTime         Length Name
+----                 -------------         ------ ----
+-a---           8/31/2026 11:16 PM           7150 permissions-implementation.md
+
+    Directory: D:\Downloads\Skill-Evaluation-Lab\ACTIVE\ShingleFile-main\shared
+
+Mode                 LastWriteTime         Length Name
+----                 -------------         ------ ----
+d----           8/31/2026 11:16 PM                calculator
+d----           8/31/2026 11:16 PM                contracts
+d----           8/31/2026 11:16 PM                options
+d----           8/31/2026 11:16 PM                pricebook
+-a---           8/31/2026 11:16 PM           9746 accountPermissions.ts
+-a---           8/31/2026 11:16 PM           3968 appNav.ts
+-a---           8/31/2026 11:16 PM            601 branding.ts
+-a---           8/31/2026 11:16 PM           2725 company.ts
+-a---           8/31/2026 11:16 PM           3392 companyLocation.ts
+-a---           8/31/2026 11:16 PM           1148 customer.ts
+-a---           8/31/2026 11:16 PM           2621 estimateStatus.ts
+-a---           8/31/2026 11:16 PM            304 ids.ts
+-a---           8/31/2026 11:16 PM           2689 job.ts
+-a---           8/31/2026 11:16 PM            529 passwordPolicy.ts
+-a---           8/31/2026 11:16 PM           4265 roofArea.ts
+-a---           8/31/2026 11:16 PM           1293 roofImageryGeoref.ts
+-a---           8/31/2026 11:16 PM           2477 roofImageryScale.ts
+-a---           8/31/2026 11:16 PM           5073 roofLineMeasurements.ts
+-a---           8/31/2026 11:16 PM           9174 roofMeasurement.ts
+-a---           8/31/2026 11:16 PM            723 roofProbeAddress.ts
+-a---           8/31/2026 11:16 PM           7852 roofProbeReport.ts
+-a---           8/31/2026 11:16 PM           1493 seedEstimate.ts
+-a---           8/31/2026 11:16 PM          19898 types.ts
+-a---           8/31/2026 11:16 PM           2903 validation.ts
+
+    Directory: D:\Downloads\Skill-Evaluation-Lab\ACTIVE\ShingleFile-main\server
+
+Mode                 LastWriteTime         Length Name
+----                 -------------         ------ ----
+d----           8/31/2026 11:16 PM                api
+d----           8/31/2026 11:16 PM                db
+d----           8/31/2026 11:16 PM                utils
+
+    Directory: D:\Downloads\Skill-Evaluation-Lab\ACTIVE\ShingleFile-main\composables
+
+Mode                 LastWriteTime         Length Name
+----                 -------------         ------ ----
+-a---           8/31/2026 11:16 PM           5186 useAccount.ts
+-a---           8/31/2026 11:16 PM           1442 useAdminUsers.ts
+-a---           8/31/2026 11:16 PM           5526 useAuth.ts
+-a---           8/31/2026 11:16 PM            894 useCatalog.ts
+-a---           8/31/2026 11:16 PM            764 useCompanyProfile.ts
+-a---           8/31/2026 11:16 PM           2580 useContractSetup.ts
+-a---           8/31/2026 11:16 PM           2053 useCustomers.ts
+-a---           8/31/2026 11:16 PM           4335 useEstimates.ts
+-a---           8/31/2026 11:16 PM            540 useEstimateTotals.ts
+-a---           8/31/2026 11:16 PM            643 useFormatters.ts
+-a---           8/31/2026 11:16 PM           3649 useJobAssets.ts
+-a---           8/31/2026 11:16 PM          14176 useRoofMeasurements.ts
+-a---           8/31/2026 11:16 PM           1034 useRoofProbeReport.ts
+
+---
+exit_code: 0
+elapsed_ms: 31578
+ended_at: 2026-09-01T04:46:02.877Z
+---

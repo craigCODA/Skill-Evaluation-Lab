@@ -6,9 +6,9 @@ Current frozen experimental candidate: `02-V2-GRAPH`
 
 Promotion status: experimental, not promoted as a general improvement.
 
-Current completed global run: `0029`
+Current completed global run: `0030`
 
-Next global run: `0030`
+Next global run: `0031`
 
 Current experiment: `EXP-0004-task04-open-valley-metal-charge`
 
@@ -59,6 +59,7 @@ EXP-0004 Task 04 second-model evidence preserved:
 
 - Opus supplied original forced run (`0028`).
 - Opus no-skill control run (`0029`).
+- Opus V1 candidate forced run (`0030`).
 
 Process claims require preserved transcript/trace evidence. Verification claims require preserved command output or equivalent state proof at the level claimed. A transcript-only verification statement is a process claim, not independently preserved verification success.
 
@@ -110,6 +111,11 @@ These are raw run observations. EXP-0003 scoring for `0020` through `0023` is pr
 - Preserved terminal evidence for `0029` records repository listing/search output, proposal/contract search output, and package/test discovery output; one search command returned failed status while emitting matching output because the later test/spec file search found no matches.
 - No successful typecheck, test, build, browser/runtime verification, proposal-pricing behavior check, explicit open/closed-valley behavior check, or no-double-counting check was independently preserved for `0029`.
 - The `0029` archive is local-only in `ARCHIVES/local/` and is not fresh-clone retrievable until published to durable release/artifact storage.
+- EXP-0004 `0030` changed five tracked files and had no untracked subject-repository files.
+- The transcript for `0030` records forced V1 invocation, repository exploration through a subagent, and direct inspection of estimate, proposal, option metadata, type, UI, material-count, docs, and contract paths.
+- Preserved terminal evidence for `0030` records root/key-folder listing output; one terminal output includes a PowerShell `dir ... /b` error while exported metadata reports exit_code 0.
+- No successful typecheck, test, build, browser/runtime verification, proposal-pricing behavior check, explicit open/closed-valley behavior check, or no-double-counting check was independently preserved for `0030`.
+- The `0030` archive is local-only in `ARCHIVES/local/` and is not fresh-clone retrievable until published to durable release/artifact storage.
 
 ## EXP-0002 Holdout Block
 
@@ -199,4 +205,4 @@ Do not expose `BASELINE.md`, `SCORECARD.md`, expected authority, positive-contro
 
 ## Next Action
 
-Cut EXP-0004 run `0030` next: Opus V1 candidate, fresh Mother-to-Active clone, fresh Cursor conversation, V1 installed in Cursor global skills-cursor, and forced /layered-codebase-architecture invocation. Do not edit the skill from EXP-0004 alone; the current evidence supports replication before skill revision.
+Cut EXP-0004 run `0031` next: Opus V2 candidate, fresh Mother-to-Active clone, fresh Cursor conversation, V2 installed in Cursor global skills-cursor, and forced /layered-codebase-architecture invocation. Do not edit the skill from EXP-0004 alone; the current evidence supports replication before skill revision.

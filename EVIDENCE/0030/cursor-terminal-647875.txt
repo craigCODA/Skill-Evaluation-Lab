@@ -1,0 +1,16 @@
+---
+pid: 30192
+cwd: "d:\\Downloads\\Skill-Evaluation-Lab\\ACTIVE\\ShingleFile-main"
+command: "Get-ChildItem -Path \"d:\\Downloads\\Skill-Evaluation-Lab\\ACTIVE\\ShingleFile-main\" -Recurse -Depth 3 -ErrorAction SilentlyContinue | Select-Object -First 200 FullName"
+title: "List repo structure depth 3"
+status: succeeded
+started_at: 2026-09-01T04:45:33.208Z
+running_for_ms: 31407    
+---
+
+
+---
+exit_code: 0
+elapsed_ms: 31407
+ended_at: 2026-09-01T04:46:04.615Z
+---
